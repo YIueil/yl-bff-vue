@@ -32,12 +32,12 @@ Vue.directive('resizable', (el) => {
       const clientY = e.clientY
       const elW = el.clientWidth
       const elH = el.clientHeight
-      const EloffsetLeft = el.offsetLeft
-      const EloffsetTop = el.offsetTop
-      const ELscrollTop = el.scrollTop
+      const ElOffsetLeft = el.offsetLeft
+      const ElOffsetTop = el.offsetTop
+      const ELScrollTop = el.scrollTop
       const resizing = e => {
         // 右侧鼠标拖拽位置
-        if (clientX > EloffsetLeft + elW - 10 && clientX < EloffsetLeft + elW) {
+        if (clientX > ElOffsetLeft + elW - 10 && clientX < ElOffsetLeft + elW) {
           // 往左拖拽
           if (clientX > e.clientX) {
             if (el.clientWidth >= minWidth) {
@@ -50,7 +50,7 @@ Vue.directive('resizable', (el) => {
           }
         }
         // 下方鼠标拖拽位置
-        if (ELscrollTop + clientY > EloffsetTop + elH - 20 && ELscrollTop + clientY < EloffsetTop + elH) {
+        if (ELScrollTop + clientY > ElOffsetTop + elH - 20 && ELScrollTop + clientY < ElOffsetTop + elH) {
           // 往上拖拽
           if (clientY > e.clientY) {
             if (el.clientHeight >= minHeight) {
