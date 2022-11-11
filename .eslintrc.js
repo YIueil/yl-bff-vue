@@ -30,6 +30,7 @@ module.exports = {
     'array-bracket-spacing': ['error', 'never'], // 数组内部使用一致的空格
     'comma-dangle': ['error', 'never'], // 要求或禁止末尾逗号
     'eol-last': ['error', 'always'], // 要求或禁止文件末尾保留一行空行
+    'indent': ['error', 2], // 强制使用指定数量的空格进行缩进
     'spaced-comment': ['error', 'always'], // 要求或禁止在注释前有空白
     'space-infix-ops': ['error', {'int32Hint': false}], // 要求中缀操作符周围有空格
     'space-in-parens': ['error', 'never'], // 禁止圆括号内的空格
