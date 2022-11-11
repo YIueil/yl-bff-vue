@@ -25,6 +25,7 @@ module.exports = {
     'eqeqeq': 'error', // 要求使用 === 和 !==
 
     // 代码风格类
+    'semi': ['error', 'never'], // 强制不写入分号
     'quotes': ['error', 'single'], // 强制使用一致的反勾号、单引号
     'array-bracket-newline': ['error', 'consistent'], // 在数组开括号后和闭括号前强制换行
     'array-bracket-spacing': ['error', 'never'], // 数组内部使用一致的空格
