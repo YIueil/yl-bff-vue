@@ -15,7 +15,7 @@
         <a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a>
       </li>
     </ul>
-    <input v-model="text" v-draggable/>
+    <input v-model="text" v-action="{ msg: text }"/>
     <button v-draggable>
       打印内容
     </button>

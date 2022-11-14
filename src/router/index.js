@@ -1,27 +1,43 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
+/**
+ * 通用路由
+ */
+const constantRoutes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: '/401',
+    name: '401',
+    component: () => import('@/views/common/exception/401')
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: () => import('@/views/common/exception/404')
+  },
+  {
+    path: '/500',
+    name: '500',
+    component: () => import('@/views/common/exception/500')
   },
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: () => import('@/views/common/about/AboutView')
   }
 ]
 
 const router = new VueRouter({
-  routes
+  constantRoutes
+})
+
+/**
+ * 前置导航守卫
+ */
+router.beforeEach((to, from, next) => {
+  next()
 })
 
 export default router
