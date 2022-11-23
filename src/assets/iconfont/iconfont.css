@@ -1,0 +1,139 @@
+@font-face {
+  font-family: "iconfont"; /* Project id 3789209 */
+  src: url('iconfont.woff2?t=1669211733139') format('woff2'),
+       url('iconfont.woff?t=1669211733139') format('woff'),
+       url('iconfont.ttf?t=1669211733139') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.yl-icon-image:before {
+  content: "\e66b";
+}
+
+.yl-icon-TIFF:before {
+  content: "\e66c";
+}
+
+.yl-icon-JPEG:before {
+  content: "\e66d";
+}
+
+.yl-icon-GIF:before {
+  content: "\e66e";
+}
+
+.yl-icon-BMP:before {
+  content: "\e66f";
+}
+
+.yl-icon-SVG:before {
+  content: "\e670";
+}
+
+.yl-icon-DOC:before {
+  content: "\e671";
+}
+
+.yl-icon-DOCX:before {
+  content: "\e672";
+}
+
+.yl-icon-XLS:before {
+  content: "\e673";
+}
+
+.yl-icon-XLSX:before {
+  content: "\e674";
+}
+
+.yl-icon-PPTX:before {
+  content: "\e675";
+}
+
+.yl-icon-WPS:before {
+  content: "\e676";
+}
+
+.yl-icon-WT:before {
+  content: "\e677";
+}
+
+.yl-icon-ET:before {
+  content: "\e678";
+}
+
+.yl-icon-MP4:before {
+  content: "\e679";
+}
+
+.yl-icon-TXT:before {
+  content: "\e67b";
+}
+
+.yl-icon-WPT:before {
+  content: "\e67c";
+}
+
+.yl-icon-DPS:before {
+  content: "\e67d";
+}
+
+.yl-icon-DPT:before {
+  content: "\e67e";
+}
+
+.yl-icon-ETT:before {
+  content: "\e67f";
+}
+
+.yl-icon-other:before {
+  content: "\e69a";
+}
+
+.yl-icon-FLV:before {
+  content: "\e69e";
+}
+
+.yl-icon-PNG:before {
+  content: "\e69f";
+}
+
+.yl-icon-XML:before {
+  content: "\e6a0";
+}
+
+.yl-icon-TIF:before {
+  content: "\e6a1";
+}
+
+.yl-icon-EXCEL:before {
+  content: "\e6a2";
+}
+
+.yl-icon-PPT:before {
+  content: "\e6a3";
+}
+
+.yl-icon-word:before {
+  content: "\e6a4";
+}
+
+.yl-icon-JPG:before {
+  content: "\e6a5";
+}
+
+.yl-icon-CSV:before {
+  content: "\e6e0";
+}
+
+.yl-icon-PDF:before {
+  content: "\e6e4";
+}
+
