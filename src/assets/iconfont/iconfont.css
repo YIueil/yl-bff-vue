@@ -1,8 +1,8 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3789209 */
-  src: url('iconfont.woff2?t=1669211733139') format('woff2'),
-       url('iconfont.woff?t=1669211733139') format('woff'),
-       url('iconfont.ttf?t=1669211733139') format('truetype');
+  src: url('iconfont.woff2?t=1669371106608') format('woff2'),
+       url('iconfont.woff?t=1669371106608') format('woff'),
+       url('iconfont.ttf?t=1669371106608') format('truetype');
 }
 
 .iconfont {
@@ -13,83 +13,115 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.yl-icon-folder:before {
+  content: "\e601";
+}
+
+.yl-icon-any_type:before {
+  content: "\e602";
+}
+
+.yl-icon-archive:before {
+  content: "\e603";
+}
+
+.yl-icon-add_any:before {
+  content: "\e604";
+}
+
+.yl-icon-folder-open:before {
+  content: "\e605";
+}
+
+.yl-icon-unknown:before {
+  content: "\e606";
+}
+
+.yl-icon-web-folder:before {
+  content: "\e607";
+}
+
+.yl-icon-text:before {
+  content: "\e608";
+}
+
 .yl-icon-image:before {
   content: "\e66b";
 }
 
-.yl-icon-TIFF:before {
+.yl-icon-tiff:before {
   content: "\e66c";
 }
 
-.yl-icon-JPEG:before {
+.yl-icon-jpeg:before {
   content: "\e66d";
 }
 
-.yl-icon-GIF:before {
+.yl-icon-gif:before {
   content: "\e66e";
 }
 
-.yl-icon-BMP:before {
+.yl-icon-bmp:before {
   content: "\e66f";
 }
 
-.yl-icon-SVG:before {
+.yl-icon-svg:before {
   content: "\e670";
 }
 
-.yl-icon-DOC:before {
+.yl-icon-doc:before {
   content: "\e671";
 }
 
-.yl-icon-DOCX:before {
+.yl-icon-docx:before {
   content: "\e672";
 }
 
-.yl-icon-XLS:before {
+.yl-icon-xls:before {
   content: "\e673";
 }
 
-.yl-icon-XLSX:before {
+.yl-icon-xlsx:before {
   content: "\e674";
 }
 
-.yl-icon-PPTX:before {
+.yl-icon-pptx:before {
   content: "\e675";
 }
 
-.yl-icon-WPS:before {
+.yl-icon-wps:before {
   content: "\e676";
 }
 
-.yl-icon-WT:before {
+.yl-icon-wt:before {
   content: "\e677";
 }
 
-.yl-icon-ET:before {
+.yl-icon-et:before {
   content: "\e678";
 }
 
-.yl-icon-MP4:before {
+.yl-icon-mp4:before {
   content: "\e679";
 }
 
-.yl-icon-TXT:before {
+.yl-icon-txt:before {
   content: "\e67b";
 }
 
-.yl-icon-WPT:before {
+.yl-icon-wpt:before {
   content: "\e67c";
 }
 
-.yl-icon-DPS:before {
+.yl-icon-dps:before {
   content: "\e67d";
 }
 
-.yl-icon-DPT:before {
+.yl-icon-dpt:before {
   content: "\e67e";
 }
 
-.yl-icon-ETT:before {
+.yl-icon-ett:before {
   content: "\e67f";
 }
 
@@ -97,27 +129,27 @@
   content: "\e69a";
 }
 
-.yl-icon-FLV:before {
+.yl-icon-flv:before {
   content: "\e69e";
 }
 
-.yl-icon-PNG:before {
+.yl-icon-png:before {
   content: "\e69f";
 }
 
-.yl-icon-XML:before {
+.yl-icon-xml:before {
   content: "\e6a0";
 }
 
-.yl-icon-TIF:before {
+.yl-icon-tif:before {
   content: "\e6a1";
 }
 
-.yl-icon-EXCEL:before {
+.yl-icon-excel:before {
   content: "\e6a2";
 }
 
-.yl-icon-PPT:before {
+.yl-icon-ppt:before {
   content: "\e6a3";
 }
 
@@ -125,15 +157,15 @@
   content: "\e6a4";
 }
 
-.yl-icon-JPG:before {
+.yl-icon-jpg:before {
   content: "\e6a5";
 }
 
-.yl-icon-CSV:before {
+.yl-icon-csv:before {
   content: "\e6e0";
 }
 
-.yl-icon-PDF:before {
+.yl-icon-pdf:before {
   content: "\e6e4";
 }
 
