@@ -1,43 +1,55 @@
 <template>
-  <div id="app">
-    <span class="iconfont">&#xe66b;</span>
-    <span class="iconfont yl-icon-image"></span>
-    <svg class="icon" aria-hidden="true">
-      <use xlink:href="#yl-icon-image"></use>
-    </svg>
-    <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
+
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <router-view/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 
 export default {
-  mounted() {
-    this.initUser()
-  },
-  methods: {
-    ...mapActions(['initUser'])
-  }
-}
+  name: 'App',
+
+  data: () => ({
+    //
+  }),
+};
 </script>
-
-<style lang="less">
-html body {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-.icon {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
-}
-</style>

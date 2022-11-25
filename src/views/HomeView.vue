@@ -1,16 +1,15 @@
 <template>
-  <div class="home">
-    <YMaterialTree />
-  </div>
+  <hello-world />
 </template>
 
 <script>
-import YMaterialTree from '@/components/tree/YMaterialTree'
+  import HelloWorld from '../components/HelloWorld'
 
-export default {
-  name: 'HomeView',
-  components: {
-    YMaterialTree
+  export default {
+    name: 'Home',
+
+    components: {
+      HelloWorld,
+    },
   }
-}
 </script>
