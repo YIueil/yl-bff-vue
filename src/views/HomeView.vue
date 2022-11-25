@@ -1,15 +1,13 @@
 <template>
-  <hello-world />
+  <YSandbox/>
 </template>
 
 <script>
-  import HelloWorld from '../components/HelloWorld'
-
-  export default {
-    name: 'Home',
-
-    components: {
-      HelloWorld,
-    },
-  }
+import YSandbox from '@/components/application/YSandbox'
+export default {
+  name: 'Home',
+  components: {
+    YSandbox
+  },
+}
 </script>

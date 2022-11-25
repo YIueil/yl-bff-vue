@@ -8,6 +8,11 @@ Vue.use(VueRouter)
  */
 const constantRoutes = [
   {
+    path: '/',
+    name: 'home',
+    component: () => import('@/views/HomeView')
+  },
+  {
     path: '/401',
     name: '401',
     component: () => import('@/views/common/exception/401')
