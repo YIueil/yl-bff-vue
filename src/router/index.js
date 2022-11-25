@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 /**
  * 通用路由
  */
-const constantRoutes = [
+const routes = [
   {
     path: '/',
     name: 'home',
@@ -35,7 +35,7 @@ const constantRoutes = [
 ]
 
 const router = new VueRouter({
-  constantRoutes
+  routes
 })
 
 /**

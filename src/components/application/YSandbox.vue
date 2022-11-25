@@ -113,7 +113,7 @@
 
 <script>
 export default {
-  name: 'YBasicLayout',
+  name: 'YSandbox',
   props: {
     source: String
   },
@@ -129,7 +129,7 @@ export default {
       },
       footer: {
         inset: false,
-      },
+      }
     }
   }
 }
