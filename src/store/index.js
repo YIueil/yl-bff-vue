@@ -5,7 +5,18 @@ import user from '@/store/modules/user'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    drawer: {
+      model: null,
+      type: 'default (no property)',
+      clipped: true,
+      floating: false,
+      mini: false
+    },
+    footer: {
+      inset: false
+    }
+  },
   getters: {},
   mutations: {},
   actions: {},

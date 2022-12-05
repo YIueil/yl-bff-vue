@@ -1,15 +1,21 @@
 <template>
   <v-app>
-    <router-link to="/">home</router-link>
-    <router-link to="/about">about</router-link>
-    <router-view />
+    <y-sandbox>
+      <template #main>
+        <router-view />
+      </template>
+    </y-sandbox>
   </v-app>
 </template>
 
 <script>
 
+import YSandbox from '@/components/application/YSandbox'
 export default {
   name: 'App',
+  components: {
+    YSandbox
+  },
   data: () => ({
     //
   })
