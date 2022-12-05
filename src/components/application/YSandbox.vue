@@ -125,10 +125,10 @@ export default {
         type: 'default (no property)',
         clipped: false,
         floating: false,
-        mini: false,
+        mini: false
       },
       footer: {
-        inset: false,
+        inset: false
       }
     }
   }

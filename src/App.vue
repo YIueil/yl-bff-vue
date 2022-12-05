@@ -8,12 +8,10 @@
 
 <script>
 
-import YSandbox from '@/components/application/YSandbox'
 export default {
   name: 'App',
-  components: { YSandbox },
   data: () => ({
     //
-  }),
-};
+  })
+}
 </script>

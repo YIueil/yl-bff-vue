@@ -8,6 +8,6 @@ export default {
   name: 'Home',
   components: {
     YSandbox
-  },
+  }
 }
 </script>
