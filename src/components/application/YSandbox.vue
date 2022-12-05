@@ -1,40 +1,43 @@
 <template>
-  <v-app id="inspire">
-    <v-app id="sandbox">
-      <v-navigation-drawer
-          v-model="drawer.model"
-          :clipped="drawer.clipped"
-          :floating="drawer.floating"
-          :mini-variant="drawer.mini"
-          :permanent="drawer.type === 'permanent'"
-          :temporary="drawer.type === 'temporary'"
-          overflow
-          app
-      >
-        <slot name="sider"></slot>
-      </v-navigation-drawer>
-      <v-app-bar
-          :clipped-left="drawer.clipped"
-          app
-      >
-        <v-app-bar-nav-icon
-            v-if="drawer.type !== 'permanent'"
-            @click.stop="drawer.model = !drawer.model"
-        ></v-app-bar-nav-icon>
-        <v-toolbar-title>YSandbox</v-toolbar-title>
-      </v-app-bar>
-      <v-main>
-        <v-container fluid>
-          <slot name="main"></slot>
-        </v-container>
-      </v-main>
-      <v-footer
-          :inset="footer.inset"
-          app
-      >
-        <span class="px-4">&copy; {{ new Date().getFullYear() }}</span>
-      </v-footer>
-    </v-app>
+  <v-app id="sandbox">
+    <v-navigation-drawer
+        v-model="drawer.model"
+        :clipped="drawer.clipped"
+        :floating="drawer.floating"
+        :mini-variant="drawer.mini"
+        :permanent="drawer.type === 'permanent'"
+        :temporary="drawer.type === 'temporary'"
+        overflow
+        app
+    >
+      <slot name="sider"></slot>
+    </v-navigation-drawer>
+    <v-app-bar
+        :clipped-left="drawer.clipped"
+        app
+    >
+      <v-app-bar-nav-icon
+          v-if="drawer.type !== 'permanent'"
+          @click.stop="drawer.model = !drawer.model"
+      ></v-app-bar-nav-icon>
+      <v-toolbar-title style="cursor: pointer" @click="$router.push({ name: 'home' })">
+        YSandbox
+      </v-toolbar-title>
+      <slot name="bar-left"></slot>
+      <v-spacer></v-spacer>
+      <slot name="bar-right"></slot>
+    </v-app-bar>
+    <v-main>
+      <v-container fluid>
+        <slot name="main"></slot>
+      </v-container>
+    </v-main>
+    <v-footer
+        :inset="footer.inset"
+        app
+    >
+      <span class="px-4">&copy; {{ new Date().getFullYear() }}</span>
+    </v-footer>
   </v-app>
 </template>
 
