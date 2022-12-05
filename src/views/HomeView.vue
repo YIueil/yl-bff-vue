@@ -1,13 +1,15 @@
 <template>
-  <YSandbox/>
+  <div>
+    <YMaterialTree />
+  </div>
 </template>
 
 <script>
-import YSandbox from '@/components/application/YSandbox'
+import YMaterialTree from '@/components/tree/YMaterialTree'
 export default {
   name: 'HomeView',
   components: {
-    YSandbox
+    YMaterialTree
   }
 }
 </script>
