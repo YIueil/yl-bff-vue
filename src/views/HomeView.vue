@@ -5,7 +5,7 @@
 <script>
 import YSandbox from '@/components/application/YSandbox'
 export default {
-  name: 'Home',
+  name: 'HomeView',
   components: {
     YSandbox
   }
