@@ -67,11 +67,10 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn text>Cancel</v-btn>
             <v-btn
-                text
+                @click="$router.go(-1)"
                 color="primary"
-            >Submit</v-btn>
+            >确定</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -99,7 +98,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

@@ -1,6 +1,7 @@
 <template>
   <v-app id="sandbox">
     <v-navigation-drawer
+        class="accent-4"
         v-model="drawer.model"
         :clipped="drawer.clipped"
         :floating="drawer.floating"
@@ -12,6 +13,9 @@
         app
     >
       <slot name="sider"></slot>
+      <template v-slot:append>
+        <slot name="sider-append"></slot>
+      </template>
       <div class="resize-line" @mousedown="onmousedown">
         <div class="line"></div>
       </div>

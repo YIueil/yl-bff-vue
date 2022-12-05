@@ -30,6 +30,56 @@
               默认空间
             </v-list-item-subtitle>
           </v-list-item-content>
+          <v-list-item-icon>
+            <v-menu
+                top
+                fixed
+                min-width="256"
+                :close-on-click="true"
+                :offset-y="true"
+                :offset-x="true">
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                    v-bind="attrs"
+                    v-on="on"
+                    icon
+                >
+                  <v-icon>mdi-dots-vertical</v-icon>
+                </v-btn>
+              </template>
+              <v-list>
+                <v-list-item>
+                  <v-list-item-content>
+                    <v-list-item-title>工作空间</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-divider inset></v-divider>
+                <v-list-item
+                    v-for="item in items"
+                    :key="item.title"
+                    link
+                >
+                  <v-list-item-icon>
+                    <v-icon>{{ item.icon }}</v-icon>
+                  </v-list-item-icon>
+
+                  <v-list-item-content>
+                    <v-list-item-title>{{ item.title }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+                <v-divider inset></v-divider>
+                <v-list-item link>
+                  <v-list-item-icon>
+                    <v-icon>mdi-logout-variant</v-icon>
+                  </v-list-item-icon>
+
+                  <v-list-item-content>
+                    <v-list-item-title>退出登录</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </v-list-item-icon>
         </v-list-item>
         <v-divider></v-divider>
         <v-list
@@ -51,8 +101,13 @@
           </v-list-item>
         </v-list>
       </template>
+      <template #sider-append>
+        <div class="pa-2">
+          <v-btn small block>⚡ New page</v-btn>
+        </div>
+      </template>
       <template #main>
-        <router-view />
+        <router-view/>
       </template>
     </y-sandbox>
   </div>
@@ -60,6 +115,7 @@
 
 <script>
 import YSandbox from '@/components/application/YSandbox'
+
 export default {
   name: 'App',
   components: {
