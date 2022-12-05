@@ -17,6 +17,40 @@
           <v-icon>mdi-cog</v-icon>
         </v-btn>
       </template>
+      <template #sider>
+        <v-list-item>
+          <v-list-item-avatar>
+            <img src="https://s2.loli.net/2022/05/10/6NZgpvlQx8PBG3o.png" alt="">
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title class="title">
+              YIueil
+            </v-list-item-title>
+            <v-list-item-subtitle>
+              默认空间
+            </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list
+            dense
+            nav
+        >
+          <v-list-item
+              v-for="item in items"
+              :key="item.title"
+              link
+          >
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </template>
       <template #main>
         <router-view />
       </template>
@@ -31,9 +65,16 @@ export default {
   components: {
     YSandbox
   },
-  data: () => ({
-    //
-  })
+  data() {
+    return {
+      items: [
+        { title: '快速查找', icon: 'mdi-magnify' },
+        { title: '导入', icon: 'mdi-upload' },
+        { title: '删除', icon: 'mdi-delete' }
+      ],
+      right: null
+    }
+  }
 }
 </script>
 <style lang="less">

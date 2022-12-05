@@ -14,7 +14,7 @@ export default new Vuex.Store({
       mini: false
     },
     footer: {
-      inset: false
+      inset: true
     }
   },
   getters: {},
