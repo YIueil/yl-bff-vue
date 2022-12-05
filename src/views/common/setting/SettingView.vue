@@ -25,7 +25,7 @@
               >
                 <span>Drawer</span>
                 <v-radio-group
-                    v-model="primaryDrawer.type"
+                    v-model="drawer.type"
                     column
                 >
                   <v-radio
@@ -37,17 +37,17 @@
                   ></v-radio>
                 </v-radio-group>
                 <v-switch
-                    v-model="primaryDrawer.clipped"
+                    v-model="drawer.clipped"
                     label="Clipped"
                     primary
                 ></v-switch>
                 <v-switch
-                    v-model="primaryDrawer.floating"
+                    v-model="drawer.floating"
                     label="Floating"
                     primary
                 ></v-switch>
                 <v-switch
-                    v-model="primaryDrawer.mini"
+                    v-model="drawer.mini"
                     label="Mini"
                     primary
                 ></v-switch>
@@ -80,13 +80,21 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'SettingView',
+  data() {
+    return {
+      drawers: ['Default (no property)', 'Permanent', 'Temporary']
+    }
+  },
   methods: {
-    ...mapActions({
-      
+  },
+  computed: {
+    ...mapState({
+      drawer: state => state.drawer,
+      footer: state => state.footer
     })
   }
 }
