@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <YMaterialTree />
-  </div>
+  <y-material-tree/>
 </template>
 
 <script>
 import YMaterialTree from '@/components/tree/YMaterialTree'
 export default {
   name: 'HomeView',
-  components: {
-    YMaterialTree
-  }
+  components: { YMaterialTree }
 }
 </script>
+
+<style scoped>
+
+</style>
