@@ -1,12 +1,14 @@
 <template>
-  <y-material-tree/>
+  <div>
+    <MilkDownEditor msg="hello world"/>
+  </div>
 </template>
 
 <script>
-import YMaterialTree from '@/components/tree/YMaterialTree'
+import MilkDownEditor from '@/components/editor/MilkDownEditor'
 export default {
   name: 'HomeView',
-  components: { YMaterialTree }
+  components: { MilkDownEditor }
 }
 </script>
 
