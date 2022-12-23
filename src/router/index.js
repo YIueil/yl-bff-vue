@@ -10,7 +10,13 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('@/views/HomeView')
+    component: () => import('@/views/HomeView'),
+    children: [{
+      path: 'page/:pageId',
+      name: 'page',
+      props: true,
+      component: () => import('@/views/editor/EditorView')
+    }]
   },
   {
     path: '/401',

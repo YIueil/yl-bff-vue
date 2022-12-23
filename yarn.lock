@@ -1319,7 +1319,7 @@
     "tslib" "^2.4.0"
     "unified" "^10.1.0"
 
-"@milkdown/utils@6.5.4":
+"@milkdown/utils@^6.5.4", "@milkdown/utils@6.5.4":
   "integrity" "sha512-2kH6lT3g8fMgCwZu8+fX3o5VYQeLHe3WxxGXzprtmtfI7SIrHNUXkHEayiiLRRX2MZS7e9pHpjJaaSrEYY1EIA=="
   "resolved" "http://58.246.138.178:22282/repository/npm-public/@milkdown/utils/-/utils-6.5.4.tgz"
   "version" "6.5.4"
@@ -4459,6 +4459,11 @@
     "big.js" "^5.2.2"
     "emojis-list" "^3.0.0"
     "json5" "^2.1.2"
+
+"loadsh@^0.0.4":
+  "integrity" "sha512-U+wLL8InpfRalWrr+0SuhWgGt10M4OyAk6G8xCYo2rwpiHtxZkWiFpjei0vO463ghW8LPCdhqQxXlMy2qicAEw=="
+  "resolved" "http://58.246.138.178:22282/repository/npm-public/loadsh/-/loadsh-0.0.4.tgz"
+  "version" "0.0.4"
 
 "locate-path@^5.0.0":
   "integrity" "sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g=="

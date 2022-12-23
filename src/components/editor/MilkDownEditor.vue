@@ -12,7 +12,7 @@ import {
 } from '@milkdown/core'
 import { nord } from '@milkdown/theme-nord'
 import { gfm } from '@milkdown/preset-gfm'
-import { listener } from '@milkdown/plugin-listener' // 内容监听
+import { listener, listenerCtx } from '@milkdown/plugin-listener' // 内容监听
 
 import { history } from '@milkdown/plugin-history' // 撤销和重做支持
 import { clipboard } from '@milkdown/plugin-clipboard' // 剪切板增强
@@ -20,6 +20,8 @@ import { indent } from '@milkdown/plugin-indent' // 缩进支持
 import { slash, slashPlugin, createDropdownItem, defaultActions } from '@milkdown/plugin-slash' // 斜杠命令支持
 import { block } from '@milkdown/plugin-block' // 块选择支持
 import { prism } from '@milkdown/plugin-prism' // 代码高亮支持 依赖 prism-themes
+
+import { replaceAll } from '@milkdown/utils' // 宏
 
 export default {
   name: 'MilkDownEditor',
@@ -36,6 +38,11 @@ export default {
   mounted() {
     this.init()
   },
+  data() {
+    return {
+      editor: null
+    }
+  },
   methods: {
     async init() {
       const editable = () => this.readonly
@@ -43,9 +50,12 @@ export default {
         .config((ctx) => {
           ctx.set(rootCtx, this.$refs.editor)
           ctx.set(defaultValueCtx, this.markDownText) // 初始化内容
-          ctx.set(editorViewOptionsCtx, {
+          ctx.set(editorViewOptionsCtx, { // 是否可编辑
             editable
-          }) // 是否可编辑
+          })
+          ctx.get(listenerCtx).markdownUpdated((ctx, markdown, prevMarkdown) => {
+            this.$emit('markdownUpdated', ctx, markdown, prevMarkdown)
+          })
         })
         .use(gfm)
         .use(listener)
@@ -158,6 +168,9 @@ export default {
         }))
         .use(prism)
         .create()
+    },
+    async replaceAllText(content) {
+      this.editor.action(replaceAll(content))
     }
   }
 }
