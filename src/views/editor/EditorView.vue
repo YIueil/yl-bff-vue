@@ -45,22 +45,26 @@ export default {
       this.page.content = markdown
       if (!this.isSaving) {
         this.isSaving = _.debounce(async() => {
-          if (this.page.id) {
-            await pageApi.updatePage({
-              id: this.page.id
-            }, this.page)
-            await this.initPageList()
-          } else {
-            await pageApi.addPage(this.page)
-            await this.initPageList()
-          }
+          await this.savePage()
         }, 3000)
       }
       this.isSaving()
+    },
+    async savePage() {
+      if (this.page.id) {
+        await pageApi.updatePage({
+          id: this.page.id
+        }, this.page)
+        await this.initPageList()
+      } else {
+        await pageApi.addPage(this.page)
+        await this.initPageList()
+      }
     }
   },
   watch: {
     pageId() {
+      this.savePage()
       this.init()
     },
     markDownText() {
