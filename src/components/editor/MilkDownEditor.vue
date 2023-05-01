@@ -30,7 +30,7 @@ export default {
       type: String,
       default: () => 'hello world!'
     },
-    readOnly: {
+    editable: {
       type: Boolean,
       default: () => false
     },
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     async init() {
-      const editable = () => this.readonly
+      const editable = () => this.editableVar
       const theme = this.defaultTheme === 'dark' ? nordDark : nordLight
       this.editor = await Editor.make()
         .config((ctx) => {
@@ -179,6 +179,17 @@ export default {
     },
     async repalceTheme(theme) {
       this.editor.action(switchTheme(theme === 'dark' ? nordDark : nordLight))
+    },
+    switchReadOnly() {
+      this.editableVar = false
+    },
+    switchEditable() {
+      this.editableVar = true
+    }
+  },
+  computed: {
+    editableVar() {
+      return this.editable
     }
   }
 }

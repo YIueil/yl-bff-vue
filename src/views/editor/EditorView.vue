@@ -3,7 +3,7 @@
     <milk-down-editor
         ref="editor"
         :mark-down-text="markDownText"
-        :read-only="true"
+        :editable="editable"
         :default-theme="$vuetify.theme.dark ? 'dark' : 'light'"
         @markdownUpdated="onMarkdownUpdated"
     />
@@ -14,7 +14,7 @@
 import _ from 'loadsh'
 import MilkDownEditor from '@/components/editor/MilkDownEditor'
 import pageApi from '@/api/page'
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'EditorView',
@@ -24,7 +24,8 @@ export default {
     return {
       page: {},
       markDownText: 'hello world!',
-      isSaving: null
+      isSaving: null,
+      editable: true
     }
   },
   mounted() {
@@ -36,7 +37,9 @@ export default {
       this.page = await pageApi.getPage({
         id: this.pageId
       })
-      this.markDownText = this.page.content
+      this.$store.commit('SET_CURRECT_PAGE', this.page)
+      this.markDownText = this.currectPage.content
+      this.editable = this.currectPage.editable
     },
     async onMarkdownUpdated(ctx, markdown) {
       if (!markdown) {
@@ -63,6 +66,11 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapState({
+      currectPage: state => state.page.currectPage
+    })
+  },
   watch: {
     pageId() {
       this.savePage()
@@ -73,6 +81,9 @@ export default {
     },
     '$vuetify.theme.dark': function(isDark) {
       this.$refs.editor.repalceTheme(isDark ? 'dark' : 'light')
+    },
+    '$store.state.page.currectPage.editable': function() {
+      this.editable = this.$store.state.page.currectPage.editable
     }
   }
 }

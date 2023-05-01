@@ -8,12 +8,16 @@ import pageApi from '@/api/page'
 const page = {
   state() {
     return {
+      currectPage: {},
       pageList: []
     }
   },
   mutations: {
     SET_PAGE(state, pageList) {
       state.pageList = pageList
+    },
+    SET_CURRECT_PAGE(state, page) {
+      state.currectPage = page
     }
   },
   actions: {

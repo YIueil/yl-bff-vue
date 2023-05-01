@@ -10,8 +10,8 @@
           <v-icon>mdi-heart</v-icon>
         </v-btn>
         <v-btn icon>
-          <v-icon>mdi-lock</v-icon>
-          <v-icon v-if="false">mdi-lock-open</v-icon>
+          <v-icon @click="savePage(false)" v-if="currectPage.editable">mdi-lock</v-icon>
+          <v-icon @click="savePage(true)" v-else>mdi-lock-open</v-icon>
         </v-btn>
         <v-btn @click="$router.push({ name: 'setting'})" icon>
           <v-icon>mdi-cog</v-icon>
@@ -249,6 +249,13 @@ export default {
       this.initPageList()
       this.initSpaceList()
     },
+    async savePage(editable) {
+      this.currectPage.editable = editable
+      const page = await pageApi.updatePage({
+        id: this.currectPage.id
+      }, this.currectPage)
+      this.$store.commit('SET_CURRECT_PAGE', page)
+    },
     onActivated(page) {
       if (page[0]) {
         this.activityPageId = page[0]
@@ -311,7 +318,8 @@ export default {
   computed: {
     ...mapState({
       pageList: state => state.page.pageList,
-      spaceList: state => state.space.spaceList
+      spaceList: state => state.space.spaceList,
+      currectPage: state => state.page.currectPage
     })
   },
   watch: {
