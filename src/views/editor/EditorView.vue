@@ -4,6 +4,7 @@
         ref="editor"
         :mark-down-text="markDownText"
         :read-only="true"
+        :default-theme="$vuetify.theme.dark ? 'dark' : 'light'"
         @markdownUpdated="onMarkdownUpdated"
     />
   </div>

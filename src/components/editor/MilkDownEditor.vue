@@ -33,6 +33,10 @@ export default {
     readOnly: {
       type: Boolean,
       default: () => false
+    },
+    defaultTheme: {
+      type: String,
+      default: () => 'light'
     }
   },
   mounted() {
@@ -46,6 +50,7 @@ export default {
   methods: {
     async init() {
       const editable = () => this.readonly
+      const theme = this.defaultTheme === 'dark' ? nordDark : nordLight
       this.editor = await Editor.make()
         .config((ctx) => {
           ctx.set(rootCtx, this.$refs.editor)
@@ -62,7 +67,7 @@ export default {
         .use(history)
         .use(clipboard)
         .use(indent)
-        .use(nordLight)
+        .use(theme)
         .use(block)
         .use(slash.configure(slashPlugin, {
           config: (ctx) => {
