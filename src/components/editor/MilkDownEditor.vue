@@ -10,7 +10,7 @@ import {
   themeManagerCtx,
   editorViewOptionsCtx
 } from '@milkdown/core'
-import { nord } from '@milkdown/theme-nord'
+import { nordDark, nordLight } from '@milkdown/theme-nord'
 import { gfm } from '@milkdown/preset-gfm'
 import { listener, listenerCtx } from '@milkdown/plugin-listener' // 内容监听
 
@@ -21,7 +21,7 @@ import { slash, slashPlugin, createDropdownItem, defaultActions } from '@milkdow
 import { block } from '@milkdown/plugin-block' // 块选择支持
 import { prism } from '@milkdown/plugin-prism' // 代码高亮支持 依赖 prism-themes
 
-import { replaceAll } from '@milkdown/utils' // 宏
+import { replaceAll, switchTheme } from '@milkdown/utils' // 宏
 
 export default {
   name: 'MilkDownEditor',
@@ -62,7 +62,7 @@ export default {
         .use(history)
         .use(clipboard)
         .use(indent)
-        .use(nord)
+        .use(nordLight)
         .use(block)
         .use(slash.configure(slashPlugin, {
           config: (ctx) => {
@@ -171,6 +171,9 @@ export default {
     },
     async replaceAllText(content) {
       this.editor.action(replaceAll(content))
+    },
+    async repalceTheme(theme) {
+      this.editor.action(switchTheme(theme === 'dark' ? nordDark : nordLight))
     }
   }
 }

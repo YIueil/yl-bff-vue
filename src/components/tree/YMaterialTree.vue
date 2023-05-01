@@ -139,7 +139,7 @@ export default {
   width: 20px;
 }
 
-/deep/ .v-treeview-node__prepend {
+::v-deep(.v-treeview-node__prepend) {
   display: flex;
   align-items: center;
 }

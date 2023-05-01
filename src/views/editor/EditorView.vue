@@ -69,6 +69,9 @@ export default {
     },
     markDownText() {
       this.$refs.editor.replaceAllText(this.markDownText)
+    },
+    '$vuetify.theme.dark': function(isDark) {
+      this.$refs.editor.repalceTheme(isDark ? 'dark' : 'light')
     }
   }
 }

@@ -8,6 +8,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    theme: 'light',
     drawer: {
       model: null,
       type: 'default (no property)',
@@ -21,6 +22,12 @@ export default new Vuex.Store({
   },
   getters: {},
   mutations: {
+    setLightTheme() {
+      this.state.theme = 'light'
+    },
+    setDarkTheme() {
+      this.state.theme = 'dark'
+    }
   },
   actions: {},
   modules: {

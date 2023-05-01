@@ -313,6 +313,15 @@ export default {
       pageList: state => state.page.pageList,
       spaceList: state => state.space.spaceList
     })
+  },
+  watch: {
+    '$vuetify.theme.dark': function(newValue) {
+      if(newValue) {
+        this.$store.commit('setDarkTheme')
+      } else {
+        this.$store.commit('setLightTheme')
+      }
+    }
   }
 }
 </script>

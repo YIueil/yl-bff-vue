@@ -4,6 +4,9 @@ import axios from 'axios'
 const request = axios.create({
   // API 请求的默认前缀
   baseURL: process.env.VUE_APP_BASE_URL,
+  headers: {
+    'yl-token': 'Fk12345.'
+  },
   timeout: 60000 // 请求超时时间
 })
 console.log(process.env.VUE_APP_BASE_URL)
