@@ -5,9 +5,16 @@
  */
 const constantRouter = [
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import('@/views/common/access/LoginView')
+    path: 'access',
+    name: 'Access',
+    component: () => import('@/layouts/AccessLayout'),
+    children: [
+      {
+        path: '/login',
+        name: 'Login',
+        component: () => import('@/views/common/access/LoginView')
+      }
+    ]
   }
 ]
 export default constantRouter

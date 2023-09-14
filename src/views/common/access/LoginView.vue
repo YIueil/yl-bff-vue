@@ -1,8 +1,8 @@
 <template>
   <div>
     这是登陆页
-    <input/>
-    <input/>
+    <input/><br>
+    <input/><br>
   </div>
 </template>
 

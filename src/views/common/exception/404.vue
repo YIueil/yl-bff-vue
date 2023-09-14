@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: '404Exception'
+  name: 'ExceptionBy404'
 }
 </script>
 
