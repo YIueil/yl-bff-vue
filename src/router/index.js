@@ -4,9 +4,9 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 /**
- * 通用路由
+ * 基础路由: 路由包含三部分(基础路由、静态路由、动态路由)
  */
-const constantRoutes = [
+const baseRoutes = [
   {
     path: '/401',
     name: '401',
@@ -30,13 +30,14 @@ const constantRoutes = [
 ]
 
 const router = new VueRouter({
-  constantRoutes
+  baseRoutes
 })
 
 /**
- * 前置导航守卫
+ * 前置路由导航守卫
  */
 router.beforeEach((to, from, next) => {
+  // todo 判断当前的路由是否需要登录
   next()
 })
 
