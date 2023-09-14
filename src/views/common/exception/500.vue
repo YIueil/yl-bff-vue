@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: '500Exception'
+  name: 'ExceptionBy500'
 }
 </script>
 

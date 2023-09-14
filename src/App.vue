@@ -1,36 +1,34 @@
 <template>
-  <div id="app">
-    <span class="iconfont">&#xe66b;</span>
-    <span class="iconfont yl-icon-image"></span>
-    <svg class="icon" aria-hidden="true">
-      <use xlink:href="#yl-icon-image"></use>
-    </svg>
+  <div id="wrapper">
     <nav>
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
+      <router-link to="/Login">Login</router-link>
     </nav>
-    <router-view/>
+    <div id="app">
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 
 export default {
   mounted() {
-    this.initUser()
   },
-  methods: {
-    ...mapActions(['initUser'])
-  }
+  methods: {}
 }
 </script>
 
 <style lang="less">
-html body {
-  margin: 0;
-  padding: 0;
-  border: 0;
+#wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#app {
+  flex-grow: 1;
 }
 
 .icon {

@@ -1,15 +1,15 @@
 <template>
   <div>
-    401 Unauthorized!
+    <router-view/>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: 'ExceptionBy401'
+  name: 'BlankLayout'
 }
 </script>
 
 <style scoped>
-
 </style>
