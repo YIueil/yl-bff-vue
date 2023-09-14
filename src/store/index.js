@@ -7,7 +7,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {},
-  getters: {},
+  getters: {
+    userRoutes: state => state.user.userRoutes
+  },
   mutations: {},
   actions: {},
   modules: {

@@ -1003,27 +1003,6 @@
   resolved "https://registry.npmmirror.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@intlify/core-base@9.4.0":
-  version "9.4.0"
-  resolved "https://registry.yarnpkg.com/@intlify/core-base/-/core-base-9.4.0.tgz#a99a89f1263ab0f4d2889b49629bfbbf4f238d85"
-  integrity sha512-bIvtuEjLES35l39R0OccYbmr/fatSr4VSRThhouvFc05mnoAZyJGgj3st1iLaHGlFTmvd507uww1427o56r36Q==
-  dependencies:
-    "@intlify/message-compiler" "9.4.0"
-    "@intlify/shared" "9.4.0"
-
-"@intlify/message-compiler@9.4.0":
-  version "9.4.0"
-  resolved "https://registry.yarnpkg.com/@intlify/message-compiler/-/message-compiler-9.4.0.tgz#c11fceb4cc07dfe6a4b3066ca6e9a9e44e897f23"
-  integrity sha512-EdjqOH3bQqEjZcUOwo90wuW4ZuFr41FDxVni6WNKS0V0myKgwz9EuvLDcnEbjJMIX8vKAWPjWfnSTt5fMwKHLA==
-  dependencies:
-    "@intlify/shared" "9.4.0"
-    source-map-js "^1.0.2"
-
-"@intlify/shared@9.4.0":
-  version "9.4.0"
-  resolved "https://registry.yarnpkg.com/@intlify/shared/-/shared-9.4.0.tgz#4a78d462fc82433db900981e12eb5b1aae3d6085"
-  integrity sha512-AFqymip2kToqA0B6KZPg5jSrdcVHoli9t/VhGKE2iiMq9utFuMoGdDC/JOCIZgwxo6aXAk86QyU2XtzEoMuZ6A==
-
 "@jridgewell/gen-mapping@^0.1.0":
   version "0.1.1"
   resolved "https://registry.npmmirror.com/@jridgewell/gen-mapping/-/gen-mapping-0.1.1.tgz#e5d2e450306a9491e3bd77e323e38d7aff315996"
@@ -1580,11 +1559,6 @@
     vue-template-es2015-compiler "^1.9.0"
   optionalDependencies:
     prettier "^1.18.2 || ^2.0.0"
-
-"@vue/devtools-api@^6.5.0":
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.5.0.tgz#98b99425edee70b4c992692628fa1ea2c1e57d07"
-  integrity sha512-o9KfBeaBmCKl10usN4crU53fYtC1r7jJwdGKjPT24t348rHxgfpZ0xL3Xm/gLUYnc0oTp8LAmrxOeLyu6tbk2Q==
 
 "@vue/vue-loader-v15@npm:vue-loader@^15.9.7":
   version "15.10.0"
@@ -5854,15 +5828,6 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.npmmirror.com/vue-hot-reload-api/-/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha512-BXq3jwIagosjgNVae6tkHzzIk6a8MHFtzAdwhnV5VlvPTFxDCvIttgSiHWjdGoTJvXtmRu5HacExfdarRcFhog==
-
-vue-i18n@^9.2.2:
-  version "9.4.0"
-  resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-9.4.0.tgz#13dd07102fd00da3809c5886e250cb505f071ac1"
-  integrity sha512-701V7wv6m/Fesbu58rRJv9Rd3en/9F7Nxyn/NiwcR7bJkEfwflMJg5wVezkeHy1tIqjXME1e1zbHhK1dNaR8mg==
-  dependencies:
-    "@intlify/core-base" "9.4.0"
-    "@intlify/shared" "9.4.0"
-    "@vue/devtools-api" "^6.5.0"
 
 vue-loader@^17.0.0:
   version "17.0.1"

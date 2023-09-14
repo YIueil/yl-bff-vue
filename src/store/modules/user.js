@@ -13,9 +13,11 @@ const user = {
       // 用户基本信息
       userInfo: {},
       // 用户角色列表
-      userRoles: {},
+      userRoles: [],
       // 用户权限列表
-      userPermissions: {},
+      userPermissions: [],
+      // 用户路由
+      userRoutes: [],
       // 用户登录状态
       loginState: false
     }
@@ -27,7 +29,7 @@ const user = {
     SET_ROLE(state, userRoles) {
       state.userRoles = userRoles
     },
-    SET_PROMISSION(state, userPermissions) {
+    SET_PERMISSION(state, userPermissions) {
       state.userPermissions = userPermissions
     },
     SET_LOGIN_STATE(state, loginState) {
@@ -69,7 +71,7 @@ const user = {
     // 获取用户权限
     async GetPermissions({ commit }) {
       const permissions = await getUserPermissions()
-      commit('SET_PROMISSION', permissions)
+      commit('SET_PERMISSION', permissions)
     }
   }
 }

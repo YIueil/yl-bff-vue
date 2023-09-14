@@ -8,7 +8,13 @@
     <nav>
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
+      <router-link to="/Login">Login</router-link>
     </nav>
+    {{ 1223445 | NumberFormat }} <br/>
+    {{ 2223333 | NumberFormat }} <br/>
+
+    {{ new Date() | dayjs }} <br/>
+    {{ new Date() | moment }} <br/>
     <router-view/>
   </div>
 </template>
@@ -17,7 +23,8 @@
 import { mapActions } from 'vuex'
 
 export default {
-  mounted() {},
+  mounted() {
+  },
   methods: {
     ...mapActions(['initUser'])
   }
