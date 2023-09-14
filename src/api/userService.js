@@ -1,11 +1,16 @@
 import request from '@/utils/request'
 
 const userApi = {
-  login: '',
-  logout: '',
+  login: '/orup/login',
+  logout: '/orup/logout',
+  register: '/orup/register',
+  modifyUser: '/orup/modifyUser',
+  delUser: 'orup/delUser',
+  suspendUser: '/orup/suspendUser',
+  passwordChange: 'orup/passwordChange',
   getUserInfo: '/orup/currentUser',
-  getUserRoles: '/orup/getUserRole',
-  getUserPermissions: '/orup/getUserRole'
+  getUserRoles: '/orup/roles',
+  getUserPermissions: '/orup/permissions'
 }
 export function login(params) {
   return request({
@@ -18,6 +23,41 @@ export function logout() {
   return request({
     url: userApi.logout,
     method: 'post'
+  })
+}
+export function register(data) {
+  return request({
+    url: userApi.register,
+    method: 'post',
+    data
+  })
+}
+export function modifyUser(data) {
+  return request({
+    url: userApi.register,
+    method: 'post',
+    data
+  })
+}
+export function delUser(params) {
+  return request({
+    url: userApi.register,
+    method: 'post',
+    params
+  })
+}
+export function suspendUser(params) {
+  return request({
+    url: userApi.register,
+    method: 'post',
+    params
+  })
+}
+export function passwordChange(params) {
+  return request({
+    url: userApi.register,
+    method: 'post',
+    params
   })
 }
 export function getUserInfo() {
@@ -38,4 +78,12 @@ export function getUserPermissions() {
     method: 'get'
   })
 }
-export default {}
+export default {
+  login,
+  logout,
+  register,
+  modifyUser,
+  delUser,
+  suspendUser,
+  passwordChange
+}
