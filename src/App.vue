@@ -17,9 +17,7 @@
 import { mapActions } from 'vuex'
 
 export default {
-  mounted() {
-    this.initUser()
-  },
+  mounted() {},
   methods: {
     ...mapActions(['initUser'])
   }
