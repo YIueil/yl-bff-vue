@@ -1,7 +1,7 @@
-import AccessLayout from './AccessLayout'
-import BasicLayout from './BasicLayout'
-import BlankLayout from './BlankLayout'
-import RouteView from './RouteView'
+import AccessLayout from './component/AccessLayout'
+import BasicLayout from './component/BasicLayout'
+import BlankLayout from './component/BlankLayout'
+import RouteView from './component/RouteView'
 
 export {
   AccessLayout,
