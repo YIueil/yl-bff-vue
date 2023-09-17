@@ -1,5 +1,5 @@
 // token 名称
-export const ACCESS_TOKEN = 'yl-Token'
+export const ACCESS_TOKEN = 'yl-token'
 // 是否移动端
 export const TOGGLE_MOBILE_TYPE = 'is_mobile'
 // 应用语言
