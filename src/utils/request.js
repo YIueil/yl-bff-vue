@@ -23,16 +23,20 @@ request.interceptors.request.use(config => {
 })
 // 添加响应拦截器
 request.interceptors.response.use(response => {
-  const { status, data: { body, statusMsg, statusCode, tips } } = response
+  const { status, data: { body, statusMsg, statusCode, stackTrace, tips } } = response
   // 2xx 范围内的状态码都会触发该函数。
   // 对响应数据做点什么
   if (status === 200) {
     if (statusMsg === 'success') {
       return body
     } else {
-      window.alert(tips)
-      console.log(statusCode, statusMsg)
-      throw new Error(tips)
+      // 抛出错误, 外部进行捕获
+      throw new Error(JSON.stringify({
+        statusCode,
+        statusMsg,
+        stackTrace,
+        tips
+      }))
     }
   }
   return response

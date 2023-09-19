@@ -2,7 +2,7 @@
   <div>
     <p>author: YIueil</p>
     <p>email: YIueil@163.com</p>
-    <p>url: www.yiueil.cn</p>
+    <p>url: www.yiueil.cc</p>
   </div>
 </template>
 

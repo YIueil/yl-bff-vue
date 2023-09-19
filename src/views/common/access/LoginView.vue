@@ -1,6 +1,5 @@
 <template>
   <div class="template-login-page">
-    极简登陆页<br>
     <input type="text" v-model="loginName"/><br>
     <input type="password" v-model="password"/><br>
     <button @click="login">登陆</button>
@@ -41,5 +40,8 @@ export default {
 <style scoped>
 .template-login-page {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
