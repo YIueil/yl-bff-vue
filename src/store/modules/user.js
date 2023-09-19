@@ -4,12 +4,19 @@
  * Description: userStore 保存用户信息和用户角色权限信息
  */
 import { ACCESS_TOKEN } from '@/store/enums/mutation-types'
-import storage from 'store'
 import { login, logout, getUserInfo, getUserRoles, getUserPermissions } from '@/api/userService'
+import storage from 'store'
+import defaultSettings from '@/config/defaultSettings'
+import expirePlugin from 'store/plugins/expire'
+
+// 添加
+storage.addPlugin(expirePlugin)
 
 const user = {
   state() {
     return {
+      // token
+      token: null,
       // 用户基本信息
       userInfo: {},
       // 用户角色列表
@@ -23,6 +30,9 @@ const user = {
     }
   },
   mutations: {
+    SET_TOKEN(state, token) {
+      state.token = token
+    },
     SET_USER_INFO(state, userInfo) {
       state.userInfo = userInfo
     },
@@ -39,16 +49,21 @@ const user = {
   actions: {
     // 登录
     async Login({ dispatch, commit }, userInfo) {
-      const token = await login({
-        loginName: userInfo.loginName,
-        password: userInfo.password
-      })
-      storage.set(ACCESS_TOKEN, token, new Date().getTime() + 7 * 24 * 60 * 60 * 1000)
-      commit('SET_TOKEN', token)
-      // 登录成功后获取用户信息
-      await dispatch('getUserInfo')
-      await dispatch('GetRoles')
-      await dispatch('GetPermissions')
+      try {
+        const token = await login({
+          loginName: userInfo.loginName,
+          password: userInfo.password
+        })
+        storage.set(ACCESS_TOKEN, token, new Date().getTime() + defaultSettings.tokenExpire)
+        commit('SET_TOKEN', token)
+        // 登录成功后获取用户信息
+        await dispatch('getUserInfo')
+        await dispatch('GetRoles')
+        await dispatch('GetPermissions')
+      } catch ({ message }) {
+        const errorObj = JSON.parse(message)
+        window.alert(errorObj.tips)
+      }
     },
     // 登出
     async Logout({ commit }) {
@@ -56,7 +71,7 @@ const user = {
       commit('SET_TOKEN', '')
       commit('SET_ROLES', [])
       commit('SET_ROLES', [])
-      storage.remove(ACCESS_TOKEN)
+      storage.clearAll()
     },
     // 获取用户信息
     async getUserInfo({ commit }) {

@@ -1,14 +1,10 @@
 <template>
-  <div>
-
-  </div>
+  <div></div>
 </template>
 
 <script>
-import { getUserInfo } from '@/api/userService'
-
 export default {
-  name: 'TestComponent',
+  name: 'LeftNavLayout',
   components: {},
   props: {},
   data() {
@@ -18,9 +14,6 @@ export default {
   watch: {},
   methods: {},
   mounted() {
-    getUserInfo().then(resp => {
-      console.log(resp)
-    })
   }
 }
 </script>

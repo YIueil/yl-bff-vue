@@ -1,27 +1,47 @@
 <template>
-  <div>
-    这是登陆页
-    <input/><br>
-    <input/><br>
+  <div class="template-login-page">
+    <input type="text" v-model="loginName"/><br>
+    <input type="password" v-model="password"/><br>
+    <button @click="login">登陆</button>
   </div>
 </template>
 
 <script>
+
+import { mapActions } from 'vuex'
+
 export default {
   name: 'LoginView',
   components: {},
   props: {},
   data() {
-    return {}
+    return {
+      loginName: 'YIueil',
+      password: 'Fk12345.'
+    }
   },
   computed: {},
   watch: {},
-  methods: {},
+  methods: {
+    ...mapActions(['Login']),
+    async login() {
+      await this.Login({
+        loginName: this.loginName,
+        password: this.password
+      })
+      await this.$router.push({ path: '/' })
+    }
+  },
   mounted() {
   }
 }
 </script>
 
 <style scoped>
-
+.template-login-page {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 </style>

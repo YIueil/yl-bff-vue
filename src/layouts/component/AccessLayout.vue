@@ -6,7 +6,6 @@
         <div class="top">
           <div class="header">
             <a href="/">
-              <!--              <img src="~@/assets/logo.svg" class="logo" alt="logo">-->
               <span class="title">YIueil BFF VUE</span>
             </a>
           </div>
@@ -19,9 +18,9 @@
 
         <div class="footer">
           <div class="links">
-            <a href="_self">帮助</a>
-            <a href="_self">隐私</a>
-            <a href="_self">条款</a>
+            <a href="https://github.com/YIueil">Github</a>
+            <a href="https://yiueil.github.io/yl-blog-vuepress/">Blog</a>
+            <router-link to="/about">About</router-link>
           </div>
           <div class="copyright">
             Copyright &copy; 2023
@@ -141,7 +140,6 @@ export default {
         position: absolute;
         width: 100%;
         bottom: 0;
-        padding: 0 16px;
         margin: 48px 0 24px;
         text-align: center;
 
