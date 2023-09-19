@@ -8,7 +8,7 @@ import { BlankLayout } from '@/layouts' // 基础布局
 const baseRoutes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'Test',
     component: BlankLayout,
     redirect: '/test',
     children: [
