@@ -15,7 +15,7 @@ const baseRoutes = [
       {
         path: '/test',
         name: 'TestComponent',
-        component: () => import('@/views/common/TestComponent')
+        component: () => import('@/views/common/test/ThemeTestComponent')
       }
     ]
   },

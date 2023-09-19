@@ -5,10 +5,10 @@ module.exports = defineConfig({
     loaderOptions: {
       less: {
         modifyVars: {
-          // less vars，customize ant design theme
-          // 'primary-color': '#F5222D',
-          // 'link-color': '#F5222D',
-          'border-radius-base': '2px'
+          // 默认主题样式
+          // 'primary-color': '#1DA57A',
+          // 'link-color': '#1DA57A',
+          // 'border-radius-base': '2px'
         },
         javascriptEnabled: true
       }

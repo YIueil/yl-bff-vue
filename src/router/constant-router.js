@@ -6,7 +6,7 @@
 import { AccessLayout } from '@/layouts'
 const constantRouter = [
   {
-    path: 'access',
+    path: '/access',
     name: 'Access',
     component: AccessLayout,
     children: [
