@@ -1,18 +1,22 @@
 <template>
-  <div class="template-login-page">
-    <input type="text" v-model="loginName"/><br>
-    <input type="password" v-model="password"/><br>
-    <button @click="login">登陆</button>
-  </div>
+  <BreadcrumbLayout>
+    <div class="template-login-page">
+      <input type="text" v-model="loginName"/><br>
+      <input type="password" v-model="password"/><br>
+      <button @click="login">登陆</button>
+    </div>
+  </BreadcrumbLayout>
+
 </template>
 
 <script>
 
 import { mapActions } from 'vuex'
+import BreadcrumbLayout from '@/layouts/component/BreadcrumbLayout'
 
 export default {
   name: 'LoginView',
-  components: {},
+  components: { BreadcrumbLayout },
   props: {},
   data() {
     return {

@@ -9,6 +9,7 @@
       </a-breadcrumb-item>
     </a-breadcrumb>
     <router-view/>
+    <slot></slot>
   </div>
 </template>
 
