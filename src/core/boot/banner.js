@@ -5,6 +5,8 @@
  */
 
 export default function printBanner() {
+  const author = 'YIueil'
+  const email = 'YIueil@163.com'
   const bannerASNI = `
       ___    ___ ___                     ________  ________ ________ 
      |\\  \\  /  /|\\  \\                   |\\   __  \\|\\  _____\\\\  _____\\
@@ -15,4 +17,6 @@ export default function printBanner() {
     |\\___/ /        \\|_______|              \\|_______|\\|__|    \\|__|                                                          
   `
   console.log(`%c${bannerASNI}`, 'color: #663d74')
+  console.log(`%cauthor: ${author}`, 'color: #ecb0c1')
+  console.log(`%cemail: ${email}`, 'color: #6b5458')
 }
