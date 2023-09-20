@@ -4,10 +4,9 @@
  * Description: 基础路由(通常情况不需要修改)
  */
 import { BlankLayout } from '@/layouts' // 基础布局
-
 const baseRoutes = [
   {
-    path: '/',
+    path: '/test',
     name: 'Test',
     component: BlankLayout,
     redirect: '/test',
@@ -19,8 +18,7 @@ const baseRoutes = [
           title: '预览页面',
           icon: null,
           keepAlive: true,
-          group: '',
-          rightName: '首页-测试页面'
+          group: ''
         },
         component: () => import('@/views/common/test/ThemeTestComponent')
       }
