@@ -17,9 +17,11 @@
           // 菜单面包屑
           breadcrumb: [{
             title: '首页',
+            icon: '',
             path: '/'
           }, {
             title: '子页面',
+            icon: '',
             path: '/child1'
           }],
           // 所在模块组
