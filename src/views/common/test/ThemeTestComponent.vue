@@ -114,6 +114,7 @@
 </template>
 
 <script>
+import themeUtils from '@/utils/themeUtils'
 export default {
   name: 'FormTestComponent',
   components: {},
@@ -157,8 +158,13 @@ export default {
     }
   },
   methods: {
-    changeTheme(color) {
-      console.log(color)
+    changeTheme(themeObj) {
+      console.log(themeObj)
+      themeUtils.changeColor(themeObj.color).finally(() => {
+        setTimeout(() => {
+          console.log('完成皮肤切换')
+        }, 10)
+      })
     },
     handleClick(e) {
       console.log('click', e)
