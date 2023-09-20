@@ -114,7 +114,7 @@
 </template>
 
 <script>
-import themeUtils from '@/utils/themeUtils'
+import themeUtils from '@/utils/theme'
 export default {
   name: 'FormTestComponent',
   components: {},

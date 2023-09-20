@@ -1,10 +1,14 @@
 /**
  * Author: YIueil
  * Date: 2023/9/14 14:40
- * Description: appStore 保存所有的应用运行状态
+ * Description: App Store 保存所有的应用运行状态
  */
 import storage from 'store'
 import {
+  // 应用id
+  APP_ID,
+  // 启用用户路由
+  USE_USER_ROUTES,
   // 终端(PC、移动)
   TOGGLE_MOBILE_TYPE,
   // i18n
@@ -13,6 +17,10 @@ import {
 
 const app = {
   state: {
+    // 应用id
+    applicationId: '',
+    // 启用用户路由
+    useUserRoutes: false,
     sideCollapsed: false,
     isMobile: false,
     theme: 'dark',
@@ -28,6 +36,12 @@ const app = {
     _antLocale: {}
   },
   mutations: {
+    [APP_ID]: (state, applicationId) => {
+      state.applicationId = applicationId
+    },
+    [USE_USER_ROUTES]: (state, useUserRoutes) => {
+      state.useUserRoutes = useUserRoutes
+    },
     [TOGGLE_MOBILE_TYPE]: (state, isMobile) => {
       state.isMobile = isMobile
     },

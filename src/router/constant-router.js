@@ -8,12 +8,18 @@ const constantRouter = [
   {
     path: '/access',
     name: 'Access',
+    redirect: '/login',
     component: AccessLayout,
     children: [
       {
         path: '/login',
         name: 'Login',
         component: () => import('@/views/common/access/LoginView')
+      },
+      {
+        path: '/register',
+        name: 'Register',
+        component: () => import('@/views/common/access/RegisterView')
       }
     ]
   }

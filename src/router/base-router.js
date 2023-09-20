@@ -15,6 +15,13 @@ const baseRoutes = [
       {
         path: '/test',
         name: 'TestComponent',
+        meta: {
+          title: '预览页面',
+          icon: null,
+          keepAlive: true,
+          group: '',
+          rightName: '首页-测试页面'
+        },
         component: () => import('@/views/common/test/ThemeTestComponent')
       }
     ]

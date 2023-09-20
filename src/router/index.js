@@ -14,9 +14,19 @@ Vue.use(VueRouter)
 /**
  * 基础路由: 路由包含三部分(基础路由、静态路由、用户路由)
  */
-const router = new VueRouter({
-  mode: 'history',
-  routes: baseRouter.concat(constantRouter)
-})
 
+function createRouter() {
+  return new VueRouter({
+    mode: 'history',
+    routes: baseRouter.concat(constantRouter)
+  })
+}
+const router = createRouter()
+/**
+ * 定义一个resetRouter 方法, 在需要重置路由时进行调用
+ */
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher
+}
 export default router

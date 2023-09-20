@@ -10,7 +10,8 @@ const userApi = {
   passwordChange: 'orup/passwordChange',
   getUserInfo: '/orup/currentUser',
   getUserRoles: '/orup/roles',
-  getUserPermissions: '/orup/permissions'
+  getUserPermissions: '/orup/permissions',
+  getApplicationFunctionTree: 'orup/getApplicationFunctionTree'
 }
 export function login(params) {
   return request({
@@ -76,6 +77,13 @@ export function getUserPermissions() {
   return request({
     url: userApi.getUserPermissions,
     method: 'get'
+  })
+}
+export function getUserFunctions(params) {
+  return request({
+    url: userApi.getApplicationFunctionTree,
+    method: 'get',
+    params
   })
 }
 export default {

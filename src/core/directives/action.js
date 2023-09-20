@@ -5,8 +5,8 @@
  */
 import Vue from 'vue'
 
-Vue.directive('action', (el, binding) => {
-  console.log(el, binding)
+Vue.directive('action', (el, binding, vNode) => {
+  console.log(el, binding, vNode)
 })
 
 

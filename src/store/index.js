@@ -8,7 +8,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {},
   getters: {
-    userRoutes: state => state.user.userRoutes
+    applicationId: state => state.app.applicationId,
+    useUserRoutes: state => state.app.useUserRoutes,
+    userRoutes: state => state.user.userRoutes,
+    userInfo: state => state.user.userinfo,
+    userPermissions: state => state.user.userPermissions,
+    userFunctions: state => state.user.userFunctions
   },
   mutations: {},
   actions: {},
