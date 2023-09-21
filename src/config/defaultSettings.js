@@ -16,6 +16,8 @@ export default {
   useUserRoutes: false,
   // 导航条样式
   navTheme: 'light',
+  // 主应用布局 Baseline 基础的顶部导航+左侧导航
+  layoutStyle: 'Baseline',
   // 主题颜色
   primaryColor: '#1890ff'
 }

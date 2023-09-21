@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'TopNavLayout',
+  name: 'SideLayout',
   components: {},
   props: {},
   data() {
