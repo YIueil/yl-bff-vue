@@ -23,7 +23,7 @@ const app = {
     useUserRoutes: false,
     sideCollapsed: false,
     isMobile: false,
-    theme: 'dark',
+    theme: 'light',
     layout: '',
     contentWidth: '',
     fixedHeader: false,

@@ -9,7 +9,15 @@ const constantRouter = [
   {
     path: '/',
     name: 'Home',
-    component: () => import('@/views/home/Home')
+    redirect: '/home',
+    component: BasicLayout,
+    children: [
+      {
+        path: '/home',
+        name: 'Home',
+        component: () => import('@/views/home/Home')
+      }
+    ]
   },
   {
     path: '/access',

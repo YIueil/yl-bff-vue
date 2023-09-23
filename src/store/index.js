@@ -8,6 +8,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {},
   getters: {
+    isMobile: state => state.app.isMobile,
+    theme: state => state.app.theme,
     applicationId: state => state.app.applicationId,
     useUserRoutes: state => state.app.useUserRoutes,
     userRoutes: state => state.user.userRoutes,
