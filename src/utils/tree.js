@@ -39,5 +39,6 @@ export function includes(tree, keyName, keyValue, childName = 'children') {
   return findNodes(tree, keyName, keyValue, childName).length > 0
 }
 export default {
-  findNodes
+  findNodes,
+  includes
 }

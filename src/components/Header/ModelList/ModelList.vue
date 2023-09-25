@@ -1,12 +1,8 @@
 <template>
-  <a-menu v-model="currentModel" mode="horizontal">
-    <a-menu-item key="ACC">
-      <a-icon type="appstore" />
-      {{ isMobile ? 'ACC' : '机构角色' }}
-    </a-menu-item>
-    <a-menu-item key="DAP" disabled>
-      <a-icon type="appstore" />
-      {{ isMobile ? 'DAP' : '业务流程' }}
+  <a-menu :selectedKeys="selectedKeys" mode="horizontal" @click="changeModel">
+    <a-menu-item v-for="model in modelList" :key="model.id">
+      <a-icon :type="model.icon"/>
+      {{ isMobile ? model.shortName : model.name }}
     </a-menu-item>
   </a-menu>
 </template>
@@ -19,15 +15,20 @@ export default {
   components: {},
   props: {},
   data() {
-    return {
-      currentModel: ['ACC']
-    }
+    return {}
   },
   computed: {
-    ...mapGetters(['isMobile'])
+    ...mapGetters(['isMobile', 'modelList', 'currentModel']),
+    selectedKeys() {
+      return [this.currentModel.id]
+    }
   },
   watch: {},
-  methods: {},
+  methods: {
+    changeModel({ key }) {
+      this.$store.commit('UPDATE_MODEL', key)
+    }
+  },
   mounted() {
   }
 }

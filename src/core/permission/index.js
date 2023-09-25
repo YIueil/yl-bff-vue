@@ -2,7 +2,7 @@ import router, { resetRouter } from '@/router'
 import { ACCESS_TOKEN } from '@/store/enums/mutation-types'
 import store from '@/store'
 import storage from 'store'
-import { includes } from '@/utils/tree'
+import treeUtils from '@/utils/tree'
 // 路由白名单
 const allowRouterList = [
   '401',
@@ -29,6 +29,9 @@ router.beforeEach((to, from, next) => {
       // todo 加载用户路由
       resetRouter()
     }
+    if (store.getters.menuList.length === 0) {
+      store.commit('GEN_MENU', store.getters.userRoutes)
+    }
     // 1.检查路由访问权限
     if (checkRoute(to)) {
       // 2.获取路由路由操作权限
@@ -51,7 +54,7 @@ router.afterEach(() => {
  */
 function checkRoute(toRoute) {
   if (toRoute.meta && toRoute.meta.rightName) {
-    return includes(store.getters.userFunctions, 'rightName', toRoute.meta.rightName)
+    return treeUtils.includes(store.getters.userFunctions, 'rightName', toRoute.meta.rightName)
   }
   return true
 }
