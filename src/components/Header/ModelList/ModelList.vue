@@ -20,7 +20,7 @@ export default {
   computed: {
     ...mapGetters(['isMobile', 'modelList', 'currentModel']),
     selectedKeys() {
-      return [this.currentModel.id]
+      return this.currentModel ? [this.currentModel.id] : []
     }
   },
   watch: {},
