@@ -8,7 +8,7 @@
       :width="isMobile ? 80 : 200"
       collapsible>
       <!-- 侧边 -->
-      <YlSider :collapsed="collapsed" :theme="theme"></YlSider>
+      <common-sider :collapsed="collapsed" :theme="theme"></common-sider>
     </a-layout-sider>
     <a-layout>
       <a-layout-header :class="{'lightBackground': theme === 'light'}">
@@ -18,7 +18,7 @@
           @click="collapsed = !collapsed"
         />
         <!--  头部  -->
-        <YlHeader></YlHeader>
+        <common-header></common-header>
       </a-layout-header>
       <a-layout-content>
         <!--  主体内容  -->
@@ -26,7 +26,7 @@
       </a-layout-content>
       <a-layout-footer>
         <!-- 底部 -->
-        <YlFooter></YlFooter>
+        <common-footer></common-footer>
       </a-layout-footer>
     </a-layout>
     <a-button class="globalSettingBtn" type="primary" shape="circle" icon="setting"
@@ -35,15 +35,15 @@
 </template>
 
 <script>
-import YlHeader from '@/components/Header/YlHeader'
-import YlSider from '@/components/Sider/YlSider'
-import YlFooter from '@/components/Footer/YlFooter'
+import CommonHeader from '@/components/Header/CommonHeader'
+import CommonSider from '@/components/Sider/CommonSider'
+import CommonFooter from '@/components/Footer/CommonFooter'
 import { appMixin } from '@/store/mixin/app-mixin'
 
 export default {
   name: 'BasicLayout',
   mixins: [appMixin],
-  components: { YlFooter, YlSider, YlHeader },
+  components: { CommonFooter, CommonSider, CommonHeader },
   data() {
     return {
       // 收缩状态

@@ -6,7 +6,7 @@
 import store from '@/store'
 import storage from 'store'
 // 默认配置项
-import defaultSettings from '@/config/defaultSettings'
+import defaultSettings from '@/config/default-settings'
 import { APP_ID, USE_USER_ROUTES, ACCESS_TOKEN, TOGGLE_MOBILE_TYPE } from '@/store/enums/mutation-types'
 // iconfont 图标库
 import '@/assets/iconfont/iconfont.css'

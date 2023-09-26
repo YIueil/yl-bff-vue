@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'YlFooter',
+  name: 'CommonFooter',
   components: {},
   props: {},
   data() {

@@ -15,7 +15,7 @@
           <a-icon :type="menu.icon"/>
           <span>{{ item.title }}</span>
         </a-menu-item>
-        <SubMenu v-else :key="menu.id" :menu-info="menu"/>
+        <sub-menu v-else :key="menu.id" :menu-info="menu"/>
       </template>
     </a-menu>
   </div>
@@ -26,7 +26,7 @@ import { mapGetters } from 'vuex'
 import SubMenu from '@/components/Menu/SubMenu'
 
 export default {
-  name: 'YlSider',
+  name: 'CommonSider',
   components: { SubMenu },
   props: {
     theme: {

@@ -175,7 +175,7 @@
 </template>
 
 <script>
-import { getUserInfo } from '@/api/userService'
+import { getUserInfo } from '@/api/user-service'
 
 export default {
   name: 'TestComponent',

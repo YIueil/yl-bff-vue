@@ -13,7 +13,7 @@
 import AvatarDropdown from '@/components/Header/AvatarDropdown/AvatarDropdown'
 import ModelList from '@/components/Header/ModelList/ModelList'
 export default {
-  name: 'YlHeader',
+  name: 'CommonHeader',
   components: { ModelList, AvatarDropdown },
   props: {},
   data() {
