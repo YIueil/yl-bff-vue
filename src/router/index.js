@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import store from '@/store'
 // 引入通用路由和静态路由
-import baseRouter from './base-router'
+import baseRouter from '@/config/base-router'
 import constantRouter from './constant-router'
 // 防止重复路由跳转
 const originalPush = VueRouter.prototype.push
