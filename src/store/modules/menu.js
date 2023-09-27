@@ -3,55 +3,72 @@
  * Date: 2023/9/25 21:17
  * Description: menuStore 菜单Store, 有基于路由的动态菜单和静态菜单两种
  */
+import baseMenu from '@/config/base-menu'
+
 function generateMenuList(routes) {
   const menuList = [{
-    id: 1,
-    name: '机构角色',
-    type: 'model',
+    id: 4,
+    name: '个人信息管理',
     children: [{
-      id: 4,
-      name: '个人信息',
-      children: [{
-        id: 8,
-        name: '基本信息'
-      }, {
-        id: 9,
-        name: '个人设置'
-      }],
-      icon: 'mail',
-      sort: 1
+      id: 8,
+      name: '基本信息',
+      icon: 'user',
+      router: {
+        path: '/account/center',
+        name: 'AccountCenter'
+      }
     }, {
-      id: 5,
-      name: '机构用户',
-      children: []
+      id: 9,
+      name: '个人设置',
+      icon: 'setting'
     }, {
-      id: 6,
-      name: '角色权限',
-      children: []
-    }, {
-      id: 7,
-      name: '应用功能',
-      children: []
+      id: 10,
+      name: '消息中心',
+      icon: 'message'
     }],
-    icon: '',
+    icon: 'user',
     sort: 1
   }, {
-    id: 2,
-    name: '业务建模',
-    type: 'model',
-    children: [],
-    icon: '',
-    sort: 1
+    id: 5,
+    name: '机构用户管理',
+    icon: 'deployment-unit',
+    children: [{
+      id: 11,
+      name: '用户管理'
+    }, {
+      id: 12,
+      name: '机构管理'
+    }]
   }, {
-    id: 3,
-    name: '平台维护',
-    type: 'model',
-    children: [],
-    icon: '',
-    sort: 1
+    id: 6,
+    name: '角色权限管理',
+    icon: 'safety',
+    children: [{
+      id: 13,
+      name: '角色管理'
+    }, {
+      id: 14,
+      name: '权限管理'
+    }]
+  }, {
+    id: 7,
+    name: '应用功能管理',
+    icon: 'appstore',
+    children: [{
+      id: 15,
+      name: '应用管理'
+    }]
+  }, {
+    id: 0,
+    name: '审计日志管理',
+    icon: 'audit',
+    children: [{
+      id: 16,
+      name: '接口调用日志'
+    }]
   }]
   console.log('生成菜单', routes)
-  return menuList
+  return baseMenu.concat(menuList)
 }
 
 const menu = {

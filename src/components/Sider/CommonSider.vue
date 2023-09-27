@@ -9,13 +9,14 @@
       :theme="theme"
       :default-selected-keys="['1']"
       :default-open-keys="['2']"
+      @click="onMenuClick"
     >
       <template v-for="menu in menuList">
-        <a-menu-item v-if="!menu.children || menuList.length === 0" :key="menu.id">
+        <a-menu-item v-if="!menu.children || menuList.length === 0" :value="menu" :key="menu.id">
           <a-icon :type="menu.icon"/>
           <span>{{ item.title }}</span>
         </a-menu-item>
-        <sub-menu v-else :key="menu.id" :menu-info="menu"/>
+        <sub-menu v-else :key="menu.id" :menu-info="menu" :title-click="titleClick"/>
       </template>
     </a-menu>
   </div>
@@ -57,11 +58,12 @@ export default {
     }
   },
   methods: {
-    handleClick(e) {
-      console.log('click', e)
+    onMenuClick({ item: { value: { router } }, key, keyPath }) {
+      console.log(router, key, keyPath)
+      this.$router.push({ path: router.path })
     },
-    titleClick(e) {
-      console.log('titleClick', e)
+    titleClick({ key, domEvent }) {
+      console.log('菜单点击', key, domEvent)
     }
   },
   mounted() {

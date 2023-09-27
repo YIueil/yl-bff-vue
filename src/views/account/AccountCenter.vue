@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>AccountCenter.vue</div>
 </template>
 
 <script>
