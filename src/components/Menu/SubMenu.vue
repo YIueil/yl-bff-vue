@@ -6,7 +6,7 @@
   </span>
   <template v-for="item in props.menuInfo.children">
     <a-menu-item v-if="!item.children || item.children.length === 0" :key="item.id">
-      <a-icon :type="props.menuInfo.icon"/>
+      <a-icon :type="item.icon"/>
       <span>{{ item.name }}</span>
     </a-menu-item>
     <sub-menu v-else :key="item.id" :menu-info="item"/>
