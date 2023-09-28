@@ -1,10 +1,10 @@
 <template>
-  <div></div>
+  <div>安全设置</div>
 </template>
 
 <script>
 export default {
-  name: 'AccountSetting',
+  name: 'SecuritySetting',
   components: {},
   props: {},
   data() {

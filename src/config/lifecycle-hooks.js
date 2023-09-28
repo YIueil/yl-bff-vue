@@ -15,4 +15,5 @@ export function onLoginSuccess() {
  */
 export function onLogoutSuccess() {
   console.log('onLogoutSuccess')
+  location.reload()
 }

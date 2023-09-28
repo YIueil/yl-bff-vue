@@ -20,7 +20,11 @@ function generateMenuList(routes) {
     }, {
       id: 9,
       name: '个人设置',
-      icon: 'setting'
+      icon: 'setting',
+      router: {
+        path: '/account/setting',
+        name: 'AccountSetting'
+      }
     }, {
       id: 10,
       name: '消息中心',

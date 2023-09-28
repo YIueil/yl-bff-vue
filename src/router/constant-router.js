@@ -59,7 +59,7 @@ const constantRouter = [
       {
         path: '/account/setting',
         name: 'AccountSetting',
-        component: () => import('@/views/account/AccountSetting')
+        component: () => import('@/views/account/AccountSetting/Index')
       }
     ]
   },
