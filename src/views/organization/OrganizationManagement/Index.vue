@@ -1,10 +1,10 @@
 <template>
-  <div>机构用户基础页面</div>
+  <div>机构管理</div>
 </template>
 
 <script>
 export default {
-  name: 'OrganizationCenter',
+  name: 'OrganizationManagement',
   components: {},
   props: {},
   data() {

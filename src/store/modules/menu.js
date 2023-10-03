@@ -26,9 +26,13 @@ function generateMenuList(routes) {
         name: 'AccountSetting'
       }
     }, {
-      id: 10,
+      id: 16,
       name: '消息中心',
-      icon: 'message'
+      icon: 'message',
+      router: {
+        path: '/account/message',
+        name: 'AccountMessage'
+      }
     }],
     icon: 'user',
     sort: 1
@@ -38,10 +42,18 @@ function generateMenuList(routes) {
     icon: 'deployment-unit',
     children: [{
       id: 11,
-      name: '用户管理'
+      name: '用户管理',
+      router: {
+        path: '/organization/userManagement',
+        name: 'UserManagement'
+      }
     }, {
       id: 12,
-      name: '机构管理'
+      name: '机构管理',
+      router: {
+        path: '/organization/organizationManagement',
+        name: 'OrganizationManagement'
+      }
     }]
   }, {
     id: 6,

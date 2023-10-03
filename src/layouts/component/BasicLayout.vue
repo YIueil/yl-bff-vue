@@ -96,5 +96,6 @@ export default {
   width: 48px;
   height: 48px;
   font-size: 24px;
+  z-index: 9999;
 }
 </style>

@@ -60,6 +60,11 @@ const constantRouter = [
         path: '/account/setting',
         name: 'AccountSetting',
         component: () => import('@/views/account/AccountSetting/Index')
+      },
+      {
+        path: '/account/message',
+        name: 'AccountMessage',
+        component: () => import('@/views/account/AccountMessage/Index')
       }
     ]
   },
@@ -86,6 +91,16 @@ const constantRouter = [
         path: '/organization/center',
         name: 'OrganizationCenter',
         component: () => import('@/views/organization/OrganizationCenter')
+      },
+      {
+        path: '/organization/userManagement',
+        name: 'UserManagement',
+        component: () => import('@/views/organization/UserManagement/Index')
+      },
+      {
+        path: '/organization/organizationManagement',
+        name: 'OrganizationManagement',
+        component: () => import('@/views/organization/OrganizationManagement/Index')
       }
     ]
   },
