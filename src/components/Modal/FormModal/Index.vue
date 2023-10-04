@@ -3,7 +3,16 @@
     <a-form ref="form" :form="form" :model="formData" v-bind="formLayout">
       <a-form-item v-show="!item.hide" v-for="(item, index) in formItems" :label="item.label" :key="index">
         <template v-if="item.type === 'text'">
-          <a-input :disabled="item.disabled" v-decorator="[item.name, {rules: item.rules}]" allow-clear/>
+          <a-input :disabled="item.disabled" :placeholder="item.placeholder" v-decorator="[item.name, {rules: item.rules}]" allow-clear/>
+        </template>
+        <template v-if="item.type === 'textarea'">
+          <a-textarea
+            :disabled="item.disabled"
+            :placeholder="item.placeholder"
+            v-decorator="[item.name, {rules: item.rules}]"
+            allow-clear
+            :auto-size="{ minRows: 3, maxRows: 5 }"
+          />
         </template>
         <template v-if="item.type === 'password'">
           <a-input-password :disabled="item.disabled" v-decorator="[item.name, {rules: item.rules}]" allow-clear
@@ -85,7 +94,10 @@ export default {
     visible(val) {
       if (!val) {
         this.formData = {}
-        this.form.resetFields()
+        // 重置所有的数据
+        this.$nextTick(() => {
+          this.form.resetFields()
+        })
       }
     }
   },

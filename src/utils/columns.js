@@ -50,6 +50,47 @@ export default {
       width: '150px',
       scopedSlots: { customRender: 'action' }
     }
+  ],
+  orgUserTable: [
+    {
+      title: '#',
+      scopedSlots: { customRender: 'serial' }
+    },
+    {
+      title: '用户名',
+      dataIndex: 'userName'
+    },
+    {
+      title: '状态',
+      dataIndex: 'status',
+      scopedSlots: { customRender: 'status' }
+    },
+    {
+      title: '加入时间',
+      dataIndex: 'createTime',
+      scopedSlots: { customRender: 'createTime' },
+      sorter: true
+    },
+    {
+      title: '操作',
+      dataIndex: 'action',
+      width: '150px',
+      scopedSlots: { customRender: 'action' }
+    }
+  ],
+  addableUserTable: [
+    {
+      title: '#',
+      scopedSlots: { customRender: 'serial' }
+    },
+    {
+      title: '编号',
+      dataIndex: 'guid'
+    },
+    {
+      title: '用户名',
+      dataIndex: 'userName'
+    }
   ]
   // endregion
 }

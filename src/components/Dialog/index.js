@@ -1,5 +1,32 @@
 import Modal from 'ant-design-vue/es/modal'
 
+/**
+ * 示例用法
+ * this.$dialog(TaskForm,
+ * // component props
+ * {
+ *    record: {},
+ *    on: {
+ *      ok () {
+ *        console.log('ok 回调')
+ *      },
+ *      cancel () {
+ *        console.log('cancel 回调')
+ *      },
+ *      close () {
+ *        console.log('modal close 回调')
+ *      }
+ *    }
+ *  },
+ * // modal props
+ * {
+ *    title: '新增',
+ *    width: 700,
+ *    centered: true,
+ *    maskClosable: false
+ *  })
+ * @param Vue
+ */
 export default (Vue) => {
   function dialog(component, componentProps, modalProps) {
     const _vm = this
@@ -15,7 +42,7 @@ export default (Vue) => {
     }
     const handle = function(checkFunction, afterHandel) {
       if (checkFunction instanceof Function) {
-        const res = checkFunction()
+        const res = checkFunction(this)
         if (res instanceof Promise) {
           res.then(c => {
             c && afterHandel()
@@ -46,16 +73,16 @@ export default (Vue) => {
         handleClose() {
           handle(this.$refs._component.onCancel, () => {
             this.visible = false
-            this.$refs._component.$emit('close')
-            this.$refs._component.$emit('cancel')
+            this.$refs._component.$emit('close', this.$refs._component)
+            this.$refs._component.$emit('cancel', this.$refs._component)
             dialogInstance.$destroy()
           })
         },
         handleOk() {
           handle(this.$refs._component.onOK || this.$refs._component.onOk, () => {
             this.visible = false
-            this.$refs._component.$emit('close')
-            this.$refs._component.$emit('ok')
+            this.$refs._component.$emit('close', this.$refs._component)
+            this.$refs._component.$emit('ok', this.$refs._component)
             dialogInstance.$destroy()
           })
         }
