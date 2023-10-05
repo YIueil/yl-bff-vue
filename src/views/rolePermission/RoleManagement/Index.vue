@@ -2,34 +2,34 @@
   <div>
     <a-row type="flex" justify="space-between">
       <a-col :xs="24" :lg="10">
-        <org-tree ref="orgTree" @onSelect="loadUserTableData" />
+        <role-tree ref="roleTree" @onSelect="loadUserTableData" />
       </a-col>
       <a-col :xs="24" :lg="14">
-        <user-table v-if="orgNode" :orgNode="orgNode" ref="userTable" />
+        <user-table v-if="roleNode" :roleNode="roleNode" ref="userTable" />
       </a-col>
     </a-row>
   </div>
 </template>
 
 <script>
+import UserTable from '@/views/rolePermission/RoleManagement/UserTable'
+import RoleTree from '@/views/rolePermission/RoleManagement/RoleTree'
 
-import OrgTree from '@/views/organization/OrganizationManagement/OrgTree'
-import UserTable from '@/views/organization/OrganizationManagement/UserTable'
 export default {
-  name: 'OrganizationManagement',
+  name: 'RoleManagement',
   components: {
     UserTable,
-    OrgTree
+    RoleTree
   },
   data() {
     return {
-      orgNode: null
+      roleNode: null
     }
   },
   methods: {
-    loadUserTableData(orgNode) {
+    loadUserTableData(roleNode) {
       // console.log('loadUserTableData', orgNode)
-      this.orgNode = orgNode
+      this.roleNode = roleNode
       this.$nextTick(() => {
         this.$refs.userTable.refresh()
       })

@@ -2,9 +2,9 @@
   <a-card :bordered="false" class="user-table">
     <template slot="title">
       <a-space class="action-wrapper">
-        机构成员
+        角色成员
         <a-space>
-          <a-button type="primary" icon="plus" :disabled="!orgNode.id" @click="handleAdd">加入</a-button>
+          <a-button type="primary" icon="plus" :disabled="!roleNode.id" @click="handleAdd">加入</a-button>
         </a-space>
       </a-space>
     </template>
@@ -26,7 +26,7 @@
       </span>
       <span slot="action" slot-scope="text, record">
           <template>
-            <a style="color: red" @click="removeUserFromOrg(record)">调离</a>
+            <a style="color: red" @click="removeUserFromRole(record)">移除</a>
           </template>
       </span>
     </s-table>
@@ -37,7 +37,7 @@
 import columns from '@/utils/columns'
 import STable from '@/components/Table/STable'
 import { searchPage } from '@/api/commmon-service'
-import { addOrgUser } from '@/api/organization-service'
+import { addRoleUser } from '@/api/role-service'
 import QueryParam from '@/models/QueryParam'
 import AddableUserTable from '@/views/organization/OrganizationManagement/modal/AddableUserTable'
 
@@ -47,7 +47,7 @@ export default {
     STable
   },
   props: {
-    orgNode: Object
+    roleNode: Object
   },
   data() {
     return {
@@ -65,15 +65,13 @@ export default {
   },
   watch: {},
   methods: {
-    init() {
-    },
     onSelectChange(selectedRowKeys, selectedRows) {
       this.selectedRowKeys = selectedRowKeys
       this.selectedRows = selectedRows
     },
     loadUserData(parameter) {
-      return searchPage(parameter, new QueryParam(null, 'user.xml', 'getOrgUserList', {
-        orgId: this.orgNode.id
+      return searchPage(parameter, new QueryParam(null, 'user.xml', 'getRoleUserList', {
+        roleId: this.roleNode.id
       }, null))
     },
     handleAdd() {
@@ -81,12 +79,12 @@ export default {
       this.$dialog(
         AddableUserTable,
         {
-          orgIds: [this.orgNode.id],
+          orgIds: [this.roleNode.id],
           on: {
             async ok(ctl) {
               const userIds = ctl.selectedRows.map(row => row.id)
-              await addOrgUser({
-                orgId: _this.orgNode.id
+              await addRoleUser({
+                roleId: _this.roleNode.id
               }, userIds)
               _this.refresh()
               _this.$message.success('添加成功')
@@ -107,15 +105,12 @@ export default {
         }
       )
     },
-    removeUserFromOrg(record) {
+    removeUserFromRole(record) {
       console.log('移除', record)
     },
     refresh() {
       this.$refs.OrgUserTable.refresh(true)
     }
-  },
-  mounted() {
-    this.init()
   }
 }
 </script>

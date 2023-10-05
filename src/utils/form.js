@@ -78,6 +78,20 @@ export default {
     { label: '机构类型', name: 'type', type: 'select', rules: [{ required: true }], options: ['单位', '部门'] },
     { label: '描述', name: 'description', type: 'textarea' },
     { label: '父节点Id', name: 'parentId', type: 'text', hide: true }
+  ],
+  // endregion
+  // region 角色权限
+  roleAddForm: [
+    { label: '角色名称', name: 'name', type: 'text', rules: [{ required: true, min: 2, message: '2个字符以上！' }] },
+    { label: '描述', name: 'description', type: 'textarea' },
+    { label: '父节点', name: 'parentName', type: 'text', placeholder: '根节点', disabled: true },
+    { label: '父节点Id', name: 'parentId', type: 'text', hide: true }
+  ],
+  roleEditForm: [
+    { label: 'id', name: 'id', type: 'text', hide: true },
+    { label: '角色名称', name: 'name', type: 'text', rules: [{ required: true, min: 2, message: '2个字符以上！' }] },
+    { label: '描述', name: 'description', type: 'textarea' },
+    { label: '父节点Id', name: 'parentId', type: 'text', hide: true }
   ]
   // endregion
 }

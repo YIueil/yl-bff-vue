@@ -44,6 +44,7 @@ export function addOrgUser(params, data) {
   })
 }
 // endregion
+// region 机构相关
 export function getOrg(params) {
   return request({
     url: organizationApi.getOrg,
@@ -78,6 +79,7 @@ export function deleteOrg(params) {
     params
   })
 }
+// endregion
 export default {
   addUser,
   modifyUser,

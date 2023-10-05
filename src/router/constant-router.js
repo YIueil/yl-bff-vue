@@ -114,6 +114,16 @@ const constantRouter = [
         path: '/rolePermission/center',
         name: 'RolePermissionCenter',
         component: () => import('@/views/rolePermission/RolePermissionCenter')
+      },
+      {
+        path: '/rolePermission/roleManagement',
+        name: 'RoleManagement',
+        component: () => import('@/views/rolePermission/RoleManagement/Index')
+      },
+      {
+        path: '/rolePermission/permissionManagement',
+        name: 'PermissionManagement',
+        component: () => import('@/views/rolePermission/PermissionManagement/Index')
       }
     ]
   },

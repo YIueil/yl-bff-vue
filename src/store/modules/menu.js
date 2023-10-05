@@ -61,10 +61,18 @@ function generateMenuList(routes) {
     icon: 'safety',
     children: [{
       id: 13,
-      name: '角色管理'
+      name: '角色管理',
+      router: {
+        path: '/rolePermission/roleManagement',
+        name: 'RoleManagement'
+      }
     }, {
       id: 14,
-      name: '权限管理'
+      name: '权限管理',
+      router: {
+        path: '/rolePermission/permissionManagement',
+        name: 'PermissionManagement'
+      }
     }]
   }, {
     id: 7,
