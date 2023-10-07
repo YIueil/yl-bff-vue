@@ -1,5 +1,5 @@
 <template>
-  <div></div>
+  <div>机构用户基础页面</div>
 </template>
 
 <script>

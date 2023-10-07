@@ -1,9 +1,9 @@
 <template>
   <a-dropdown placement="bottomRight">
     <span class="ant-pro-account-avatar">
-      <a-avatar src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png"
+      <a-avatar :src="userInfo.avatarUrl"
                 class="antd-pro-global-header-index-avatar"/>
-      <span>{{ currentUser.name }}</span>
+      <span>{{ userInfo.userName }}</span>
     </span>
     <template v-slot:overlay>
       <a-menu class="ant-pro-drop-down menu">
@@ -27,9 +27,12 @@
 
 <script>
 import { Modal } from 'ant-design-vue'
+import { mapActions } from 'vuex'
+import { userMixin } from '@/store/mixin/user-mixin'
 
 export default {
   name: 'AvatarDropdown',
+  mixins: [userMixin],
   props: {
     currentUser: {
       type: Object,
@@ -45,6 +48,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['Logout']),
     handleToCenter() {
       this.$router.push({ path: '/account/center' })
     },
@@ -57,6 +61,7 @@ export default {
         title: '注销',
         content: '确认注销账号?',
         onOk: () => {
+          this.Logout()
         },
         onCancel() {
         }

@@ -17,7 +17,7 @@ export default new Vuex.Store({
     applicationId: state => state.app.applicationId,
     useUserRoutes: state => state.app.useUserRoutes,
     userRoutes: state => state.user.userRoutes,
-    userInfo: state => state.user.userinfo,
+    userInfo: state => state.user.userInfo,
     userPermissions: state => state.user.userPermissions,
     userFunctions: state => state.user.userFunctions
   },

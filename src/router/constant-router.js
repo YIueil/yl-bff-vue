@@ -59,7 +59,12 @@ const constantRouter = [
       {
         path: '/account/setting',
         name: 'AccountSetting',
-        component: () => import('@/views/account/AccountSetting')
+        component: () => import('@/views/account/AccountSetting/Index')
+      },
+      {
+        path: '/account/message',
+        name: 'AccountMessage',
+        component: () => import('@/views/account/AccountMessage/Index')
       }
     ]
   },
@@ -72,7 +77,12 @@ const constantRouter = [
       {
         path: '/application/center',
         name: 'ApplicationCenter',
-        component: () => import('@/views/application/ApplicationCenter')
+        component: () => import('@/views/application/ApplicationCenter/Index')
+      },
+      {
+        path: '/application/functionManage',
+        name: 'FunctionManage',
+        component: () => import('@/views/application/FunctionManage/Index')
       }
     ]
   },
@@ -86,6 +96,16 @@ const constantRouter = [
         path: '/organization/center',
         name: 'OrganizationCenter',
         component: () => import('@/views/organization/OrganizationCenter')
+      },
+      {
+        path: '/organization/userManagement',
+        name: 'UserManagement',
+        component: () => import('@/views/organization/UserManagement/Index')
+      },
+      {
+        path: '/organization/organizationManagement',
+        name: 'OrganizationManagement',
+        component: () => import('@/views/organization/OrganizationManagement/Index')
       }
     ]
   },
@@ -99,6 +119,16 @@ const constantRouter = [
         path: '/rolePermission/center',
         name: 'RolePermissionCenter',
         component: () => import('@/views/rolePermission/RolePermissionCenter')
+      },
+      {
+        path: '/rolePermission/roleManagement',
+        name: 'RoleManagement',
+        component: () => import('@/views/rolePermission/RoleManagement/Index')
+      },
+      {
+        path: '/rolePermission/permissionManagement',
+        name: 'PermissionManagement',
+        component: () => import('@/views/rolePermission/PermissionManagement/Index')
       }
     ]
   },

@@ -1,12 +1,10 @@
 <template>
-  <div class="footer-content">
-    Power by YIueil@163.com 👻
-  </div>
+  <div>代理设置</div>
 </template>
 
 <script>
 export default {
-  name: 'YlFooter',
+  name: 'ProxySetting',
   components: {},
   props: {},
   data() {
@@ -21,7 +19,5 @@ export default {
 </script>
 
 <style scoped>
-.footer-content {
-  text-align: center;
-}
+
 </style>

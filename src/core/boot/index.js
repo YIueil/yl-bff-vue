@@ -3,10 +3,11 @@
  * Date: 2023/9/14 18:08
  * Description: 初始化启动初始化
  */
+import Vue from 'vue'
 import store from '@/store'
 import storage from 'store'
 // 默认配置项
-import defaultSettings from '@/config/defaultSettings'
+import defaultSettings from '@/config/default-settings'
 import { APP_ID, USE_USER_ROUTES, ACCESS_TOKEN, TOGGLE_MOBILE_TYPE } from '@/store/enums/mutation-types'
 // iconfont 图标库
 import '@/assets/iconfont/iconfont.css'
@@ -24,8 +25,14 @@ import '@/core/permission'
 // 启动图
 import printBanner from './banner'
 import { getUserResources } from '@/store/modules/user'
+// lodash
+import clonedeep from 'lodash.clonedeep'
+import pick from 'lodash.pick'
 
 export async function Initializer() {
+  // lodash工具类注册
+  Vue.prototype.cloneDeep = clonedeep
+  Vue.prototype.pick = pick
   // 打印 banner
   printBanner()
   // 页面刷新重新加载 Vuex App应用数据

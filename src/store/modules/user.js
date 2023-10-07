@@ -4,10 +4,11 @@
  * Description: userStore 保存用户信息和用户角色权限信息
  */
 import { ACCESS_TOKEN } from '@/store/enums/mutation-types'
-import { login, logout, getUserInfo, getUserRoles, getUserPermissions, getUserFunctions } from '@/api/userService'
+import { login, logout, getUserInfo, getUserRoles, getUserPermissions, getUserFunctions } from '@/api/user-service'
 import storage from 'store'
-import defaultSettings from '@/config/defaultSettings'
+import defaultSettings from '@/config/default-settings'
 import expirePlugin from 'store/plugins/expire'
+import { onLoginSuccess, onLogoutSuccess } from '@/config/lifecycle-hooks'
 // 添加
 storage.addPlugin(expirePlugin)
 const user = {
@@ -56,6 +57,7 @@ const user = {
         storage.set(ACCESS_TOKEN, token, expireTime)
         commit('SET_TOKEN', token)
         await getUserResources(dispatch)
+        onLoginSuccess()
       } catch ({ message }) {
         const errorObj = JSON.parse(message)
         window.alert(errorObj.tips)
@@ -64,6 +66,8 @@ const user = {
     // 登出
     async Logout({ commit }) {
       await logout(commit)
+      await clearAll(commit)
+      onLogoutSuccess()
     },
     // 获取用户信息
     async getUserInfo({ commit }) {

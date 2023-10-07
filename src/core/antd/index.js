@@ -23,6 +23,7 @@ import {
   Popover,
   Dropdown,
   List,
+  Tree,
   Avatar,
   Breadcrumb,
   Steps,
@@ -73,6 +74,7 @@ Vue.use(Badge)
 Vue.use(Popover)
 Vue.use(Dropdown)
 Vue.use(List)
+Vue.use(Tree)
 Vue.use(Avatar)
 Vue.use(Breadcrumb)
 Vue.use(Steps)

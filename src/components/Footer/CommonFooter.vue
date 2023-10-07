@@ -1,9 +1,12 @@
 <template>
-  <div></div>
+  <div class="footer-content">
+    Power by YIueil@163.com 👻
+  </div>
 </template>
+
 <script>
 export default {
-  name: 'ApplicationCenter',
+  name: 'CommonFooter',
   components: {},
   props: {},
   data() {
@@ -18,5 +21,7 @@ export default {
 </script>
 
 <style scoped>
-
+.footer-content {
+  text-align: center;
+}
 </style>
