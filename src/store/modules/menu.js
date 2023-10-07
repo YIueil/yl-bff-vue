@@ -80,10 +80,17 @@ function generateMenuList(routes) {
     icon: 'appstore',
     children: [{
       id: 15,
-      name: '应用管理',
+      name: '应用中心',
       router: {
         path: '/application/center',
         name: 'ApplicationCenter'
+      }
+    }, {
+      id: 18,
+      name: '应用功能',
+      router: {
+        path: '/application/functionManage',
+        name: 'FunctionManage'
       }
     }]
   }, {
@@ -91,7 +98,7 @@ function generateMenuList(routes) {
     name: '审计日志管理',
     icon: 'audit',
     children: [{
-      id: 16,
+      id: 17,
       name: '接口调用日志'
     }]
   }]

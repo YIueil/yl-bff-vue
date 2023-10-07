@@ -77,7 +77,12 @@ const constantRouter = [
       {
         path: '/application/center',
         name: 'ApplicationCenter',
-        component: () => import('@/views/application/ApplicationCenter')
+        component: () => import('@/views/application/ApplicationCenter/Index')
+      },
+      {
+        path: '/application/functionManage',
+        name: 'FunctionManage',
+        component: () => import('@/views/application/FunctionManage/Index')
       }
     ]
   },
