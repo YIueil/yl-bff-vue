@@ -1,10 +1,10 @@
 <template>
   <a-row>
-    <a-col :xs="24" :lg="10">
-      <function-tree/>
+    <a-col :xs="24" :lg="showRoleTree ? 10 : 24">
+      <function-tree @onSelect="onNodeSelect" />
     </a-col>
     <a-col :xs="24" :lg="14">
-      <role-tree/>
+      <role-tree v-show="showRoleTree" :selected-function="selectedFunction" />
     </a-col>
   </a-row>
 </template>
@@ -18,16 +18,19 @@ export default {
   components: { FunctionTree, RoleTree },
   props: {},
   data() {
-    return {}
+    return {
+      selectedFunction: null
+    }
   },
-  computed: {},
-  watch: {},
-  methods: {},
-  mounted() {
+  computed: {
+    showRoleTree() {
+      return this.selectedFunction !== null
+    }
+  },
+  methods: {
+    onNodeSelect(functionNode) {
+      this.selectedFunction = functionNode
+    }
   }
 }
 </script>
-
-<style scoped>
-
-</style>

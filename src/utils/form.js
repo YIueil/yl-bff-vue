@@ -107,6 +107,63 @@ export default {
     { label: '运行状态', name: 'status', type: 'select', rules: [{ required: true, message: '应用运行状态必选' }], options: ['在线', '离线'] },
     { label: '应用描述', name: 'description', type: 'textarea' },
     { label: '访问地址', name: 'url', type: 'text' }
+  ],
+  functionAddForm: [
+    { label: '功能名称', name: 'name', type: 'text', rules: [{ required: true, min: 2, message: '2个字符以上！' }] },
+    { label: '功能唯一标识', name: 'rightName', type: 'text', rules: [{ required: true, min: 2, message: '2个字符以上！' }] },
+    {
+      label: '类型',
+      name: 'type',
+      type: 'radioGroup',
+      rules: [{ required: true, message: '请选择功能类型' }],
+      options: [{
+        label: '菜单',
+        value: '菜单',
+        checked: true
+      }, {
+        label: '按钮',
+        value: '按钮'
+      }, {
+        label: '接口',
+        value: '接口'
+      }]
+    },
+    { label: '应用描述', name: 'description', type: 'textarea' },
+    { label: '访问地址', name: 'url', type: 'text' },
+    // { label: '方法', name: 'method', type: 'text' },
+    { label: '父节点', name: 'parentName', type: 'text', placeholder: '根节点', disabled: true },
+    { label: '父节点Id', name: 'parentId', type: 'text', hide: true },
+    { label: '应用名称', name: 'applicationName', type: 'text', disabled: true },
+    { label: '应用id', name: 'applicationId', type: 'text', hide: true }
+  ],
+  functionEditForm: [
+    { label: 'id', name: 'id', type: 'text', hide: true },
+    { label: '功能名称', name: 'name', type: 'text', rules: [{ required: true, min: 2, message: '2个字符以上！' }] },
+    { label: '功能唯一标识', name: 'rightName', type: 'text', rules: [{ required: true, min: 2, message: '2个字符以上！' }] },
+    {
+      label: '类型',
+      name: 'type',
+      type: 'radioGroup',
+      rules: [{ required: true, message: '请选择功能类型' }],
+      options: [{
+        label: '菜单',
+        value: '菜单',
+        checked: true
+      }, {
+        label: '按钮',
+        value: '按钮'
+      }, {
+        label: '接口',
+        value: '接口'
+      }]
+    },
+    { label: '应用描述', name: 'description', type: 'textarea' },
+    { label: '访问地址', name: 'url', type: 'text' },
+    // { label: '方法', name: 'method', type: 'text' },
+    { label: '父节点', name: 'parentName', type: 'text', placeholder: '根节点', disabled: true },
+    { label: '父节点Id', name: 'parentId', type: 'text', hide: true },
+    { label: '应用名称', name: 'applicationName', type: 'text', disabled: true },
+    { label: '应用id', name: 'applicationId', type: 'text', hide: true }
   ]
   // endregion
 }

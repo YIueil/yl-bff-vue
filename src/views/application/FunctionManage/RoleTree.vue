@@ -1,6 +1,15 @@
 <template>
   <a-card :bordered="false" class="function-role-ctl">
-    角色树
+    <template slot="title">
+      <a-space class="action-wrapper">
+        <a-space>
+          角色授权
+        </a-space>
+        <a-space>
+          <a-button type="primary" icon="save" @click="onSave">保存</a-button>
+        </a-space>
+      </a-space>
+    </template>
   </a-card>
 </template>
 
@@ -8,13 +17,19 @@
 export default {
   name: 'RoleTree',
   components: {},
-  props: {},
+  props: {
+    selectedFunction: Object
+  },
   data() {
     return {}
   },
   computed: {},
   watch: {},
-  methods: {},
+  methods: {
+    onSave() {
+
+    }
+  },
   mounted() {
   }
 }

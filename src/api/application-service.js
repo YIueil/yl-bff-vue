@@ -7,9 +7,11 @@ const appApi = {
   addApplicationManager: '/orup/addApplicationManager',
   getApplicationFunctionTree: '/orup/getApplicationFunctionTree',
   addApplicationFunction: '/orup/addApplicationFunction',
-  delApplicationFunction: 'delApplicationFunction',
+  updateApplicationFunction: '/orup/modifyApplicationFunction',
+  delApplicationFunction: '/orup/delApplicationFunction',
   applicationAuthorization: '/orup/applicationAuthorization'
 }
+
 export function getAllApplicationList() {
   return request({
     url: appApi.getAllApplicationList,
@@ -52,6 +54,13 @@ export function addApplicationFunction(data) {
     data
   })
 }
+export function updateApplicationFunction(data) {
+  return request({
+    url: appApi.updateApplicationFunction,
+    method: 'post',
+    data
+  })
+}
 export function delApplicationFunction(params) {
   return request({
     url: appApi.delApplicationFunction,
@@ -74,6 +83,7 @@ export default {
   addApplicationManager,
   getApplicationFunctionTree,
   addApplicationFunction,
+  updateApplicationFunction,
   delApplicationFunction,
   applicationAuthorization
 }
