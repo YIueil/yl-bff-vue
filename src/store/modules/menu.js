@@ -80,7 +80,11 @@ function generateMenuList(routes) {
     icon: 'appstore',
     children: [{
       id: 15,
-      name: '应用管理'
+      name: '应用管理',
+      router: {
+        path: '/application/center',
+        name: 'ApplicationCenter'
+      }
     }]
   }, {
     id: 0,

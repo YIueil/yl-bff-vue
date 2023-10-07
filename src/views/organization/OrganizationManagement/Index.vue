@@ -1,11 +1,11 @@
 <template>
   <div>
     <a-row type="flex" justify="space-between">
-      <a-col :xs="24" :lg="10">
+      <a-col :xs="24" :lg="showUserTable ? 10 : 24">
         <org-tree ref="orgTree" @onSelect="loadUserTableData" />
       </a-col>
       <a-col :xs="24" :lg="14">
-        <user-table v-if="orgNode" :orgNode="orgNode" ref="userTable" />
+        <user-table v-if="showUserTable" :orgNode="orgNode" ref="userTable" />
       </a-col>
     </a-row>
   </div>
@@ -24,6 +24,11 @@ export default {
   data() {
     return {
       orgNode: null
+    }
+  },
+  computed: {
+    showUserTable() {
+      return this.orgNode !== null
     }
   },
   methods: {

@@ -39,7 +39,7 @@ import STable from '@/components/Table/STable'
 import { searchPage } from '@/api/commmon-service'
 import { addRoleUser } from '@/api/role-service'
 import QueryParam from '@/models/QueryParam'
-import AddableUserTable from '@/views/organization/OrganizationManagement/modal/AddableUserTable'
+import AddableUserTable from '@/views/rolePermission/RoleManagement/modal/AddableUserTable'
 
 export default {
   name: 'UserTable',
@@ -79,7 +79,7 @@ export default {
       this.$dialog(
         AddableUserTable,
         {
-          orgIds: [this.roleNode.id],
+          roleIds: [this.roleNode.id],
           on: {
             async ok(ctl) {
               const userIds = ctl.selectedRows.map(row => row.id)

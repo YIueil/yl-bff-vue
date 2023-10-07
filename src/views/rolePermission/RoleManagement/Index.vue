@@ -1,11 +1,11 @@
 <template>
   <div>
     <a-row type="flex" justify="space-between">
-      <a-col :xs="24" :lg="10">
+      <a-col :xs="24" :lg="showUserTable ? 10 : 24">
         <role-tree ref="roleTree" @onSelect="loadUserTableData" />
       </a-col>
       <a-col :xs="24" :lg="14">
-        <user-table v-if="roleNode" :roleNode="roleNode" ref="userTable" />
+        <user-table v-if="showUserTable" :roleNode="roleNode" ref="userTable" />
       </a-col>
     </a-row>
   </div>
@@ -24,6 +24,11 @@ export default {
   data() {
     return {
       roleNode: null
+    }
+  },
+  computed: {
+    showUserTable() {
+      return this.roleNode !== null
     }
   },
   methods: {
