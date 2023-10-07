@@ -74,7 +74,7 @@ export default {
     },
     async handleDeleteRole() {
       await roleService.deleteRole({
-        id: this.selectNode.id
+        roleId: this.selectNode.id
       })
       this.selectNode = null
       this.$message.success('删除角色成功')
