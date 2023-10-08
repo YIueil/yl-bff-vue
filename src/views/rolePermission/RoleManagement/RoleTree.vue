@@ -20,7 +20,11 @@
       :tree-data="treeData"
       @expand="onExpand"
       @select="onSelect"
-    />
+    >
+      <template slot="title" slot-scope="{ name }">
+        <a-icon slot="switcherIcon" type="team" /> {{ name }}
+      </template>
+    </a-tree>
     <form-modal
       :visible="roleModal.visible"
       :title="roleModal.title"

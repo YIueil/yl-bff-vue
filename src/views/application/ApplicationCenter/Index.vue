@@ -74,27 +74,6 @@
   </div>
 </template>
 <script>
-const data = []
-data.push({
-  title: 'Alipay',
-  avatar: 'https://gw.alipayobjects.com/zos/rmsportal/WdGqmHpayyMjiEhcKoVE.png',
-  description: '那是一种内在的东西， 他们到达不了，也无法触及的',
-  owner: '付晓晓',
-  startAt: '2018-07-26 22:44',
-  progress: {
-    value: 90
-  }
-})
-data.push({
-  title: 'Angular',
-  avatar: 'https://gw.alipayobjects.com/zos/rmsportal/zOsKZmFRdUtvpqCImOVY.png',
-  description: '希望是一个好东西，也许是最好的，好东西是不会消亡的',
-  owner: '曲丽丽',
-  startAt: '2018-07-26 22:44',
-  progress: {
-    value: 54
-  }
-})
 import applicationService from '@/api/application-service'
 import FormModal from '@/components/Modal/FormModal/Index'
 import form from '@/utils/form'
@@ -105,7 +84,7 @@ export default {
   components: { FormModal },
   data() {
     return {
-      listData: data,
+      listData: [],
       status: 'all',
       // 应用添加和编辑modal
       modal: {
