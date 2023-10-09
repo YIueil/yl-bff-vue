@@ -22,7 +22,7 @@
       @select="onSelect"
     >
       <template #title="{ name, dataRef: { type } }">
-        <a-icon :type="type === '行政区' ? 'pushpin' : type === '单位' ? 'apartment'  : 'branches'" />
+        <a-icon :type="type === '行政区' ? 'environment' : type === '单位' ? 'apartment'  : 'branches'" />
         {{ name }}
       </template>
     </a-tree>

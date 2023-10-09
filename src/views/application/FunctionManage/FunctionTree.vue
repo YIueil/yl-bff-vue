@@ -26,8 +26,12 @@
         :selected-keys="selectedKeys"
         :tree-data="treeData"
         @expand="onExpand"
-        @select="onSelect"
-      />
+        @select="onSelect">
+        <template #title="{ name, dataRef: { type }}">
+          <a-icon :type="type === '菜单' ? 'menu' : type === '按钮' ? 'thunderbolt' : 'api'" />
+          {{ name }}
+        </template>
+      </a-tree>
     </a-card>
     <form-modal
       :title="modal.title"
