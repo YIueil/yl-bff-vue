@@ -22,10 +22,11 @@ export function addRole(data) {
     data
   })
 }
-export function getRoleTree() {
+export function getRoleTree(params) {
   return request({
     url: roleApi.getRoleTree,
-    method: 'get'
+    method: 'get',
+    params
   })
 }
 export function updateRole(data) {

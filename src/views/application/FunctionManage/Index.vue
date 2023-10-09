@@ -4,7 +4,7 @@
       <function-tree @onSelect="onNodeSelect" />
     </a-col>
     <a-col :xs="24" :lg="14">
-      <role-tree v-show="showRoleTree" :selected-function="selectedFunction" />
+      <role-tree ref="roleTree" v-if="showRoleTree" :selected-function="selectedFunction" />
     </a-col>
   </a-row>
 </template>
@@ -30,6 +30,9 @@ export default {
   methods: {
     onNodeSelect(functionNode) {
       this.selectedFunction = functionNode
+      this.$nextTick(() => {
+        this.$refs.roleTree.refresh()
+      })
     }
   }
 }
