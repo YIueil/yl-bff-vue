@@ -6,7 +6,8 @@ const roleApi = {
   getRoleTree: '/orup/getRoleTree',
   updateRole: '/orup/updateRole',
   deleteRole: '/orup/deleteRole',
-  addRoleUser: '/orup/addRoleUser'
+  addRoleUser: '/orup/addRoleUser',
+  delRoleUser: '/orup/delRoleUser'
 }
 export function getRole(params) {
   return request({
@@ -52,11 +53,21 @@ export function addRoleUser(params, data) {
   })
 }
 
+export function delRoleUser(params, data) {
+  return request({
+    url: roleApi.delRoleUser,
+    method: 'post',
+    params,
+    data
+  })
+}
+
 export default {
   getRole,
   addRole,
   getRoleTree,
   updateRole,
   deleteRole,
-  addRoleUser
+  addRoleUser,
+  delRoleUser
 }

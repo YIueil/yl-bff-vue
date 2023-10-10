@@ -40,6 +40,7 @@ import { searchPage } from '@/api/commmon-service'
 import { addOrgUser } from '@/api/organization-service'
 import QueryParam from '@/models/QueryParam'
 import AddableUserTable from '@/views/organization/OrganizationManagement/modal/AddableUserTable'
+import organizationService from '@/api/organization-service'
 
 export default {
   name: 'UserTable',
@@ -107,8 +108,13 @@ export default {
         }
       )
     },
-    removeUserFromOrg(record) {
+    async removeUserFromOrg(record) {
       console.log('移除', record)
+      await organizationService.delOrgUser({
+        orgId: this.orgNode.id
+      }, [record.id])
+      this.$message.success('操作成功')
+      this.refresh()
     },
     refresh() {
       this.$refs.OrgUserTable.refresh(true)

@@ -37,7 +37,7 @@
 import columns from '@/utils/columns'
 import STable from '@/components/Table/STable'
 import { searchPage } from '@/api/commmon-service'
-import { addRoleUser } from '@/api/role-service'
+import { addRoleUser, delRoleUser } from '@/api/role-service'
 import QueryParam from '@/models/QueryParam'
 import AddableUserTable from '@/views/rolePermission/RoleManagement/modal/AddableUserTable'
 
@@ -105,8 +105,13 @@ export default {
         }
       )
     },
-    removeUserFromRole(record) {
+    async removeUserFromRole(record) {
       console.log('移除', record)
+      await delRoleUser({
+        roleId: this.roleNode.id
+      }, [record.id])
+      this.$message.success('操作成功')
+      this.refresh()
     },
     refresh() {
       this.$refs.OrgUserTable.refresh(true)

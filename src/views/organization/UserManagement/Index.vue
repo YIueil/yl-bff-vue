@@ -66,15 +66,15 @@
       <div class="table-btn-operator">
         <a-button type="primary" icon="plus" @click="handleAdd">新建</a-button>
         <a-dropdown v-action:edit v-if="selectedRowKeys.length > 0">
-          <a-menu slot="overlay">
-            <a-menu-item key="1">
+          <a-menu @click="menuClick" slot="overlay">
+            <a-menu-item key="delete">
               <a-icon type="delete"/>
               删除
             </a-menu-item>
             <!-- lock | unlock -->
-            <a-menu-item key="2">
+            <a-menu-item key="suspend">
               <a-icon type="lock"/>
-              锁定
+              挂起
             </a-menu-item>
           </a-menu>
           <a-button style="margin-left: 8px">
@@ -109,7 +109,7 @@
           <template>
             <a @click="handleEdit(record)">编辑</a>
             <a-divider type="vertical"/>
-            <a style="color: red" @click="handleSub(record)">挂起</a>
+            <a style="color: red" @click="handleSuspend(record)">挂起</a>
           </template>
       </span>
       </s-table>
@@ -139,6 +139,7 @@ import { searchPage } from '@/api/commmon-service'
 import form from '@/utils/form'
 // 服务
 import organizationService from '@/api/organization-service'
+import userService from '@/api/user-service'
 
 const statusMap = {
   offline: {
@@ -202,6 +203,9 @@ export default {
   },
   watch: {},
   methods: {
+    refresh() {
+      this.$refs.table.refresh(true)
+    },
     handleAdd() {
       this.model = null
       this.$set(this.userModifyForm, 'title', '新增用户')
@@ -223,13 +227,6 @@ export default {
       const form = this.$refs.createModal.form
       form.resetFields() // 清理表单数据（可不做）
     },
-    handleSub(record) {
-      if (record.status !== 0) {
-        this.$message.info(`${record.no} 订阅成功`)
-      } else {
-        this.$message.error(`${record.no} 订阅失败，规则已关闭`)
-      }
-    },
     onSelectChange(selectedRowKeys, selectedRows) {
       this.selectedRowKeys = selectedRowKeys
       this.selectedRows = selectedRows
@@ -239,6 +236,42 @@ export default {
     },
     resetSearchForm() {
       this.queryParam = {}
+    },
+    async deleteSelectedRows() {
+      const userIds = this.selectedRows.map(row => row.id)
+      await userService.delUserByIds(userIds)
+      this.$message.success('批量删除成功')
+      this.refresh()
+    },
+    async suspendSelectedRows() {
+      const userIds = this.selectedRows.map(row => row.id)
+      await userService.suspendUserByIds(userIds)
+      this.$message.success('批量挂起成功')
+      this.refresh()
+    },
+    async handleSuspend(record) {
+      await userService.suspendUser({
+        userId: record.id
+      })
+      this.$message.success('挂起成功')
+      this.refresh()
+    },
+    async handleDelete(record) {
+      await userService.delUser({
+        userId: record.id
+      })
+      this.$message.success('删除成功')
+      this.refresh()
+    },
+    menuClick({ key }) {
+      switch (key) {
+      case 'delete':
+        this.deleteSelectedRows()
+        break
+      case 'suspend':
+        this.suspendSelectedRows()
+        break
+      }
     },
     // 表单
     async handleFormSubmit(data) {
@@ -251,7 +284,7 @@ export default {
           await organizationService.addUser(data)
           this.$message.success('添加成功')
         }
-        this.$refs.table.refresh(true)
+        this.refresh()
       } catch (e) {
         console.error(e)
       }

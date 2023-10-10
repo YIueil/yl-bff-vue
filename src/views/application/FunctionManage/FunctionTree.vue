@@ -89,6 +89,8 @@ export default {
     },
     async getApplicationFunctionTree() {
       this.treeData = await applicationService.getApplicationFunctionTree({ applicationId: this.selectApp.id })
+      if (this.treeData.length > 0) {
+        this.expandedKeys.push(this.treeData[0].id)}
     },
     async getManageApplicationList() {
       const params = {

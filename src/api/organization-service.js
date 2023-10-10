@@ -6,7 +6,8 @@ const organizationApi = {
   getOrgTree: '/orup/getOrgTree',
   updateOrg: '/orup/updateOrg',
   deleteOrg: '/orup/deleteOrg',
-  addOrgUser: '/orup/addOrgUser'
+  addOrgUser: '/orup/addOrgUser',
+  delOrgUser: '/orup/delOrgUser'
 }
 const userApi = {
   addUser: '/orup/addUser',
@@ -38,6 +39,14 @@ export function deleteUser(params) {
 export function addOrgUser(params, data) {
   return request({
     url: organizationApi.addOrgUser,
+    method: 'post',
+    params,
+    data
+  })
+}
+export function delOrgUser(params, data) {
+  return request({
+    url: organizationApi.delOrgUser,
     method: 'post',
     params,
     data
@@ -86,6 +95,8 @@ export default {
   deleteUser,
   getOrg,
   addOrg,
+  addOrgUser,
+  delOrgUser,
   getOrgTree,
   updateOrg,
   deleteOrg
