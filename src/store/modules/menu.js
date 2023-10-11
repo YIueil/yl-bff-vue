@@ -5,7 +5,8 @@
  */
 import baseMenu from '@/config/base-menu'
 
-function generateMenuList(routes) {
+function generateMenuList(routes, functions) {
+  console.log('generateMenuList', routes, functions)
   const menuList = [{
     id: 4,
     name: '个人信息管理',
@@ -102,7 +103,6 @@ function generateMenuList(routes) {
       name: '接口调用日志'
     }]
   }]
-  console.log('生成菜单', routes)
   return baseMenu.concat(menuList)
 }
 
@@ -143,8 +143,8 @@ const menu = {
     SET_MODEL: (state, modelList) => {
       state.modelList = modelList
     },
-    GEN_MENU: (state, routes) => {
-      state.menuList = generateMenuList(routes)
+    GEN_MENU: (state, { userRoutes, userFunctions }) => {
+      state.menuList = generateMenuList(userRoutes, userFunctions)
     },
     UPDATE_MODEL: (state, modelId) => {
       state.currentModel = state.modelList.find(model => model.id === modelId)

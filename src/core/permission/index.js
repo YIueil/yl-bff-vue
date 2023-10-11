@@ -29,12 +29,14 @@ router.beforeEach((to, from, next) => {
       // todo 加载用户路由
       resetRouter()
     }
+    console.log(router)
     if (store.getters.menuList.length === 0) {
-      store.commit('GEN_MENU', store.getters.userRoutes)
+      // 基于用户功能树和最终的路由生成用户菜单
+      store.commit('GEN_MENU', { userRoutes: router.options.routes, userFunctions: store.getters.userFunctions })
     }
     // 1.检查路由访问权限
     if (checkRoute(to)) {
-      // 2.获取路由路由操作权限
+      // 2.获取路由按按钮操作权限
       setRouteAuth(to)
       return next()
     } else {

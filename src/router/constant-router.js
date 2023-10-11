@@ -100,6 +100,9 @@ const constantRouter = [
       {
         path: '/organization/userManagement',
         name: 'UserManagement',
+        meta: {
+          rightName: '机构管理'
+        },
         component: () => import('@/views/organization/UserManagement/Index')
       },
       {
