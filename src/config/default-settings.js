@@ -5,7 +5,7 @@
  */
 export default {
   // 应用id
-  applicationId: 1,
+  applicationId: 15,
   // 应用标题
   applicationName: 'yl-bff-vue',
   // 运行环境

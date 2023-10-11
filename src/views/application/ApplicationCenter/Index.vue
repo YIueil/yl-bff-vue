@@ -100,6 +100,9 @@ export default {
     init() {
       this.getListData()
     },
+    refresh() {
+      this.getListData()
+    },
     async getListData() {
       this.listData = await applicationService.getAllApplicationList()
     },
@@ -142,15 +145,22 @@ export default {
       this.$set(this.modal, 'formItems', form.appEditForm)
       this.$set(this.modal, 'visible', true)
     },
-    del(record) {
+    async del(record) {
       console.log('删除', record)
+      await applicationService.delApplication({
+        applicationId: record.id
+      })
+      this.$message.success('删除成功')
+      this.refresh()
     },
     async onSubmit(formData) {
       if (formData.id) {
         this.$message.success('应用修改成功')
+        this.refresh()
       } else {
         await applicationService.addApplication(formData)
         this.$message.success('应用添加成功')
+        this.refresh()
       }
       this.$set(this.modal, 'visible', false)
     },
