@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import PdfFileView from '@/components/FlieView/PdfFileView'
+import FileView from '@/components/FlieView/Index'
 
 export default {
   name: 'FileViewComponent',
@@ -25,7 +25,7 @@ export default {
   methods: {
     openFileView() {
       this.$dialog(
-        PdfFileView,
+        FileView,
         {
           src: this.fileUrl,
           maxHeight: 800,
