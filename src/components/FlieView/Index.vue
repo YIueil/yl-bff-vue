@@ -32,6 +32,8 @@ export default {
       this.fileExtensions = 'pdf'
     } else if (['png', 'jpg', 'jpeg', 'gif'].includes(fileExtensions)) {
       this.fileExtensions = 'image'
+    } else {
+      this.$message.error('不支持的类型')
     }
   }
 }
