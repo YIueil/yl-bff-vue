@@ -1,4 +1,4 @@
-const createThemeColorReplacerPlugin = require('./plugins/themeReplacePlugin')
+const createThemeColorReplacerPlugin = require('./public/plugins/themeReplacePlugin')
 const packageJson = require('./package.json')
 const buildDate = JSON.stringify(new Date().toLocaleString())
 const webpack = require('webpack')
