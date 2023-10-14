@@ -21,6 +21,17 @@ const baseRoutes = [
           group: ''
         },
         component: () => import('@/views/common/test/ThemeTestComponent')
+      },
+      {
+        path: '/test2',
+        name: 'FileViewComponent',
+        meta: {
+          title: '测试页面用',
+          icon: null,
+          keepAlive: true,
+          group: ''
+        },
+        component: () => import('@/views/common/test/FileViewComponent')
       }
     ]
   },
