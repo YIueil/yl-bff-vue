@@ -1,4 +1,18 @@
 /**
+ * 遍历树结构
+ * @param treeNode 节点
+ * @param callback 回调参数
+ * @param childName 子节点名称
+ */
+export function forEach(treeNode, callback, childName = 'children') {
+  callback(treeNode)
+  if (treeNode[childName]) {
+    treeNode[childName].forEach(node => {
+      callback(node)
+    })
+  }
+}
+/**
  * 节点查找, 查找树节点中某个属性为某个值的对象集合
  * @param tree 树节点
  * @param keyName 节点字段名称
@@ -39,6 +53,7 @@ export function includes(tree, keyName, keyValue, childName = 'children') {
   return findNodes(tree, keyName, keyValue, childName).length > 0
 }
 export default {
+  forEach,
   findNodes,
   includes
 }
