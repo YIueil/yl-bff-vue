@@ -3,6 +3,7 @@ import { ACCESS_TOKEN } from '@/store/enums/mutation-types'
 import store from '@/store'
 import storage from 'store'
 import treeUtils from '@/utils/tree'
+import { getUserResources } from '@/store/modules/user'
 // 路由白名单
 const allowRouterList = [
   '401',
@@ -17,7 +18,7 @@ const allowRouterList = [
 /**
  * 前置路由导航守卫
  */
-router.beforeEach((to, from, next) => {
+router.beforeEach(async(to, from, next) => {
   console.log(to)
   if (allowRouterList.includes(to.name)) {
     // 在路由白名单，直接进入
@@ -25,11 +26,14 @@ router.beforeEach((to, from, next) => {
   }
   const token = storage.get(ACCESS_TOKEN)
   if (token) {
+    // 判断是否已经加载好了用户资源
+    if (!store.getters.userInfo.userName) {
+      await getUserResources(store.dispatch)
+    }
     if (store.getters.useUserRoutes) {
       // todo 加载用户路由
       resetRouter()
     }
-    console.log(router)
     if (store.getters.menuList.length === 0) {
       // 基于用户功能树和最终的路由生成用户菜单
       store.commit('GEN_MENU', { userRoutes: router.options.routes, userFunctions: store.getters.userFunctions })

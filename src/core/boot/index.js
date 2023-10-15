@@ -47,8 +47,10 @@ export async function Initializer() {
   }
   // 获取到token, 重新加载用户信息
   const token = storage.get(ACCESS_TOKEN)
-  if (token) {
-    store.commit('SET_TOKEN', token)
-    await getUserResources(store.dispatch)
-  }
+  setTimeout(async() => {
+    if (token && !store.getters.userInfo.userName) {
+      store.commit('SET_TOKEN', token)
+      await getUserResources(store.dispatch)
+    }
+  })
 }

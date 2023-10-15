@@ -14,7 +14,7 @@
       <template v-for="menu in menuList">
         <a-menu-item v-if="!menu.children || menuList.length === 0" :value="menu" :key="menu.id">
           <a-icon :type="menu.icon"/>
-          <span>{{ item.title }}</span>
+          <span>{{ menu.name }}</span>
         </a-menu-item>
         <sub-menu v-else :key="menu.id" :menu-info="menu" :title-click="titleClick"/>
       </template>

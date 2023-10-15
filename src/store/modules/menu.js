@@ -5,13 +5,39 @@
  */
 import tree from '@/utils/tree'
 import baseMenu from '@/config/base-menu'
+// import { testMenu } from '@/config/mock-data'
 
 function generateMenuList(routes, functions) {
-  console.log('generateMenuList', routes, functions)
-  tree.forEach(routes, item => {
-    tree.includes(functions, 'rightName', item.meta.right)
-  })
+  let index = 0
   const menuList = []
+  routes.forEach(routeNode => {
+    const menuTree = tree.map(routeNode, route => {
+      if (route.meta && route.meta.rightName) {
+        const findNodes = tree.findNodes(functions, 'rightName', route.meta.rightName)
+        if (findNodes.length > 0) {
+          if (findNodes.length > 1) {
+            console.warn('配置中rightName重复')
+          }
+          return {
+            id: ++index,
+            name: route.meta.title,
+            icon: route.meta.icon,
+            router: {
+              path: route.path,
+              name: route.name
+            }
+          }
+        }
+      }
+    })
+    const filterTree = tree.filter(menuTree, node => {
+      return node.name
+    })
+    if (filterTree) {
+      menuList.push(filterTree)
+    }
+  })
+  console.log('generateMenuList', routes, functions, menuList)
   return baseMenu.concat(menuList)
 }
 

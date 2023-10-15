@@ -1,4 +1,4 @@
-export const menu = [{
+export const testMenu = [{
   id: 4,
   name: '个人信息管理',
   children: [{

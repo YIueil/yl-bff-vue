@@ -64,6 +64,7 @@ const baseRoutes = [
   },
   {
     path: '*',
+    name: '404',
     redirect: '/404'
   }
 ]

@@ -93,15 +93,28 @@ const constantRouter = [
     name: 'Application',
     redirect: '/application/center',
     component: BasicLayout,
+    meta: {
+      icon: 'appstore',
+      title: '应用功能管理',
+      rightName: '应用功能管理'
+    },
     children: [
       {
         path: '/application/center',
         name: 'ApplicationCenter',
+        meta: {
+          title: '应用中心',
+          rightName: '应用中心'
+        },
         component: () => import('@/views/application/ApplicationCenter/Index')
       },
       {
         path: '/application/functionManage',
         name: 'FunctionManage',
+        meta: {
+          title: '应用功能',
+          rightName: '应用功能'
+        },
         component: () => import('@/views/application/FunctionManage/Index')
       }
     ]
@@ -110,6 +123,11 @@ const constantRouter = [
     path: '/organization',
     name: 'Organization',
     redirect: '/organization/center',
+    meta: {
+      icon: 'deployment-unit',
+      title: '机构用户管理',
+      rightName: '机构用户管理'
+    },
     component: BasicLayout,
     children: [
       {
@@ -121,13 +139,18 @@ const constantRouter = [
         path: '/organization/userManagement',
         name: 'UserManagement',
         meta: {
-          rightName: '机构管理'
+          title: '用户管理',
+          rightName: '用户管理'
         },
         component: () => import('@/views/organization/UserManagement/Index')
       },
       {
         path: '/organization/organizationManagement',
         name: 'OrganizationManagement',
+        meta: {
+          title: '机构管理',
+          rightName: '机构管理'
+        },
         component: () => import('@/views/organization/OrganizationManagement/Index')
       }
     ]
@@ -137,6 +160,11 @@ const constantRouter = [
     name: 'RolePermission',
     redirect: '/rolePermission/center',
     component: BasicLayout,
+    meta: {
+      icon: 'safety',
+      title: '角色权限管理',
+      rightName: '角色权限管理'
+    },
     children: [
       {
         path: '/rolePermission/center',
@@ -146,11 +174,19 @@ const constantRouter = [
       {
         path: '/rolePermission/roleManagement',
         name: 'RoleManagement',
+        meta: {
+          title: '角色管理',
+          rightName: '角色管理'
+        },
         component: () => import('@/views/rolePermission/RoleManagement/Index')
       },
       {
         path: '/rolePermission/permissionManagement',
         name: 'PermissionManagement',
+        meta: {
+          title: '权限管理',
+          rightName: '权限管理'
+        },
         component: () => import('@/views/rolePermission/PermissionManagement/Index')
       }
     ]
