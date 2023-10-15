@@ -50,20 +50,40 @@ const constantRouter = [
     name: 'Account',
     redirect: '/account/center',
     component: BasicLayout,
+    meta: {
+      icon: 'user',
+      title: '个人信息管理',
+      rightName: '个人信息管理'
+    },
     children: [
       {
         path: '/account/center',
         name: 'AccountCenter',
+        meta: {
+          icon: 'user',
+          title: '基本信息',
+          rightName: '基本信息'
+        },
         component: () => import('@/views/account/AccountCenter')
       },
       {
         path: '/account/setting',
         name: 'AccountSetting',
+        meta: {
+          icon: 'setting',
+          title: '个人设置',
+          rightName: '个人设置'
+        },
         component: () => import('@/views/account/AccountSetting/Index')
       },
       {
         path: '/account/message',
         name: 'AccountMessage',
+        meta: {
+          icon: 'message',
+          title: '消息中心',
+          rightName: '消息中心'
+        },
         component: () => import('@/views/account/AccountMessage/Index')
       }
     ]
