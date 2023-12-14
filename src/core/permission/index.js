@@ -69,5 +69,13 @@ function checkRoute(toRoute) {
  * @param toRoute
  */
 function setRouteAuth(toRoute) {
+  if (toRoute.meta && toRoute.meta.rightName) {
+    const findNodes = treeUtils.findNodes(store.getters.userFunctions, 'rightName', toRoute.meta.rightName)
+    for (const findNode of findNodes) {
+      if (findNode.children) {
+        toRoute.meta.btns = findNode.children.filter(node => node.type === '按钮')
+      }
+    }
+  }
   console.log(toRoute)
 }

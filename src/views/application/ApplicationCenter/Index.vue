@@ -5,7 +5,7 @@
       title="应用管理">
       <div slot="extra">
         <a-space>
-          <a-button type="primary" icon="plus" @click="add">添加</a-button>
+          <a-button type="primary" icon="plus" @click="add" v-action:新增>新增</a-button>
           <a-radio-group v-model="status">
             <a-radio-button value="all">全部</a-radio-button>
             <a-radio-button value="running">在线</a-radio-button>
