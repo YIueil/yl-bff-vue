@@ -53,6 +53,10 @@ import {
 // 自定组件
 import Dialog from '@/components/Dialog'
 
+// 裁切组件
+import VueCropper from 'vue-cropper'
+Vue.use(VueCropper)
+
 Vue.use(ConfigProvider)
 Vue.use(Layout)
 Vue.use(Input)
