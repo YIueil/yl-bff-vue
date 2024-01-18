@@ -68,8 +68,9 @@ export default {
   computed: {},
   watch: {},
   methods: {
-    setAvatar() {
-      console.log('更新头像')
+    setAvatar(response) {
+      console.log('更新头像', response)
+      this.option.img = response.url
     }
   },
   mounted() {

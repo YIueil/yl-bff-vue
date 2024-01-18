@@ -126,7 +126,7 @@ export default {
           imageUpload(formData).then(response => {
             console.log(response)
             _this.$message.success('上传成功')
-            // _this.$emit('ok', response)
+            _this.$emit('ok', response)
             _this.visible = false
           })
         })
