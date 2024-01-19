@@ -38,14 +38,14 @@ export function register(data) {
 }
 export function modifyUser(data) {
   return request({
-    url: userApi.register,
+    url: userApi.modifyUser,
     method: 'post',
     data
   })
 }
 export function delUser(params) {
   return request({
-    url: userApi.register,
+    url: userApi.delUser,
     method: 'post',
     params
   })
@@ -73,7 +73,7 @@ export function suspendUserByIds(data) {
 }
 export function passwordChange(params) {
   return request({
-    url: userApi.register,
+    url: userApi.passwordChange,
     method: 'post',
     params
   })

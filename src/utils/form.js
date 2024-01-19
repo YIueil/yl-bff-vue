@@ -7,6 +7,13 @@
 import pattern from '@/utils/pattern'
 
 export default {
+  // region 个人信息管理
+  passwordChangeForm: [
+    { label: '原密码', name: 'oldPassword', type: 'password', rules: [{ required: true, min: 6, message: '6个字符以上！' }] },
+    { label: '新密码', name: 'newPassword', type: 'password', rules: [{ required: true, min: 6, message: '6个字符以上！' }] },
+    { label: '重新输入新密码', name: 'reNewPassword', type: 'password', rules: [{ required: true, min: 6, message: '6个字符以上！' }] }
+  ],
+  // endregion
   // region 机构用户
   userAddForm: [
     { label: '用户名', name: 'userName', type: 'text', rules: [{ required: true, min: 2, message: '2个字符以上！' }] },

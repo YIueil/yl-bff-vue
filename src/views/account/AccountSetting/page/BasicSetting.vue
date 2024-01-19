@@ -4,16 +4,16 @@
       <a-col :order="isMobile ? 2 : 1" :md="24" :lg="16">
         <a-form layout="vertical">
           <a-form-item label="昵称">
-            <a-input/>
+            <a-input v-model="form.userName"/>
           </a-form-item>
           <a-form-item label="个性签名">
-            <a-textarea rows="4"/>
+            <a-textarea v-model="form.signature" rows="4"/>
           </a-form-item>
           <a-form-item label="邮箱" :required="false">
-            <a-input placeholder="template@mail.com"/>
+            <a-input v-model="form.email" placeholder="template@mail.com"/>
           </a-form-item>
           <a-form-item>
-            <a-button type="primary">提交信息变更</a-button>
+            <a-button type="primary" @click="submitChange">提交信息变更</a-button>
           </a-form-item>
         </a-form>
       </a-col>
@@ -23,7 +23,7 @@
           <div class="mask">
             <a-icon type="plus"/>
           </div>
-          <img :src="option.img" alt="头像"/>
+          <img :src="form.avatarUrl" alt="头像"/>
         </div>
       </a-col>
     </a-row>
@@ -36,6 +36,8 @@
 import { appMixin } from '@/store/mixin/app-mixin'
 import { userMixin } from '@/store/mixin/user-mixin'
 import AvatarModal from '@/components/Modal/AvatarModal/Index'
+import userService from '@/api/user-service'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'BasicSetting',
@@ -46,35 +48,25 @@ export default {
   props: {},
   data() {
     return {
-      // cropper
-      preview: {},
-      option: {
-        img: 'https://s2.loli.net/2022/05/10/6NZgpvlQx8PBG3o.png',
-        info: true,
-        size: 1,
-        outputType: 'jpeg',
-        canScale: false,
-        autoCrop: true,
-        // 只有自动截图开启 宽度高度才生效
-        autoCropWidth: 180,
-        autoCropHeight: 180,
-        fixedBox: true,
-        // 开启宽度和高度比例
-        fixed: true,
-        fixedNumber: [1, 1]
-      }
+      form: {}
     }
   },
   computed: {},
   watch: {},
   methods: {
+    ...mapMutations(['SET_USER_INFO']),
     setAvatar(response) {
       console.log('更新头像', response)
-      this.option.img = response.url
+      this.form.avatarUrl = response.url
+    },
+    async submitChange() {
+      const modifyUser = await userService.modifyUser(this.form)
+      this.SET_USER_INFO(modifyUser)
+      this.$message.success('修改成功')
     }
   },
   mounted() {
-
+    this.form = this.cloneDeep(this.userInfo)
   }
 }
 </script>

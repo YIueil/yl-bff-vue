@@ -1,28 +1,44 @@
 <template>
-  <a-list
-    itemLayout="horizontal"
-    :dataSource="listData"
-  >
-    <a-list-item slot="renderItem" slot-scope="item, index" :key="index">
-      <a-list-item-meta>
-        <a slot="title">{{ item.title }}</a>
-        <span slot="description">
+  <div>
+    <a-list
+        itemLayout="horizontal"
+        :dataSource="listData"
+    >
+      <a-list-item slot="renderItem" slot-scope="item, index" :key="index">
+        <a-list-item-meta>
+          <a slot="title">{{ item.title }}</a>
+          <span slot="description">
           <span class="security-list-description">{{ item.description }}</span>
           <span v-if="item.value"> : </span>
           <span class="security-list-value">{{ item.value }}</span>
         </span>
-      </a-list-item-meta>
-      <template v-if="item.actions">
-        <a slot="actions" @click="item.actions.callback">{{ item.actions.title }}</a>
-      </template>
-    </a-list-item>
-  </a-list>
+        </a-list-item-meta>
+        <template v-if="item.actions">
+          <a slot="actions" @click="item.actions.callback">{{ item.actions.title }}</a>
+        </template>
+      </a-list-item>
+    </a-list>
+    <form-modal
+        :visible="passwordForm.visible"
+        :title="passwordForm.title"
+        :form-id="passwordForm.formId"
+        :formItems="passwordForm.formItems"
+        @submit="handlePasswordChangeSubmit"
+        @cancel="handlePasswordChangeCancel"
+    />
+  </div>
 </template>
 
 <script>
+import formModal from '@/components/Modal/FormModal/Index'
+import form from '@/utils/form'
+import userService from '@/api/user-service'
+
 export default {
   name: 'SecuritySetting',
-  components: {},
+  components: {
+    formModal
+  },
   props: {},
   data() {
     return {
@@ -33,7 +49,7 @@ export default {
           value: '强',
           actions: {
             title: '修改', callback: () => {
-              this.$message.info('This is a normal message')
+              this.passwordForm.visible = true
             }
           }
         },
@@ -57,13 +73,40 @@ export default {
             }
           }
         }
-      ]
+      ],
+      passwordForm: {
+        visible: false,
+        title: '修改密码',
+        formId: 'passwordForm',
+        formItems: form.passwordChangeForm
+      }
     }
   },
   computed: {},
   watch: {},
-  methods: {},
+  methods: {
+    handlePasswordChangeSubmit({ oldPassword, newPassword, reNewPassword }) {
+      if (newPassword !== reNewPassword) {
+        this.$message.warning('两次新密码输入不一致')
+        return
+      }
+      userService.passwordChange({
+        oldPassword,
+        newPassword
+      }).then(() => {
+        this.$message.success('密码修改成功')
+        this.$set(this.passwordForm, 'visible', false)
+      }).catch(({ message }) => {
+        const { tips } = JSON.parse(message)
+        this.$message.error(tips)
+      })
+    },
+    handlePasswordChangeCancel() {
+      this.$set(this.passwordForm, 'visible', false)
+    }
+  },
   mounted() {
+
   }
 }
 </script>
