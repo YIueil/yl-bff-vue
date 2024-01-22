@@ -7,9 +7,9 @@
           <a-input-search placeholder="搜索角色" enter-button @search="onRoleSearch" />
         </a-space>
         <a-space>
-          <a-button type="primary" icon="plus" @click="handleAddRole">新增</a-button>
-          <a-button type="default" icon="edit" @click="handleEditRole">编辑</a-button>
-          <a-button type="danger" icon="delete" :disabled="selectNode === null" @click="handleDeleteRole">删除</a-button>
+          <a-button type="primary" icon="plus" @click="handleAddRole" v-action:新增>新增</a-button>
+          <a-button type="default" icon="edit" @click="handleEditRole" v-action:编辑>编辑</a-button>
+          <a-button type="danger" icon="delete" :disabled="selectNode === null" @click="handleDeleteRole" v-action:删除>删除</a-button>
         </a-space>
       </a-space>
     </template>
