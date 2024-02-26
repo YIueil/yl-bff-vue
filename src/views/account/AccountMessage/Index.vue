@@ -24,7 +24,7 @@
         <a slot="title" href="https://www.antdv.com/">{{ item.name.last }}</a>
         <a-avatar
           slot="avatar"
-          src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+          src="https://s2.loli.net/2024/01/19/7WDJr9RLxuiPeZQ.jpg"
         />
       </a-list-item-meta>
       <div>content</div>

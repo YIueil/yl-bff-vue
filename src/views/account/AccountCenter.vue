@@ -1,5 +1,5 @@
 <template>
-  <div class="page-header-index-wide page-header-wrapper-grid-content-main">
+  <div class="account-center">
     <a-row :gutter="24">
       <a-col :md="24" :lg="7">
         <a-card :bordered="false">
@@ -24,98 +24,101 @@
             </p>
           </div>
           <a-divider/>
-
-<!--          <div class="account-center-tags">-->
-<!--            <div class="tagsTitle">标签</div>-->
-<!--            <div>-->
-<!--              <template v-for="(tag, index) in tags">-->
-<!--                <a-tooltip v-if="tag.length > 20" :key="tag" :title="tag">-->
-<!--                  <a-tag-->
-<!--                    :key="tag"-->
-<!--                    :closable="index !== 0"-->
-<!--                    :close="() => handleTagClose(tag)"-->
-<!--                  >{{ `${tag.slice(0, 20)}...` }}</a-tag>-->
-<!--                </a-tooltip>-->
-<!--                <a-tag-->
-<!--                  v-else-->
-<!--                  :key="tag"-->
-<!--                  :closable="index !== 0"-->
-<!--                  :close="() => handleTagClose(tag)"-->
-<!--                >{{ tag }}</a-tag>-->
-<!--              </template>-->
-<!--              <a-input-->
-<!--                v-if="tagInputVisible"-->
-<!--                ref="tagInput"-->
-<!--                type="text"-->
-<!--                size="small"-->
-<!--                :style="{ width: '78px' }"-->
-<!--                :value="tagInputValue"-->
-<!--                @change="handleInputChange"-->
-<!--                @blur="handleTagInputConfirm"-->
-<!--                @keyup.enter="handleTagInputConfirm"-->
-<!--              />-->
-<!--              <a-tag v-else @click="showTagInput" style="background: #fff; borderStyle: dashed;">-->
-<!--                <a-icon type="plus"/>New Tag-->
-<!--              </a-tag>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <a-divider :dashed="true"/>-->
-
-<!--          <div class="account-center-team">-->
-<!--            <div class="teamTitle">团队</div>-->
-<!--            <a-spin :spinning="teamSpinning">-->
-<!--              <div class="members">-->
-<!--                <a-row>-->
-<!--                  <a-col :span="12" v-for="(item, index) in teams" :key="index">-->
-<!--                    <a>-->
-<!--                      <a-avatar size="small" :src="item.avatar"/>-->
-<!--                      <span class="member">{{ item.name }}</span>-->
-<!--                    </a>-->
-<!--                  </a-col>-->
-<!--                </a-row>-->
-<!--              </div>-->
-<!--            </a-spin>-->
-<!--          </div>-->
+          <div class="account-center-link">
+            <div class="title">链接</div>
+            <a-spin :spinning="linkSpinning">
+              <div class="members">
+                <a-row>
+                  <a-col :span="12" v-for="(link, index) in linkList" :key="index">
+                    <a>
+                      <a-icon :type="link.icon"/>
+                      <span class="member">{{ link.name }}</span>
+                    </a>
+                  </a-col>
+                </a-row>
+              </div>
+            </a-spin>
+          </div>
         </a-card>
       </a-col>
-<!--      <a-col :md="24" :lg="17">-->
-<!--        <a-card-->
-<!--          style="width:100%"-->
-<!--          :bordered="false"-->
-<!--          :tabList="tabListNoTitle"-->
-<!--          :activeTabKey="noTitleKey"-->
-<!--          @tabChange="key => handleTabChange(key, 'noTitleKey')"-->
-<!--        >-->
-<!--          <article-page v-if="noTitleKey === 'article'"></article-page>-->
-<!--          <app-page v-else-if="noTitleKey === 'app'"></app-page>-->
-<!--          <project-page v-else-if="noTitleKey === 'project'"></project-page>-->
-<!--        </a-card>-->
-<!--      </a-col>-->
+      <a-col :md="24" :lg="17">
+        <a-card
+          style="width:100%"
+          :bordered="false"
+          :tabList="tabList"
+          :activeTabKey="activeTabKey"
+          @tabChange="handleTabChange"
+        >
+          <AppPage v-if="activeTabKey === 'app'"/>
+          <BlogPage v-else-if="activeTabKey === 'blog'"/>
+        </a-card>
+      </a-col>
     </a-row>
   </div>
 </template>
 
 <script>
 import { userMixin } from '@/store/mixin/user-mixin'
+import AppPage from '@/views/account/AccountTabs/AppPage'
+import BlogPage from '@/views/account/AccountTabs/BlogPage'
 
 export default {
   name: 'AccountCenter',
   mixins: [userMixin],
-  components: {},
+  components: { BlogPage, AppPage },
   props: {},
   data() {
-    return {}
+    return {
+      linkSpinning: true,
+      linkList: [],
+      tabList: [{
+        key: 'app',
+        tab: '应用'
+      },
+      {
+        key: 'blog',
+        tab: '文章'
+      }],
+      activeTabKey: 'app'
+    }
   },
   computed: {},
   watch: {},
-  methods: {},
+  methods: {
+    init() {
+      setTimeout(() => {
+        this.linkList = [{
+          icon: 'github',
+          name: 'GitHub',
+          url: 'https://github.com/YIueil'
+        }, {
+          icon: 'mail',
+          name: 'YIueil@163.com',
+          url: 'YIueil@163.com'
+        }, {
+          icon: 'phone',
+          name: '1550****2580',
+          url: ''
+        }, {
+          icon: 'google',
+          name: 'l511210125@gmail.com',
+          url: 'l511210125@gmail.com'
+        }]
+        this.linkSpinning = false
+      }, 1000)
+    },
+    handleTabChange(key) {
+      this.activeTabKey = key
+    }
+  },
   mounted() {
+    this.init()
   }
 }
 </script>
 
 <style lang="less" scoped>
-.page-header-wrapper-grid-content-main {
+.account-center {
   width: 100%;
   height: 100%;
   min-height: 100%;
@@ -177,13 +180,7 @@ export default {
     }
   }
 
-  .account-center-tags {
-    .ant-tag {
-      margin-bottom: 8px;
-    }
-  }
-
-  .account-center-team {
+  .account-center-link {
     .members {
       a {
         display: block;
@@ -211,8 +208,7 @@ export default {
     }
   }
 
-  .tagsTitle,
-  .teamTitle {
+  .title {
     font-weight: 500;
     color: rgba(0, 0, 0, 0.85);
     margin-bottom: 12px;
