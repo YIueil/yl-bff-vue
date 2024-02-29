@@ -65,14 +65,14 @@
       </div>
       <div class="table-btn-operator">
         <a-button type="primary" icon="plus" @click="handleAdd">新建</a-button>
-        <a-dropdown v-action:edit v-if="selectedRowKeys.length > 0">
+        <a-dropdown v-if="selectedRowKeys.length > 0">
           <a-menu @click="menuClick" slot="overlay">
-            <a-menu-item key="delete">
+            <a-menu-item key="delete" v-action:删除>
               <a-icon type="delete"/>
               删除
             </a-menu-item>
             <!-- lock | unlock -->
-            <a-menu-item key="suspend">
+            <a-menu-item key="suspend" v-action:挂起>
               <a-icon type="lock"/>
               挂起
             </a-menu-item>
@@ -93,23 +93,23 @@
         :rowSelection="rowSelection"
         showPagination="auto"
       >
-      <span slot="serial" slot-scope="text, record, index">
-        {{ index + 1 }}
-      </span>
+        <span slot="serial" slot-scope="text, record, index">
+          {{ index + 1 }}
+        </span>
         <span slot="createTime" slot-scope="text">
-        {{ text | moment }}
-      </span>
+          {{ text | moment }}
+        </span>
         <span slot="modifyTime" slot-scope="text">
-        {{ text | moment }}
-      </span>
+          {{ text | moment }}
+        </span>
         <span slot="status" slot-scope="text">
           <a-badge :status="text | statusTypeFilter" :text="text | statusFilter"/>
-      </span>
+        </span>
         <span slot="action" slot-scope="text, record">
           <template>
-            <a @click="handleEdit(record)">编辑</a>
-            <a-divider type="vertical"/>
-            <a style="color: red" @click="handleSuspend(record)">挂起</a>
+            <a @click="handleEdit(record)" v-action:编辑>编辑</a>
+            <a-divider type="vertical" />
+            <a style="color: red" @click="handleSuspend(record)" v-action:挂起>挂起</a>
           </template>
       </span>
       </s-table>
