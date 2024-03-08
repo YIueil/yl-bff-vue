@@ -32,6 +32,17 @@ const baseRoutes = [
           group: ''
         },
         component: () => import('@/views/common/test/FileViewComponent')
+      },
+      {
+        path: '/test3',
+        name: 'TestComponent',
+        meta: {
+          title: '测试页面用',
+          icon: null,
+          keepAlive: true,
+          group: ''
+        },
+        component: () => import('@/views/common/test/TestComponent')
       }
     ]
   },

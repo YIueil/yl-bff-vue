@@ -1,6 +1,10 @@
 <template>
   <div>
     <a-space>
+      <i class="iconfont yl-icon-image"></i>
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#yl-icon-image"></use>
+      </svg>
       <div>
         <a-button type="primary">按钮</a-button>
       </div>
