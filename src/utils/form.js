@@ -13,6 +13,9 @@ export default {
     { label: '新密码', name: 'newPassword', type: 'password', rules: [{ required: true, min: 6, message: '6个字符以上！' }] },
     { label: '重新输入新密码', name: 'reNewPassword', type: 'password', rules: [{ required: true, min: 6, message: '6个字符以上！' }] }
   ],
+  phoneNumberForm: [
+    { label: '手机号', name: 'newPhoneNumber', type: 'text', rules: [{ pattern: pattern.phone, message: '请输入正确的手机号码' }] }
+  ],
   // endregion
   // region 机构用户
   userAddForm: [

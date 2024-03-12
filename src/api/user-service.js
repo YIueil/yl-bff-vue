@@ -10,6 +10,7 @@ const userApi = {
   suspendUser: '/orup/suspendUser',
   suspendUserByIds: '/orup/suspendUserByIds',
   passwordChange: 'orup/passwordChange',
+  phoneNumberChange: 'orup/phoneNumberChange',
   getUserInfo: '/orup/currentUser',
   getUserRoles: '/orup/roles',
   getUserPermissions: '/orup/permissions',
@@ -78,6 +79,13 @@ export function passwordChange(params) {
     params
   })
 }
+export function phoneNumberChange(params) {
+  return request({
+    url: userApi.phoneNumberChange,
+    method: 'post',
+    params
+  })
+}
 export function getUserInfo() {
   return request({
     url: userApi.getUserInfo,
@@ -119,5 +127,6 @@ export default {
   delUserByIds,
   suspendUser,
   suspendUserByIds,
-  passwordChange
+  passwordChange,
+  phoneNumberChange
 }

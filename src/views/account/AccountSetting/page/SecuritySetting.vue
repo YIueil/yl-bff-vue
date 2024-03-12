@@ -26,6 +26,14 @@
         @submit="handlePasswordChangeSubmit"
         @cancel="handlePasswordChangeCancel"
     />
+    <form-modal
+      :visible="phoneNumberForm.visible"
+      :title="phoneNumberForm.title"
+      :form-id="phoneNumberForm.formId"
+      :formItems="phoneNumberForm.formItems"
+      @submit="handlePhoneNumberChangeSubmit"
+      @cancel="handlePhoneNumberChangeCancel"
+    />
   </div>
 </template>
 
@@ -59,7 +67,7 @@ export default {
           value: '155****2580',
           actions: {
             title: '修改', callback: () => {
-              this.$message.success('This is a message of success')
+              this.phoneNumberForm.visible = true
             }
           }
         },
@@ -79,6 +87,12 @@ export default {
         title: '修改密码',
         formId: 'passwordForm',
         formItems: form.passwordChangeForm
+      },
+      phoneNumberForm: {
+        visible: false,
+        title: '修改手机',
+        formId: 'phoneNumberForm',
+        formItems: form.phoneNumberForm
       }
     }
   },
@@ -103,6 +117,18 @@ export default {
     },
     handlePasswordChangeCancel() {
       this.$set(this.passwordForm, 'visible', false)
+    },
+    handlePhoneNumberChangeSubmit({ newPhoneNumber }) {
+      userService.phoneNumberChange({ newPhoneNumber }).then(() => {
+        this.$message.success('手机号修改成功')
+        this.$set(this.phoneNumberForm, 'visible', false)
+      }).catch(({ message }) => {
+        const { tips } = JSON.parse(message)
+        this.$message.error(tips)
+      })
+    },
+    handlePhoneNumberChangeCancel() {
+      this.$set(this.phoneNumberForm, 'visible', false)
     }
   },
   mounted() {
