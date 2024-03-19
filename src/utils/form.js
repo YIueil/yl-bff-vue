@@ -16,6 +16,10 @@ export default {
   phoneNumberForm: [
     { label: '手机号', name: 'newPhoneNumber', type: 'text', rules: [{ pattern: pattern.phone, message: '请输入正确的手机号码' }] }
   ],
+  mailForm: [
+    { label: '验证码', name: 'verifyCode', type: 'text', placeholder: '请从原邮件获取验证码' },
+    { label: '新邮箱', name: 'newMailAddress', type: 'text', placeholder: '请填写新的邮件地址', rules: [{ pattern: pattern.email, message: '请输入正确的邮件地址' }] }
+  ],
   // endregion
   // region 机构用户
   userAddForm: [

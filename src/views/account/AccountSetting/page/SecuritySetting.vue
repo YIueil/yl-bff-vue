@@ -1,8 +1,8 @@
 <template>
   <div>
     <a-list
-        itemLayout="horizontal"
-        :dataSource="listData"
+      itemLayout="horizontal"
+      :dataSource="listData"
     >
       <a-list-item slot="renderItem" slot-scope="item, index" :key="index">
         <a-list-item-meta>
@@ -19,12 +19,12 @@
       </a-list-item>
     </a-list>
     <form-modal
-        :visible="passwordForm.visible"
-        :title="passwordForm.title"
-        :form-id="passwordForm.formId"
-        :formItems="passwordForm.formItems"
-        @submit="handlePasswordChangeSubmit"
-        @cancel="handlePasswordChangeCancel"
+      :visible="passwordForm.visible"
+      :title="passwordForm.title"
+      :form-id="passwordForm.formId"
+      :formItems="passwordForm.formItems"
+      @submit="handlePasswordChangeSubmit"
+      @cancel="handlePasswordChangeCancel"
     />
     <form-modal
       :visible="phoneNumberForm.visible"
@@ -33,6 +33,14 @@
       :formItems="phoneNumberForm.formItems"
       @submit="handlePhoneNumberChangeSubmit"
       @cancel="handlePhoneNumberChangeCancel"
+    />
+    <form-modal
+      :visible="mailForm.visible"
+      :title="mailForm.title"
+      :form-id="mailForm.formId"
+      :formItems="mailForm.formItems"
+      @submit="handleMailChangeSubmit"
+      @cancel="handleMailChangeCancel"
     />
   </div>
 </template>
@@ -77,7 +85,19 @@ export default {
           value: 'yi**il@163.com',
           actions: {
             title: '修改', callback: () => {
-              this.$message.warning('This is message of warning')
+              this.$confirm({
+                title: '确认要修改邮件地址? 确认将发送修改操作的验证码发送到原邮件!',
+                onOk: async() => {
+                  try {
+                    await userService.sendMailChangeVerifyCode()
+                    this.$message.success('邮件已发送')
+                    this.mailForm.visible = true
+                  } catch ({ message }) {
+                    const { tips } = JSON.parse(message)
+                    this.$message.error(tips)
+                  }
+                }
+              })
             }
           }
         }
@@ -93,6 +113,12 @@ export default {
         title: '修改手机',
         formId: 'phoneNumberForm',
         formItems: form.phoneNumberForm
+      },
+      mailForm: {
+        visible: false,
+        title: '修改手机',
+        formId: 'phoneNumberForm',
+        formItems: form.mailForm
       }
     }
   },
@@ -129,10 +155,26 @@ export default {
     },
     handlePhoneNumberChangeCancel() {
       this.$set(this.phoneNumberForm, 'visible', false)
+    },
+    async handleMailChangeSubmit({ verifyCode, newMailAddress }) {
+      console.log('handleMailChangeSubmit', verifyCode, newMailAddress)
+      try {
+        await userService.sendMailChangeLink({
+          newMailAddress,
+          verifyCode
+        })
+        this.$message.success('修改请求已受理, 请在新邮件中点击链接进行确认!')
+        this.$set(this.phoneNumberForm, 'visible', false)
+      } catch ({ message }) {
+        const { tips } = JSON.parse(message)
+        this.$message.error(tips)
+      }
+    },
+    handleMailChangeCancel() {
+      this.$set(this.mailForm, 'visible', false)
     }
   },
   mounted() {
-
   }
 }
 </script>

@@ -15,7 +15,9 @@ const userApi = {
   getUserRoles: '/orup/roles',
   getUserPermissions: '/orup/permissions',
   getUserFunctions: '/orup/getUserFunctions',
-  getApplicationFunctionTree: 'orup/getApplicationFunctionTree'
+  getApplicationFunctionTree: 'orup/getApplicationFunctionTree',
+  sendMailChangeVerifyCode: 'verifyCode/v1/sendMailChangeVerifyCode',
+  sendMailChangeLink: 'verifyCode/v1/sendMailChangeLink'
 }
 export function login(params) {
   return request({
@@ -118,6 +120,19 @@ export function getApplicationFunctionTree(params) {
     params
   })
 }
+export function sendMailChangeVerifyCode() {
+  return request({
+    url: userApi.sendMailChangeVerifyCode,
+    method: 'post'
+  })
+}
+export function sendMailChangeLink(params) {
+  return request({
+    url: userApi.sendMailChangeLink,
+    method: 'post',
+    params
+  })
+}
 export default {
   login,
   logout,
@@ -128,5 +143,7 @@ export default {
   suspendUser,
   suspendUserByIds,
   passwordChange,
-  phoneNumberChange
+  phoneNumberChange,
+  sendMailChangeVerifyCode,
+  sendMailChangeLink
 }
