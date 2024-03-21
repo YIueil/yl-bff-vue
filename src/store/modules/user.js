@@ -112,8 +112,8 @@ export async function getUserResources(dispatch) {
  */
 export async function clearAll(commit) {
   commit('SET_TOKEN', '')
-  commit('SET_ROLES', [])
-  commit('SET_ROLES', [])
+  // commit('SET_ROLES', [])
+  // commit('SET_ROLES', [])
   storage.clearAll()
 }
 export default user

@@ -1,6 +1,11 @@
 import axios from 'axios'
 import storage from 'store'
+import store from '@/store'
+import { clearAll } from '@/store/modules/user'
+import router, { resetRouter } from '@/router'
 import { ACCESS_TOKEN } from '@/store/enums/mutation-types'
+import { Initializer } from '@/core/boot'
+import { message } from 'ant-design-vue'
 // 创建 axios 实例
 const request = axios.create({
   // API 请求的默认前缀
@@ -32,6 +37,14 @@ request.interceptors.response.use(response => {
   if (status === 200) {
     if (statusMsg === 'success') {
       return body
+    } else if (statusMsg === 'unauthorized') {
+      message.error('登录超时, 请重新登录')
+      clearAll(store.commit).then(() => {
+        // 跳转登录并重新初始化
+        router.push({ path: '/login' }).then(() => {
+          Initializer().then(resetRouter)
+        })
+      })
     } else {
       // 抛出错误, 外部进行捕获
       throw new Error(JSON.stringify({
