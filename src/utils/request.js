@@ -14,6 +14,13 @@ const request = axios.create({
   timeout: 60000 // 请求超时时间
 })
 console.log(process.env.VUE_APP_BASE_URL)
+function storageToken(token) {
+  if (token) {
+    const expireTime = new Date().getTime() + defaultSettings.tokenExpire
+    storage.set(ACCESS_TOKEN, token, expireTime)
+    store.commit('SET_TOKEN', token)
+  }
+}
 // 添加请求拦截器
 request.interceptors.request.use(config => {
   // 请求头添加
@@ -38,11 +45,7 @@ request.interceptors.response.use(response => {
   if (status === 200) {
     if (statusMsg === 'success') {
       // 刷新token
-      if (token) {
-        const expireTime = new Date().getTime() + defaultSettings.tokenExpire
-        storage.set(ACCESS_TOKEN, token, expireTime)
-        store.commit('SET_TOKEN', token)
-      }
+      storageToken(token)
       return body
     } else if (statusMsg === 'unauthorized') {
       message.error('登录超时, 请重新登录')
