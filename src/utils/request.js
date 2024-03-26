@@ -48,7 +48,7 @@ request.interceptors.response.use(response => {
       storageToken(token)
       return body
     } else if (statusMsg === 'unauthorized') {
-      message.error('登录超时, 请重新登录')
+      message.error('请求超时, 请重新登录')
       clearAll(store.commit).then(() => {
         // 跳转登录并重新初始化
         router.push({ path: '/login' }).then(() => {
