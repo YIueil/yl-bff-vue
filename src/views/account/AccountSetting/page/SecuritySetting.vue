@@ -49,59 +49,20 @@
 import formModal from '@/components/Modal/FormModal/Index'
 import form from '@/utils/form'
 import userService from '@/api/user-service'
+import { appMixin } from '@/store/mixin/app-mixin'
+import { userMixin } from '@/store/mixin/user-mixin'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'SecuritySetting',
+  mixins: [appMixin, userMixin],
   components: {
     formModal
   },
   props: {},
   data() {
     return {
-      listData: [
-        {
-          title: '密码',
-          description: '密码安全性',
-          value: '强',
-          actions: {
-            title: '修改', callback: () => {
-              this.passwordForm.visible = true
-            }
-          }
-        },
-        {
-          title: '绑定手机号',
-          description: '当前绑定手机',
-          value: '155****2580',
-          actions: {
-            title: '修改', callback: () => {
-              this.phoneNumberForm.visible = true
-            }
-          }
-        },
-        {
-          title: '绑定邮箱',
-          description: '当前绑定邮箱',
-          value: 'yi**il@163.com',
-          actions: {
-            title: '修改', callback: () => {
-              this.$confirm({
-                title: '确认要修改邮件地址? 确认将发送修改操作的验证码发送到原邮件!',
-                onOk: async() => {
-                  try {
-                    await userService.sendMailChangeVerifyCode()
-                    this.$message.success('邮件已发送')
-                    this.mailForm.visible = true
-                  } catch ({ message }) {
-                    const { tips } = JSON.parse(message)
-                    this.$message.error(tips)
-                  }
-                }
-              })
-            }
-          }
-        }
-      ],
+      listData: [],
       passwordForm: {
         visible: false,
         title: '修改密码',
@@ -125,6 +86,54 @@ export default {
   computed: {},
   watch: {},
   methods: {
+    ...mapActions(['Refresh']),
+    async init() {
+      const { passwordStrengthLevel, expectedCrackingTime } = await userService.getAccountSecurityLevel()
+      this.listData = [
+        {
+          title: '密码',
+          description: '密码安全性',
+          value: `${passwordStrengthLevel} ${expectedCrackingTime}`,
+          actions: {
+            title: '修改', callback: async() => {
+              this.passwordForm.visible = true
+            }
+          }
+        },
+        {
+          title: '绑定手机号',
+          description: '当前绑定手机',
+          value: this.userInfo.phoneNumber,
+          actions: {
+            title: '修改', callback: async() => {
+              this.phoneNumberForm.visible = true
+            }
+          }
+        },
+        {
+          title: '绑定邮箱',
+          description: '当前绑定邮箱',
+          value: this.userInfo.email,
+          actions: {
+            title: '修改', callback: () => {
+              this.$confirm({
+                title: '确认要修改邮件地址? 确认将发送修改操作的验证码发送到原邮件!',
+                onOk: async() => {
+                  try {
+                    await userService.sendMailChangeVerifyCode()
+                    this.$message.success('邮件已发送')
+                    this.mailForm.visible = true
+                  } catch ({ message }) {
+                    const { tips } = JSON.parse(message)
+                    this.$message.error(tips)
+                  }
+                }
+              })
+            }
+          }
+        }
+      ]
+    },
     handlePasswordChangeSubmit({ oldPassword, newPassword, reNewPassword }) {
       if (newPassword !== reNewPassword) {
         this.$message.warning('两次新密码输入不一致')
@@ -133,7 +142,9 @@ export default {
       userService.passwordChange({
         oldPassword,
         newPassword
-      }).then(() => {
+      }).then(async() => {
+        await this.Refresh()
+        await this.init()
         this.$message.success('密码修改成功')
         this.$set(this.passwordForm, 'visible', false)
       }).catch(({ message }) => {
@@ -145,7 +156,9 @@ export default {
       this.$set(this.passwordForm, 'visible', false)
     },
     handlePhoneNumberChangeSubmit({ newPhoneNumber }) {
-      userService.phoneNumberChange({ newPhoneNumber }).then(() => {
+      userService.phoneNumberChange({ newPhoneNumber }).then(async() => {
+        await this.Refresh()
+        await this.init()
         this.$message.success('手机号修改成功')
         this.$set(this.phoneNumberForm, 'visible', false)
       }).catch(({ message }) => {
@@ -175,6 +188,7 @@ export default {
     }
   },
   mounted() {
+    this.init()
   }
 }
 </script>

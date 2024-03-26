@@ -6,6 +6,7 @@ import router, { resetRouter } from '@/router'
 import { ACCESS_TOKEN } from '@/store/enums/mutation-types'
 import { Initializer } from '@/core/boot'
 import { message } from 'ant-design-vue'
+import defaultSettings from '@/config/default-settings'
 // 创建 axios 实例
 const request = axios.create({
   // API 请求的默认前缀
@@ -31,11 +32,17 @@ request.interceptors.request.use(config => {
 })
 // 添加响应拦截器
 request.interceptors.response.use(response => {
-  const { status, data: { body, statusMsg, statusCode, stackTrace, tips } } = response
+  const { status, data: { body, statusMsg, statusCode, stackTrace, tips, token } } = response
   // 2xx 范围内的状态码都会触发该函数。
   // 对响应数据做点什么
   if (status === 200) {
     if (statusMsg === 'success') {
+      // 刷新token
+      if (token) {
+        const expireTime = new Date().getTime() + defaultSettings.tokenExpire
+        storage.set(ACCESS_TOKEN, token, expireTime)
+        store.commit('SET_TOKEN', token)
+      }
       return body
     } else if (statusMsg === 'unauthorized') {
       message.error('登录超时, 请重新登录')

@@ -3,6 +3,7 @@ import request from '@/utils/request'
 const userApi = {
   login: '/orup/login',
   logout: '/orup/logout',
+  refreshToken: '/orup/refreshToken',
   register: '/orup/register',
   modifyUser: '/orup/modifyUser',
   delUser: 'orup/delUser',
@@ -12,6 +13,7 @@ const userApi = {
   passwordChange: 'orup/passwordChange',
   phoneNumberChange: 'orup/phoneNumberChange',
   getUserInfo: '/orup/currentUser',
+  getAccountSecurityLevel: '/orup/getAccountSecurityLevel',
   getUserRoles: '/orup/roles',
   getUserPermissions: '/orup/permissions',
   getUserFunctions: '/orup/getUserFunctions',
@@ -30,6 +32,12 @@ export function logout() {
   return request({
     url: userApi.logout,
     method: 'post'
+  })
+}
+export function refreshToken() {
+  return request({
+    url: userApi.refreshToken,
+    method: 'get'
   })
 }
 export function register(data) {
@@ -94,6 +102,12 @@ export function getUserInfo() {
     method: 'get'
   })
 }
+export function getAccountSecurityLevel() {
+  return request({
+    url: userApi.getAccountSecurityLevel,
+    method: 'get'
+  })
+}
 export function getUserRoles() {
   return request({
     url: userApi.getUserRoles,
@@ -145,5 +159,7 @@ export default {
   passwordChange,
   phoneNumberChange,
   sendMailChangeVerifyCode,
-  sendMailChangeLink
+  sendMailChangeLink,
+  refreshToken,
+  getAccountSecurityLevel
 }

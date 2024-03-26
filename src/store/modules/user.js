@@ -3,10 +3,8 @@
  * Date:2022/11  /15 23:16
  * Description: userStore 保存用户信息和用户角色权限信息
  */
-import { ACCESS_TOKEN } from '@/store/enums/mutation-types'
-import { login, logout, getUserInfo, getUserRoles, getUserPermissions, getUserFunctions } from '@/api/user-service'
+import { getUserFunctions, getUserInfo, getUserPermissions, getUserRoles, login, logout, refreshToken } from '@/api/user-service'
 import storage from 'store'
-import defaultSettings from '@/config/default-settings'
 import expirePlugin from 'store/plugins/expire'
 import { onLoginSuccess, onLogoutSuccess } from '@/config/lifecycle-hooks'
 // 添加
@@ -47,15 +45,12 @@ const user = {
   },
   actions: {
     // 登录
-    async Login({ dispatch, commit }, userInfo) {
+    async Login({ dispatch }, userInfo) {
       try {
-        const token = await login({
+        await login({
           loginName: userInfo.loginName,
           password: userInfo.password
         })
-        const expireTime = new Date().getTime() + defaultSettings.tokenExpire
-        storage.set(ACCESS_TOKEN, token, expireTime)
-        commit('SET_TOKEN', token)
         await getUserResources(dispatch)
         onLoginSuccess()
       } catch ({ message }) {
@@ -68,6 +63,16 @@ const user = {
       await logout(commit)
       await clearAll(commit)
       onLogoutSuccess()
+    },
+    // 刷新用户信息
+    async Refresh({ dispatch }) {
+      try {
+        await refreshToken()
+        await getUserResources(dispatch)
+      } catch ({ message }) {
+        const errorObj = JSON.parse(message)
+        window.alert(errorObj.tips)
+      }
     },
     // 获取用户信息
     async getUserInfo({ commit }) {

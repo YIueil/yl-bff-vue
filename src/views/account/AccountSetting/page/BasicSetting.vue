@@ -37,7 +37,7 @@ import { appMixin } from '@/store/mixin/app-mixin'
 import { userMixin } from '@/store/mixin/user-mixin'
 import AvatarModal from '@/components/Modal/AvatarModal/Index'
 import userService from '@/api/user-service'
-import { mapMutations } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'BasicSetting',
@@ -55,6 +55,7 @@ export default {
   watch: {},
   methods: {
     ...mapMutations(['SET_USER_INFO']),
+    ...mapActions(['Refresh']),
     setAvatar(response) {
       console.log('更新头像', response)
       this.form.avatarUrl = response.url
@@ -63,6 +64,8 @@ export default {
       const modifyUser = await userService.modifyUser(this.form)
       this.SET_USER_INFO(modifyUser)
       this.$message.success('修改成功')
+      // 刷新token 不刷新将继续使用旧token请求后端, 导致拿到旧的token
+      await this.Refresh()
     }
   },
   mounted() {
