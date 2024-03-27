@@ -75,6 +75,9 @@ export default {
 .ant-pro-account-avatar {
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  min-width: 100px;
+  max-width: 200px;
   padding: 0 5px;
   cursor: pointer;
   transition: all .3s;

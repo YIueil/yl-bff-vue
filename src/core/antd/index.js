@@ -50,13 +50,18 @@ import {
   notification
 } from 'ant-design-vue'
 
+const IconFont = Icon.createFromIconfontCN({
+  scriptUrl: '@/assets/iconfont/iconfont.js'
+})
+
 // 自定组件
 import Dialog from '@/components/Dialog'
 
 // 裁切组件
 import VueCropper from 'vue-cropper'
 Vue.use(VueCropper)
-
+// iconfont组件全局引入
+Vue.component('IconFont', IconFont)
 Vue.use(ConfigProvider)
 Vue.use(Layout)
 Vue.use(Input)

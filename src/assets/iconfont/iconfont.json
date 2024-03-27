@@ -6,6 +6,118 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "27428390",
+      "name": "i18n",
+      "font_class": "i18n",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "25555511",
+      "name": "树结构",
+      "font_class": "account-tree",
+      "unicode": "e72c",
+      "unicode_decimal": 59180
+    },
+    {
+      "icon_id": "25555523",
+      "name": "暗黑模式",
+      "font_class": "dark-mode",
+      "unicode": "e72f",
+      "unicode_decimal": 59183
+    },
+    {
+      "icon_id": "25555525",
+      "name": "设置布局",
+      "font_class": "dashboard",
+      "unicode": "e730",
+      "unicode_decimal": 59184
+    },
+    {
+      "icon_id": "25555542",
+      "name": "下载",
+      "font_class": "download",
+      "unicode": "e732",
+      "unicode_decimal": 59186
+    },
+    {
+      "icon_id": "25555551",
+      "name": "更多信息",
+      "font_class": "info",
+      "unicode": "e733",
+      "unicode_decimal": 59187
+    },
+    {
+      "icon_id": "25555552",
+      "name": "上传",
+      "font_class": "upload",
+      "unicode": "e731",
+      "unicode_decimal": 59185
+    },
+    {
+      "icon_id": "25555573",
+      "name": "链接",
+      "font_class": "link",
+      "unicode": "e736",
+      "unicode_decimal": 59190
+    },
+    {
+      "icon_id": "25555582",
+      "name": "密码",
+      "font_class": "password",
+      "unicode": "e738",
+      "unicode_decimal": 59192
+    },
+    {
+      "icon_id": "25555587",
+      "name": "打印",
+      "font_class": "print",
+      "unicode": "e73a",
+      "unicode_decimal": 59194
+    },
+    {
+      "icon_id": "25555590",
+      "name": "保存",
+      "font_class": "save",
+      "unicode": "e73b",
+      "unicode_decimal": 59195
+    },
+    {
+      "icon_id": "25555591",
+      "name": "发布",
+      "font_class": "send",
+      "unicode": "e73c",
+      "unicode_decimal": 59196
+    },
+    {
+      "icon_id": "25555594",
+      "name": "设置",
+      "font_class": "settings",
+      "unicode": "e73d",
+      "unicode_decimal": 59197
+    },
+    {
+      "icon_id": "25555599",
+      "name": "搜索",
+      "font_class": "search",
+      "unicode": "e73e",
+      "unicode_decimal": 59198
+    },
+    {
+      "icon_id": "25670468",
+      "name": "明亮模式",
+      "font_class": "light-mode",
+      "unicode": "e746",
+      "unicode_decimal": 59206
+    },
+    {
+      "icon_id": "14660583",
+      "name": "button",
+      "font_class": "button",
+      "unicode": "e7fd",
+      "unicode_decimal": 59389
+    },
+    {
       "icon_id": "33043557",
       "name": "folder",
       "font_class": "folder",
@@ -63,7 +175,7 @@
     },
     {
       "icon_id": "22007685",
-      "name": "image",
+      "name": "IMAGE",
       "font_class": "image",
       "unicode": "e66b",
       "unicode_decimal": 58987
@@ -203,7 +315,7 @@
     },
     {
       "icon_id": "22906384",
-      "name": "other",
+      "name": "OTHER",
       "font_class": "other",
       "unicode": "e69a",
       "unicode_decimal": 59034
@@ -252,7 +364,7 @@
     },
     {
       "icon_id": "23183359",
-      "name": "word",
+      "name": "WORD",
       "font_class": "word",
       "unicode": "e6a4",
       "unicode_decimal": 59044

@@ -1,8 +1,10 @@
 @font-face {
   font-family: "iconfont"; /* Project id 3789209 */
-  src: url('iconfont.woff2?t=1669371106608') format('woff2'),
-       url('iconfont.woff?t=1669371106608') format('woff'),
-       url('iconfont.ttf?t=1669371106608') format('truetype');
+  /* Color fonts */
+  src: 
+       url('iconfont.woff2?t=1711553633137') format('woff2'),
+       url('iconfont.woff?t=1711553633137') format('woff'),
+       url('iconfont.ttf?t=1711553633137') format('truetype');
 }
 
 .iconfont {
@@ -11,6 +13,70 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.yl-icon-i18n:before {
+  content: "\e600";
+}
+
+.yl-icon-account-tree:before {
+  content: "\e72c";
+}
+
+.yl-icon-dark-mode:before {
+  content: "\e72f";
+}
+
+.yl-icon-dashboard:before {
+  content: "\e730";
+}
+
+.yl-icon-download:before {
+  content: "\e732";
+}
+
+.yl-icon-info:before {
+  content: "\e733";
+}
+
+.yl-icon-upload:before {
+  content: "\e731";
+}
+
+.yl-icon-link:before {
+  content: "\e736";
+}
+
+.yl-icon-password:before {
+  content: "\e738";
+}
+
+.yl-icon-print:before {
+  content: "\e73a";
+}
+
+.yl-icon-save:before {
+  content: "\e73b";
+}
+
+.yl-icon-send:before {
+  content: "\e73c";
+}
+
+.yl-icon-settings:before {
+  content: "\e73d";
+}
+
+.yl-icon-search:before {
+  content: "\e73e";
+}
+
+.yl-icon-light-mode:before {
+  content: "\e746";
+}
+
+.yl-icon-button:before {
+  content: "\e7fd";
 }
 
 .yl-icon-folder:before {

@@ -1,49 +1,50 @@
 <template>
   <a-layout class="layout-basic">
     <a-layout-sider
-        v-model="collapsed"
-        :theme="theme"
-        :trigger="null"
-        :collapsedWidth="isMobile ? 0 : 80"
-        :width="isMobile ? 80 : 200"
-        collapsible>
+      class="basic-sider"
+      v-model="collapsed"
+      :theme="theme"
+      :trigger="null"
+      :collapsedWidth="isMobile ? 0 : 80"
+      :width="isMobile ? 80 : 200"
+      collapsible>
       <!-- 侧边 -->
       <common-sider @menuClick="onMenuClick" :collapsed="collapsed" :theme="theme"></common-sider>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header :class="{'lightBackground': theme === 'light'}">
+      <a-layout-header :class="{'lightBackground': theme === 'light'}" :theme="theme">
         <a-icon
-            class="iconComponent"
-            :type="collapsed ? 'menu-unfold' : 'menu-fold'"
-            @click="collapsed = !collapsed"
+          class="iconComponent"
+          :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+          @click="collapsed = !collapsed"
         />
         <!--  头部  -->
         <common-header></common-header>
       </a-layout-header>
-      <a-layout-content>
+      <a-layout-content class="basic-content">
         <!--  主体内容  -->
         <a-tabs
-            type="editable-card"
-            size="small"
-            v-if="useTabsMode"
-            v-show="panes.length > 0"
-            :activeKey="activeKey"
-            :hideAdd="true"
-            :tabBarGutter="2"
-            :tabBarStyle="tabBarStyle"
-            @edit="onRemovePane"
-            @change="onPaneChange">
+          type="editable-card"
+          size="small"
+          v-if="useTabsMode"
+          v-show="panes.length > 0"
+          :activeKey="activeKey"
+          :hideAdd="true"
+          :tabBarGutter="2"
+          :tabBarStyle="tabBarStyle"
+          @edit="onRemovePane"
+          @change="onPaneChange">
           <template v-for="tab in panes">
             <a-tab-pane :key="tab.id" :tab="tab.name" :closable="true">
               <keep-alive>
-                <router-view />
+                <router-view/>
               </keep-alive>
             </a-tab-pane>
           </template>
         </a-tabs>
-        <router-view v-else />
+        <router-view v-else/>
       </a-layout-content>
-      <a-layout-footer>
+      <a-layout-footer class="basic-footer">
         <!-- 底部 -->
         <common-footer></common-footer>
       </a-layout-footer>
@@ -152,13 +153,16 @@ export default {
         }
       })
       const panes = this.panes.filter(pane => pane.id !== targetKey)
-      if (panes.length && activeKey === targetKey) {
-        if (lastIndex >= 0) {
-          activeKey = panes[lastIndex].id
-        } else {
-          activeKey = panes[0].id
+      if (panes.length) {
+        // 当前关闭的是当前活动页
+        if (activeKey === targetKey) {
+          if (lastIndex >= 0) {
+            activeKey = panes[lastIndex].id
+          } else {
+            activeKey = panes[0].id
+          }
+          this.activeKey = activeKey
         }
-        this.activeKey = activeKey
       } else {
         this.activeKey = null
       }
@@ -169,6 +173,21 @@ export default {
 </script>
 
 <style scoped lang="less">
+.layout-basic {
+  .basic-sider{
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .basic-content {
+    overflow: hidden
+  }
+
+  .basic-footer {
+    background: #FFFFFF;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
 .ant-layout-header {
   height: 64px;
   padding: 0;
