@@ -58,8 +58,9 @@ export default {
     }
   },
   methods: {
-    onMenuClick({ item: { value: { router } }, key, keyPath }) {
+    onMenuClick({ item: { value, value: { router } }, key, keyPath }) {
       console.log(router, key, keyPath)
+      this.$emit('menuClick', value)
       this.$router.push({ path: router.path })
     },
     titleClick({ key, domEvent }) {
