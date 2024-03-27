@@ -72,6 +72,8 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '/src/assets/style/theme/default.less';
+
 .logoWrapper {
   height: 64px;
   display: flex;
@@ -94,7 +96,7 @@ export default {
 }
 
 .dark {
-  background: #001529;
+  background: @layout-header-background;
   border-bottom: 2px solid #001529;
 
   h1 {
