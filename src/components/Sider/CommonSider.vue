@@ -94,7 +94,7 @@ export default {
 }
 
 .dark {
-  background: #25273b;
+  background: #001529;
   border-bottom: 2px solid #001529;
 
   h1 {

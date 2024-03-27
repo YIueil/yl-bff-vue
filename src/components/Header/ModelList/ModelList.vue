@@ -1,5 +1,5 @@
 <template>
-  <a-menu :selectedKeys="selectedKeys" mode="horizontal" @click="changeModel">
+  <a-menu :selectedKeys="selectedKeys" :theme="theme" mode="horizontal" @click="changeModel">
     <a-menu-item v-for="model in modelList" :key="model.id">
       <a-icon :type="model.icon"/>
       {{ isMobile ? model.shortName : model.name }}
@@ -18,7 +18,7 @@ export default {
     return {}
   },
   computed: {
-    ...mapGetters(['isMobile', 'modelList', 'currentModel']),
+    ...mapGetters(['isMobile', 'modelList', 'currentModel', 'theme']),
     selectedKeys() {
       return this.currentModel ? [this.currentModel.id] : []
     }

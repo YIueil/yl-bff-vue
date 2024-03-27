@@ -16,7 +16,10 @@ const getAntdSerials = (color) => {
 }
 const themePluginOption = {
   fileName: 'css/theme-colors-[contenthash:8].css',
-  matchColors: getAntdSerials('#1890ff'), // 主色系列
+  matchColors: [
+    ...getAntdSerials('#1890ff')  // 主色系列
+    // ...getAntdSerials('#000000FF') // 文本颜色
+  ], // 主色系列
   // 改变样式选择器，解决样式覆盖问题
   changeSelector(selector) {
     switch (selector) {

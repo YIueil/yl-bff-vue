@@ -18,8 +18,13 @@ export default {
     return lightens.concat(colorPalettes).concat(rgb)
   },
   changeColor(newColor) {
+    console.log(newColor)
     const options = {
-      newColors: this.getAntdSerials(newColor),
+      newColors: [
+        ...this.getAntdSerials(newColor)
+        // todo 暗黑模式实现
+        // ...this.getAntdSerials('#FFFFFFFF')
+      ],
       changeUrl(cssUrl) {
         return `/${cssUrl}`
       }
