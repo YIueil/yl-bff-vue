@@ -22,7 +22,7 @@
       </a-layout-header>
       <a-layout-content>
         <!--  主体内容  -->
-        <a-tabs type="editable-card" v-if="useTabsMode" v-show="panes.length > 0" :activeKey="activeKey" @edit="onRemovePane" @change="onPaneChange">
+        <a-tabs type="editable-card" v-if="useTabsMode" v-show="panes.length > 0" :activeKey="activeKey" :hideAdd="true" @edit="onRemovePane" @change="onPaneChange">
           <template v-for="tab in panes">
             <a-tab-pane :key="tab.id" :tab="tab.name" :closable="true">
               <keep-alive>
@@ -171,5 +171,9 @@ export default {
   height: 48px;
   font-size: 24px;
   z-index: 9999;
+}
+
+.ant-tabs-bar {
+  margin: 0;
 }
 </style>
