@@ -61,7 +61,6 @@ export default {
     onMenuClick({ item: { value, value: { router } }, key, keyPath }) {
       console.log(router, key, keyPath)
       this.$emit('menuClick', value)
-      this.$router.push({ path: router.path })
     },
     titleClick({ key, domEvent }) {
       console.log('菜单点击', key, domEvent)

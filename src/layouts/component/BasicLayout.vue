@@ -22,16 +22,16 @@
       </a-layout-header>
       <a-layout-content>
         <!--  主体内容  -->
-        <a-tabs type="editable-card" v-if="useTabsMode" v-show="panes.length > 0" :activeKey="activeKey" @edit="removePane">
+        <a-tabs type="editable-card" v-if="useTabsMode" v-show="panes.length > 0" :activeKey="activeKey" @edit="onRemovePane" @change="onPaneChange">
           <template v-for="tab in panes">
-            <a-tab-pane :key="tab.key" :tab="tab.title" :closable="true">
+            <a-tab-pane :key="tab.id" :tab="tab.name" :closable="true">
               <keep-alive>
-                <router-view/>
+                <router-view />
               </keep-alive>
             </a-tab-pane>
           </template>
         </a-tabs>
-        <router-view v-else/>
+        <router-view v-else />
       </a-layout-content>
       <a-layout-footer>
         <!-- 底部 -->
@@ -62,10 +62,22 @@ export default {
       // 页签
       panes: [],
       // 活动页签key
-      activeKey: ''
+      activeKey: null
     }
   },
   computed: {},
+  watch: {
+    // 监听活动页面变化
+    activeKey() {
+      const findNode = this.panes.find(pane => pane.id === this.activeKey)
+      if (findNode) {
+        this.$router.push({ path: findNode.router.path })
+      } else {
+        // 最后一个标签被删除 返回首页
+        this.$router.push({ path: '/' })
+      }
+    }
+  },
   methods: {
     /**
      * 弹出设置
@@ -100,40 +112,44 @@ export default {
      * @param menu
      */
     onMenuClick(menu) {
-      const { id, name, router } = menu
-      if (this.panes.find(pane => pane.key === id)) {
-        // 切换到
-        this.activeKey = id
+      if (this.panes.find(pane => pane.id === menu.id)) {
+        this.onPaneChange(menu.id)
       } else {
-        this.panes.push({
-          key: id,
-          title: name,
-          router: router
-        })
+        this.panes.push(menu)
+        this.activeKey = menu.id
       }
+    },
+    /**
+     * 切换tab pane页
+     * @param activeKey
+     */
+    onPaneChange(activeKey) {
+      this.activeKey = activeKey
     },
     /**
      * 移除pane
      * @param targetKey
      */
-    removePane(targetKey) {
+    onRemovePane(targetKey) {
       let activeKey = this.activeKey
       let lastIndex
       this.panes.forEach((pane, i) => {
-        if (pane.key === targetKey) {
+        if (pane.id === targetKey) {
           lastIndex = i - 1
         }
       })
-      const panes = this.panes.filter(pane => pane.key !== targetKey)
+      const panes = this.panes.filter(pane => pane.id !== targetKey)
       if (panes.length && activeKey === targetKey) {
         if (lastIndex >= 0) {
-          activeKey = panes[lastIndex].key
+          activeKey = panes[lastIndex].id
         } else {
-          activeKey = panes[0].key
+          activeKey = panes[0].id
         }
+        this.activeKey = activeKey
+      } else {
+        this.activeKey = null
       }
       this.panes = panes
-      this.activeKey = activeKey
     }
   }
 }
