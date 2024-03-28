@@ -12,7 +12,10 @@ import {
   // 终端(PC、移动)
   TOGGLE_MOBILE_TYPE,
   // i18n
-  APP_LANGUAGE
+  APP_LANGUAGE,
+  // 皮肤切换
+  THEME_CHANGE,
+  NAV_THEME
 } from '@/store/enums/mutation-types'
 
 const app = {
@@ -49,11 +52,21 @@ const app = {
       state.lang = lang
       state._antLocale = antd
       storage.set(APP_LANGUAGE, lang)
+    },
+    [THEME_CHANGE]: (state, theme) => {
+      if (theme) {
+        state.theme = theme
+      } else {
+        state.theme = state.theme === NAV_THEME.LIGHT ? NAV_THEME.DARK : NAV_THEME.LIGHT
+      }
     }
   },
   actions: {
     setLang({ commit }, lang) {
       console.log(commit, lang)
+    },
+    changeTheme({ commit }, theme) {
+      commit(THEME_CHANGE, theme)
     }
   }
 }

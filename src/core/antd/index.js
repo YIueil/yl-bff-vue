@@ -51,7 +51,8 @@ import {
 } from 'ant-design-vue'
 
 const IconFont = Icon.createFromIconfontCN({
-  scriptUrl: '@/assets/iconfont/iconfont.js'
+  // 外部已经引入, 这里无需重新引入
+  scriptUrl: ''
 })
 
 // 自定组件

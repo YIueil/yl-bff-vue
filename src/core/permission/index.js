@@ -44,7 +44,7 @@ router.beforeEach(async(to, from, next) => {
       setRouteAuth(to)
       return next()
     } else {
-      window.alert('没有该模块的权限')
+      console.log('没有模块的权限', to)
       return
     }
   }

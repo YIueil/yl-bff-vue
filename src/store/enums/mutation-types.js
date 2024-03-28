@@ -8,6 +8,8 @@ export const USE_USER_ROUTES = 'use_user_routes'
 export const TOGGLE_MOBILE_TYPE = 'is_mobile'
 // 应用语言
 export const APP_LANGUAGE = 'app_language'
+// 变更皮肤样式
+export const THEME_CHANGE = 'theme_change'
 
 // 皮肤样式
 export const NAV_THEME = {

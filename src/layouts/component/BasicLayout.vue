@@ -7,7 +7,7 @@
       :trigger="null"
       :collapsedWidth="isMobile ? 0 : 80"
       :width="isMobile ? 80 : 200"
-      collapsible>
+      :collapsible="true">
       <!-- 侧边 -->
       <common-sider @menuClick="onMenuClick" :collapsed="collapsed" :theme="theme"></common-sider>
     </a-layout-sider>
@@ -32,6 +32,7 @@
           :hideAdd="true"
           :tabBarGutter="2"
           :tabBarStyle="tabBarStyle"
+          :animated="false"
           @edit="onRemovePane"
           @change="onPaneChange">
           <template v-for="tab in panes">

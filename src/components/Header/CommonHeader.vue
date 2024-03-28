@@ -6,11 +6,10 @@
     <div class="header-right">
       <a-space>
         <a-space size="middle" class="right-buttons">
-          <IconFont class="hover-shadow-circle" type="yl-icon-i18n"/>
-          <IconFont class="hover-shadow-circle" type="yl-icon-dark-mode"/>
-          <IconFont class="hover-shadow-circle" type="yl-icon-light-mode"/>
+          <span class="iconfont yl-icon-i18n hover-shadow-circle-after font-size-24px"/>
+          <span @click="onChangeTheme" :class="{iconfont: true, 'hover-shadow-circle-after': true, 'font-size-24px': true, 'yl-icon-dark-mode': theme === 'dark', 'yl-icon-light-mode': theme === 'light' }"/>
         </a-space>
-        <AvatarDropdown />
+        <AvatarDropdown/>
       </a-space>
     </div>
   </div>
@@ -19,6 +18,7 @@
 <script>
 import AvatarDropdown from '@/components/Header/AvatarDropdown/AvatarDropdown'
 import ModelList from '@/components/Header/ModelList/ModelList'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'CommonHeader',
@@ -29,9 +29,16 @@ export default {
       currentModel: 'ACC'
     }
   },
-  computed: {},
+  computed: {
+    ...mapGetters(['theme'])
+  },
   watch: {},
-  methods: {},
+  methods: {
+    ...mapActions(['changeTheme']),
+    onChangeTheme() {
+      this.changeTheme()
+    }
+  },
   mounted() {
   }
 }
