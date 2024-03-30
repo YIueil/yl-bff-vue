@@ -16,6 +16,7 @@ const request = axios.create({
 console.log(process.env.VUE_APP_BASE_URL)
 function storageToken(token) {
   if (token) {
+    console.log('token更新', token)
     const expireTime = new Date().getTime() + defaultSettings.tokenExpire
     storage.set(ACCESS_TOKEN, token, expireTime)
     store.commit('SET_TOKEN', token)
@@ -39,13 +40,15 @@ request.interceptors.request.use(config => {
 })
 // 添加响应拦截器
 request.interceptors.response.use(response => {
+  // 从请求头中获取新token
+  const headerToken = response.headers['new-token']
   const { status, data: { body, statusMsg, statusCode, stackTrace, tips, token } } = response
   // 2xx 范围内的状态码都会触发该函数。
   // 对响应数据做点什么
   if (status === 200) {
     if (statusMsg === 'success') {
       // 刷新token
-      storageToken(token)
+      storageToken(token || headerToken)
       return body
     } else if (statusMsg === 'unauthorized') {
       message.error('请求超时, 请重新登录')
