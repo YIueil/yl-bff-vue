@@ -12,8 +12,10 @@
         </template>
       </a-list-item-meta>
       <template v-slot:actions>
-        <a-switch checkedChildren="暗色" unCheckedChildren="白色" :defaultChecked="theme === 'dark'"
-                  @change="onThemeChange"/>
+        <LayoutButton layout-type="basicLayout" />
+        <LayoutButton layout-type="basicLayout" :has-footer="false" />
+        <LayoutButton layout-type="basicLayout" :has-sider="false" />
+        <LayoutButton layout-type="noSideLayout" :has-footer="false" :has-sider="false"/>
       </template>
     </a-list-item>
     <a-list-item>
@@ -34,16 +36,17 @@
 <script>
 
 import { mapState } from 'vuex'
+import LayoutButton from '@/views/account/AccountSetting/page/LayoutButton.vue'
 
 export default {
   name: 'CustomSetting',
-  components: {},
+  components: { LayoutButton },
   props: {},
   data() {
     return {}
   },
   computed: {
-    ...mapState(['theme'])
+    ...mapState(['theme', 'primaryColor'])
   },
   watch: {},
   methods: {
