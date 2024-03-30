@@ -35,7 +35,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.ant-menu-horizontal {
-  line-height: 62px;
-}
+
 </style>

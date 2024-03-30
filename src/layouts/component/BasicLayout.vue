@@ -2,6 +2,7 @@
   <a-layout class="layout-basic">
     <a-layout-sider
       class="basic-sider"
+      v-if="showSider"
       v-model="collapsed"
       :theme="theme"
       :trigger="null"
@@ -15,18 +16,19 @@
       <a-layout-header :class="{'lightBackground': theme === 'light'}" :theme="theme">
         <a-icon
           class="iconComponent"
+          v-if="showSider"
           :type="collapsed ? 'menu-unfold' : 'menu-fold'"
           @click="collapsed = !collapsed"
         />
         <!--  头部  -->
-        <common-header></common-header>
+        <common-header @menuClick="onMenuClick"></common-header>
       </a-layout-header>
       <a-layout-content class="basic-content">
         <!--  主体内容  -->
         <a-tabs
           type="editable-card"
           size="small"
-          v-if="useTabsMode"
+          v-if="useTabs"
           v-show="panes.length > 0"
           :activeKey="activeKey"
           :hideAdd="true"
@@ -45,7 +47,7 @@
         </a-tabs>
         <router-view v-else/>
       </a-layout-content>
-      <a-layout-footer class="basic-footer">
+      <a-layout-footer v-if="showFooter" class="basic-footer">
         <!-- 底部 -->
         <common-footer></common-footer>
       </a-layout-footer>
@@ -69,8 +71,6 @@ export default {
     return {
       // 收缩状态
       collapsed: false,
-      // 使用tabs todo 后续使用全局settings注入
-      useTabsMode: true,
       // 页签
       panes: [],
       // 活动页签key

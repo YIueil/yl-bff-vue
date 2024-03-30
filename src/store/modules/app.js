@@ -15,7 +15,13 @@ import {
   APP_LANGUAGE,
   // 皮肤切换
   THEME_CHANGE,
-  NAV_THEME
+  NAV_THEME,
+  // 标签模式
+  USE_TABS,
+  // 侧边栏
+  SHOW_SIDER,
+  // 底栏
+  SHOW_FOOTER
 } from '@/store/enums/mutation-types'
 
 const app = {
@@ -24,17 +30,20 @@ const app = {
     applicationId: '',
     // 启用用户路由
     useUserRoutes: false,
-    sideCollapsed: false,
+    // 启用标签模式
+    useTabsMode: true,
+    // 是否移动端
     isMobile: false,
+    // 日间夜间模式
     theme: 'light',
+    // 主题色
+    primaryColor: '',
+    // 布局类型
     layout: '',
+    showSider: true,
+    showFooter: true,
+    sideCollapsed: false,
     contentWidth: '',
-    fixedHeader: false,
-    fixedSidebar: false,
-    autoHideHeader: false,
-    color: '',
-    weak: false,
-    multiTab: true,
     lang: 'en-US',
     _antLocale: {}
   },
@@ -59,6 +68,19 @@ const app = {
       } else {
         state.theme = state.theme === NAV_THEME.LIGHT ? NAV_THEME.DARK : NAV_THEME.LIGHT
       }
+    },
+    [USE_TABS]: (state, useTabs) => {
+      if (useTabs) {
+        state.useTabsMode = useTabs
+      } else {
+        state.useTabsMode = !state.useTabsMode
+      }
+    },
+    [SHOW_SIDER]: (state, showSider) => {
+      state.showSider = showSider
+    },
+    [SHOW_FOOTER]: (state, showFooter) => {
+      state.showFooter = showFooter
     }
   },
   actions: {
@@ -67,6 +89,15 @@ const app = {
     },
     changeTheme({ commit }, theme) {
       commit(THEME_CHANGE, theme)
+    },
+    setTabsMode({ commit }, useTabs) {
+      commit(USE_TABS, useTabs)
+    },
+    changeShowSider({ commit }, showSider) {
+      commit(SHOW_SIDER, showSider)
+    },
+    changeShowFooter({ commit }, showFooter) {
+      commit(SHOW_FOOTER, showFooter)
     }
   }
 }

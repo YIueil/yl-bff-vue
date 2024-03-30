@@ -41,7 +41,6 @@
               <a-icon type="check" v-if="item.color === primaryColor"></a-icon>
             </a-tag>
           </a-tooltip>
-
         </div>
       </div>
       <a-divider/>

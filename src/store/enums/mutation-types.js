@@ -10,6 +10,12 @@ export const TOGGLE_MOBILE_TYPE = 'is_mobile'
 export const APP_LANGUAGE = 'app_language'
 // 变更皮肤样式
 export const THEME_CHANGE = 'theme_change'
+// 使用标签模式
+export const USE_TABS = 'use_tabs'
+// 显示侧边栏
+export const SHOW_SIDER = 'show_sider'
+// 显示底部栏
+export const SHOW_FOOTER = 'show_footer'
 
 // 皮肤样式
 export const NAV_THEME = {
