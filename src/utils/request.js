@@ -1,7 +1,7 @@
 import axios from 'axios'
 import storage from 'store'
 import store from '@/store'
-import { clearAll } from '@/store/modules/user'
+import { clearUserInfo } from '@/store/modules/user'
 import router, { resetRouter } from '@/router'
 import { ACCESS_TOKEN } from '@/store/enums/mutation-types'
 import { Initializer } from '@/core/boot'
@@ -51,7 +51,7 @@ request.interceptors.response.use(response => {
       return body
     } else if (statusMsg === 'unauthorized') {
       message.error('请求超时, 请重新登录')
-      clearAll(store.commit).then(() => {
+      clearUserInfo(store.commit).then(() => {
         // 跳转登录并重新初始化
         router.push({ path: '/login' }).then(() => {
           Initializer().then(resetRouter)

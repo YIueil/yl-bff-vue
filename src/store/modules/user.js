@@ -7,6 +7,7 @@ import { getUserFunctions, getUserInfo, getUserPermissions, getUserRoles, login,
 import storage from 'store'
 import expirePlugin from 'store/plugins/expire'
 import { onLoginSuccess, onLogoutSuccess } from '@/config/lifecycle-hooks'
+import { clearToken } from '@/utils/storage'
 // 添加
 storage.addPlugin(expirePlugin)
 const user = {
@@ -61,7 +62,7 @@ const user = {
     // 登出
     async Logout({ commit }) {
       await logout(commit)
-      await clearAll(commit)
+      await clearUserInfo(commit)
       onLogoutSuccess()
     },
     // 刷新用户信息
@@ -111,14 +112,14 @@ export async function getUserResources(dispatch) {
   await dispatch('GetFunctions')
 }
 /**
- * 去除所有登陆信息
+ * 清除用户信息
  * @param commit
  * @returns {Promise<void>}
  */
-export async function clearAll(commit) {
+export async function clearUserInfo(commit) {
   commit('SET_TOKEN', '')
   // commit('SET_ROLES', [])
   // commit('SET_ROLES', [])
-  storage.clearAll()
+  clearToken()
 }
 export default user
