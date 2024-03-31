@@ -69,8 +69,17 @@
       :model="modal.model"
       :form-items="modal.formItems"
       @submit="onSubmit"
-      @cancel="onCancel"
-    />
+      @cancel="onCancel">
+      <template #iconUrl>
+        <div class="ant-upload-preview" @click="$refs.modal.edit(1)">
+          <div class="mask">
+            <a-icon type="plus"/>
+          </div>
+          <img :src="modal?.model?.iconUrl" alt="头像"/>
+        </div>
+      </template>
+    </form-modal>
+    <avatar-modal ref="modal" @ok="resp => setIconUrl(resp, modal)"/>
   </div>
 </template>
 <script>
@@ -78,10 +87,11 @@ import applicationService from '@/api/application-service'
 import FormModal from '@/components/Modal/FormModal/Index'
 import form from '@/utils/form'
 import AddAbleTable from '@/views/application/ApplicationCenter/modal/AddAbleTable'
+import AvatarModal from '@/components/Modal/AvatarModal/Index'
 
 export default {
   name: 'ApplicationCenter',
-  components: { FormModal },
+  components: { AvatarModal, FormModal },
   data() {
     return {
       listData: [],
@@ -166,6 +176,10 @@ export default {
     },
     onCancel() {
       this.$set(this.modal, 'visible', false)
+    },
+    setIconUrl(response, modal) {
+      console.log('图片上传结果', response)
+      this.$set(modal.model, 'iconUrl', response.url)
     }
   },
   mounted() {
@@ -195,6 +209,50 @@ export default {
     margin-top: 4px;
     margin-bottom: 0;
     line-height: 22px;
+  }
+}
+
+.avatar-upload-wrapper {
+  height: 200px;
+  width: 100%;
+}
+
+.ant-upload-preview {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100px;
+  border-radius: 50%;
+  box-shadow: 0 0 4px #ccc;
+
+  .mask {
+    opacity: 0;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: opacity 0.4s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    i {
+      font-size: 2rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -1rem;
+      margin-top: -1rem;
+      color: #d6d6d6;
+    }
+  }
+
+  img, .mask {
+    width: 100%;
+    max-width: 100px;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
   }
 }
 </style>

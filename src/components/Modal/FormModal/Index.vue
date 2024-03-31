@@ -5,7 +5,7 @@
         <template v-if="item.type === 'text'">
           <a-input :disabled="item.disabled" :placeholder="item.placeholder" v-decorator="[item.name, {rules: item.rules}]" allow-clear/>
         </template>
-        <template v-if="item.type === 'textarea'">
+        <template v-else-if="item.type === 'textarea'">
           <a-textarea
             :disabled="item.disabled"
             :placeholder="item.placeholder"
@@ -14,7 +14,7 @@
             :auto-size="{ minRows: 3, maxRows: 5 }"
           />
         </template>
-        <template v-if="item.type === 'password'">
+        <template v-else-if="item.type === 'password'">
           <a-input-password :disabled="item.disabled" v-decorator="[item.name, {rules: item.rules}]" allow-clear
                             autocomplete="off"/>
         </template>
@@ -56,6 +56,12 @@
               {{ option.label }}
             </a-checkbox>
           </a-checkbox-group>
+        </template>
+        <!--动态插槽-->
+        <template v-else>
+          <!--隐藏控件来保存值-->
+          <a-input v-show="false" v-decorator="[item.name, {rules: item.rules}]" />
+          <slot :name="item.name">插槽: {{ item.name }}</slot>
         </template>
       </a-form-item>
     </a-form>
@@ -130,6 +136,7 @@ export default {
     this.formItems.map(item => item.name).forEach(v => this.form.getFieldDecorator(v))
     // 使用$watch方法监听组件的响应式数据，并在数据发生改变时更新表单控件的值
     this.$watch('model', (newValue) => {
+      console.log('watchChange', newValue)
       this.$nextTick(() => {
         this.form.setFieldsValue(pick(newValue, this.formItems.map(item => item.name)))
       })
