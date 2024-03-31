@@ -29,7 +29,7 @@
       <a-space>
         <a-space size="middle" class="right-buttons">
           <span class="iconfont yl-icon-i18n hover-shadow-circle-after font-size-24px"/>
-          <span @click="onChangeTheme" :class="{iconfont: true, 'hover-shadow-circle-after': true, 'font-size-24px': true, 'yl-icon-dark-mode': theme === 'dark', 'yl-icon-light-mode': theme === 'light' }"/>
+          <span @click="onChangeTheme(theme === 'dark' ? 'light': 'dark', true)" :class="{iconfont: true, 'hover-shadow-circle-after': true, 'font-size-24px': true, 'yl-icon-dark-mode': theme === 'dark', 'yl-icon-light-mode': theme === 'light' }"/>
         </a-space>
         <AvatarDropdown/>
       </a-space>
@@ -60,8 +60,11 @@ export default {
   watch: {},
   methods: {
     ...mapActions(['changeTheme']),
-    onChangeTheme() {
-      this.changeTheme()
+    onChangeTheme(theme, isStorage) {
+      this.changeTheme({
+        theme,
+        isStorage
+      })
     },
     onMenuClick({ item: { value, value: { router } }, key, keyPath }) {
       console.log(router, key, keyPath)

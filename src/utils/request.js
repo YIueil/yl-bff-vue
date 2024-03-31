@@ -6,7 +6,7 @@ import router, { resetRouter } from '@/router'
 import { ACCESS_TOKEN } from '@/store/enums/mutation-types'
 import { Initializer } from '@/core/boot'
 import { message } from 'ant-design-vue'
-import defaultSettings from '@/config/default-settings'
+import { storageSetting } from '@/utils/storage'
 // 创建 axios 实例
 const request = axios.create({
   // API 请求的默认前缀
@@ -17,8 +17,7 @@ console.log(process.env.VUE_APP_BASE_URL)
 function storageToken(token) {
   if (token) {
     console.log('token更新', token)
-    const expireTime = new Date().getTime() + defaultSettings.tokenExpire
-    storage.set(ACCESS_TOKEN, token, expireTime)
+    storageSetting(ACCESS_TOKEN, token)
     store.commit('SET_TOKEN', token)
   }
 }

@@ -12,7 +12,7 @@
         </template>
       </a-list-item-meta>
       <template v-slot:actions>
-        <a-switch :default-checked="useTabsMode" @change="onUseTabsChange" />
+        <a-switch :default-checked="useTabsMode" @change="onUseTabsChange"/>
       </template>
     </a-list-item>
     <a-list-item>
@@ -28,9 +28,9 @@
       </a-list-item-meta>
       <template v-slot:actions>
         <a-space class="layout-list">
-          <LayoutButton layout-type="basicLayout" @click.native="onChangeLayout(true, true)" />
-          <LayoutButton layout-type="basicLayout" @click.native="onChangeLayout(true, false)" :has-footer="false" />
-          <LayoutButton layout-type="basicLayout" @click.native="onChangeLayout(false, true)" :has-sider="false" />
+          <LayoutButton layout-type="basicLayout" @click.native="onChangeLayout(true, true)"/>
+          <LayoutButton layout-type="basicLayout" @click.native="onChangeLayout(true, false)" :has-footer="false"/>
+          <LayoutButton layout-type="basicLayout" @click.native="onChangeLayout(false, true)" :has-sider="false"/>
           <LayoutButton layout-type="basicLayout" @click.native="onChangeLayout(false, false)" :has-footer="false" :has-sider="false"/>
         </a-space>
       </template>
@@ -63,7 +63,6 @@
 <script>
 
 import { mapActions, mapState } from 'vuex'
-import themeUtils from '@/utils/theme'
 import LayoutButton from '@/views/account/AccountSetting/page/LayoutButton/LayoutButton.vue'
 
 export default {
@@ -108,22 +107,21 @@ export default {
   },
   watch: {},
   methods: {
-    ...mapActions(['setTabsMode', 'changeShowSider', 'changeShowFooter']),
+    ...mapActions(['setTabsMode', 'changeShowSider', 'changeShowFooter', 'changePrimaryColor']),
     colorFilter(color) {
       console.log(color)
     },
     changeColor(color) {
       if (this.primaryColor !== color) {
-        themeUtils.changeColor(color)
+        this.changePrimaryColor({ primaryColor: color, isStorage: true })
       }
     },
     onUseTabsChange(checked) {
-      this.setTabsMode(checked)
+      this.setTabsMode({ useTabs: checked, isStorage: true })
     },
     onChangeLayout(showSider, showFooter) {
-      console.log(showSider, showFooter)
-      this.changeShowSider(showSider)
-      this.changeShowFooter(showFooter)
+      this.changeShowSider({ showSider, isStorage: true })
+      this.changeShowFooter({ showFooter, isStorage: true })
     }
   },
   mounted() {
@@ -135,6 +133,7 @@ export default {
 .layout-list {
   display: flex;
 }
+
 .color-list {
   width: 20px;
   height: 20px;

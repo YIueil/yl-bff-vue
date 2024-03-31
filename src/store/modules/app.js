@@ -3,7 +3,6 @@
  * Date: 2023/9/14 14:40
  * Description: App Store 保存所有的应用运行状态
  */
-import storage from 'store'
 import {
   // 应用id
   APP_ID,
@@ -21,8 +20,12 @@ import {
   // 侧边栏
   SHOW_SIDER,
   // 底栏
-  SHOW_FOOTER
+  SHOW_FOOTER,
+  // 主题色
+  PRIMARY_COLOR
 } from '@/store/enums/mutation-types'
+import { storageSetting } from '@/utils/storage'
+import themeUtils from '@/utils/theme'
 
 const app = {
   state: {
@@ -60,7 +63,6 @@ const app = {
     [APP_LANGUAGE]: (state, lang, antd = {}) => {
       state.lang = lang
       state._antLocale = antd
-      storage.set(APP_LANGUAGE, lang)
     },
     [THEME_CHANGE]: (state, theme) => {
       if (theme) {
@@ -81,23 +83,51 @@ const app = {
     },
     [SHOW_FOOTER]: (state, showFooter) => {
       state.showFooter = showFooter
+    },
+    [PRIMARY_COLOR]: (state, primaryColor) => {
+      state.primaryColor = primaryColor
+      themeUtils.changeColor(primaryColor)
     }
   },
   actions: {
     setLang({ commit }, lang) {
       console.log(commit, lang)
     },
-    changeTheme({ commit }, theme) {
+    changeTheme({ commit }, { theme, isStorage }) {
       commit(THEME_CHANGE, theme)
+      if (isStorage) {
+        storageSetting(THEME_CHANGE, theme)
+      }
     },
-    setTabsMode({ commit }, useTabs) {
+    setAppLang({ commit }, { lang, isStorage }) {
+      commit(APP_LANGUAGE, lang)
+      if (isStorage) {
+        storageSetting(APP_LANGUAGE, lang)
+      }
+    },
+    setTabsMode({ commit }, { useTabs, isStorage }) {
       commit(USE_TABS, useTabs)
+      if (isStorage) {
+        storageSetting(USE_TABS, useTabs)
+      }
     },
-    changeShowSider({ commit }, showSider) {
+    changeShowSider({ commit }, { showSider, isStorage }) {
       commit(SHOW_SIDER, showSider)
+      if (isStorage) {
+        storageSetting(SHOW_SIDER, showSider)
+      }
     },
-    changeShowFooter({ commit }, showFooter) {
+    changeShowFooter({ commit }, { showFooter, isStorage }) {
       commit(SHOW_FOOTER, showFooter)
+      if (isStorage) {
+        storageSetting(SHOW_FOOTER, showFooter)
+      }
+    },
+    changePrimaryColor({ commit }, { primaryColor, isStorage }) {
+      commit(PRIMARY_COLOR, primaryColor)
+      if (isStorage) {
+        storageSetting(PRIMARY_COLOR, primaryColor)
+      }
     }
   }
 }

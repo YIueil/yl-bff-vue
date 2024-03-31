@@ -16,6 +16,8 @@ export const USE_TABS = 'use_tabs'
 export const SHOW_SIDER = 'show_sider'
 // 显示底部栏
 export const SHOW_FOOTER = 'show_footer'
+// 主题色
+export const PRIMARY_COLOR = 'primary_color'
 
 // 皮肤样式
 export const NAV_THEME = {
