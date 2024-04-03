@@ -110,6 +110,7 @@ export default {
   // endregion
   // region 应用功能
   appAddForm: [
+    { label: '应用图片', name: 'iconUrl', type: 'slot' },
     { label: '应用名称', name: 'name', type: 'text', rules: [{ required: true, min: 2, message: '2个字符以上！' }] },
     { label: '运行状态', name: 'status', type: 'select', rules: [{ required: true, message: '应用运行状态必选' }], options: ['在线', '离线'] },
     { label: '应用描述', name: 'description', type: 'textarea' },

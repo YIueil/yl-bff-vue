@@ -100,8 +100,8 @@ export default {
       const result = await searchPage(params, new QueryParam(null, 'application.xml', 'getManageApplicationList', {
         userId: this.userInfo.id
       }, null))
-      if (result.body) {
-        this.manageApplications = result.body
+      if (result.list) {
+        this.manageApplications = result.list
         this.selectAppId = this.manageApplications[0]?.id
         this.selectApp = this.manageApplications[0]
         await this.getApplicationFunctionTree()

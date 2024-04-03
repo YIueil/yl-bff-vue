@@ -14,10 +14,10 @@
           <a-input-search @search="getListData" enter-button style="width: 272px"/>
         </a-space>
       </div>
-      <a-list size="large" :pagination="{showSizeChanger: true, showQuickJumper: true, pageSize: 5, total: 50}">
+      <a-list size="large" :pagination="pagination">
         <a-list-item :key="index" v-for="(item, index) in listData">
           <a-list-item-meta :description="item.description">
-            <img slot="avatar" class="projectIconUrl" :src="item.iconUrl" alt="projectIcon" />
+            <img slot="avatar" class="projectIconUrl" :src="item.iconUrl" alt="projectIcon"/>
             <a slot="title">{{ item.name }}</a>
           </a-list-item-meta>
           <div slot="actions">
@@ -45,13 +45,14 @@
             </div>
             <div class="list-content-item">
               <a-tag
-                v-for="tag in ['张三', '李四']"
+                v-for="tag in item.applicationManager?.split(',')"
                 :key="tag"
               >
                 {{ tag }}
               </a-tag>
               <a-tag style="background: #fff; borderStyle: dashed;" @click="handleAddManager(item)">
-                <a-icon type="plus" /> 添加
+                <a-icon type="plus"/>
+                添加
               </a-tag>
             </div>
             <div class="list-content-item">
@@ -70,8 +71,9 @@
       :form-items="modal.formItems"
       @submit="onSubmit"
       @cancel="onCancel">
-      <template #iconUrl>
-        <ImageUpload :defaultPreviewUrl="modal?.model?.iconUrl || require('@/assets/img/default-project.jpg')" :radius="5" :width="108" :height="54" @onCutOk="resp => setIconUrl(resp, modal)" />
+      <template v-if="modal.visible" #iconUrl>
+        <ImageUpload :defaultPreviewUrl="modal?.model?.iconUrl || initApplicationImage()" :radius="5" :width="108"
+                     :height="54" @onCutOk="resp => setIconUrl(resp, modal)"/>
       </template>
     </form-modal>
   </div>
@@ -82,7 +84,8 @@ import FormModal from '@/components/Modal/FormModal/Index'
 import form from '@/utils/form'
 import AddAbleTable from '@/views/application/ApplicationCenter/modal/AddAbleTable'
 import ImageUpload from '@/components/Upload/ImageUpload/ImageUpload'
-
+import { searchPage } from '@/api/commmon-service'
+import QueryParam from '@/models/QueryParam'
 
 export default {
   name: 'ApplicationCenter',
@@ -90,14 +93,29 @@ export default {
   data() {
     return {
       listData: [],
+      pagination: {
+        showSizeChanger: true,
+        showQuickJumper: true,
+        pageSize: 5,
+        pageIndex: 1,
+        total: 50,
+        onChange: (page, pageSize) => {
+          console.log('onChange', page, pageSize)
+          this.pagination.pageSize = pageSize
+          this.pagination.pageIndex = page
+        },
+        onShowSizeChange: (current, size) => {
+          console.log('onShowSizeChange', current, size)
+          this.pagination.pageSize = size
+        }
+      },
       status: 'all',
       // 应用添加和编辑modal
       modal: {
         formId: 'applicationModal',
         visible: false,
         title: '',
-        formItems: form.appAddForm,
-        model: null
+        formItems: form.appAddForm
       }
     }
   },
@@ -109,7 +127,14 @@ export default {
       this.getListData()
     },
     async getListData() {
-      this.listData = await applicationService.getAllApplicationList()
+      const result = await searchPage({
+        pageSize: this.pagination.pageSize,
+        pageIndex:  this.pagination.pageIndex
+      }, new QueryParam(null, 'application.xml', 'getApplicationList', null, null))
+      if (result.list) {
+        this.listData = result.list
+        this.pagination.total = result.itemCounts
+      }
     },
     handleAddManager(item) {
       console.log('添加应用管理员', item)
@@ -141,6 +166,8 @@ export default {
     add() {
       this.$set(this.modal, 'title', '添加应用')
       this.$set(this.modal, 'formItems', form.appAddForm)
+      // 使得获取到默认图片
+      this.$set(this.modal, 'model', {})
       this.$set(this.modal, 'visible', true)
     },
     edit(record) {
@@ -169,17 +196,32 @@ export default {
         this.refresh()
       }
       this.$set(this.modal, 'visible', false)
+      this.$set(this.modal, 'model', {})
     },
     onCancel() {
       this.$set(this.modal, 'visible', false)
+      this.$set(this.modal, 'model', {})
     },
     setIconUrl(response, modal) {
       console.log('图片上传结果', response)
       this.$set(modal.model, 'iconUrl', response.url)
+    },
+    initApplicationImage() {
+      const iconUrl = require('@/assets/img/default-project.jpg')
+      this.modal.model.iconUrl = iconUrl
+      return iconUrl
     }
   },
   mounted() {
     this.init()
+  },
+  watch: {
+    'pagination.pageIndex'() {
+      this.getListData()
+    },
+    'pagination.pageSize'() {
+      this.getListData()
+    }
   }
 }
 </script>
@@ -189,6 +231,12 @@ export default {
   width: 48px;
   height: 48px;
   line-height: 48px;
+}
+
+.projectIconUrl {
+  width: 216px;
+  height: 108px;
+  border-radius: 2%;
 }
 
 .list-content-item {
