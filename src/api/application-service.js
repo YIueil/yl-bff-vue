@@ -3,6 +3,7 @@ import request from '@/utils/request'
 const appApi = {
   getAllApplicationList: '/orup/getAllApplicationList',
   addApplication: '/orup/addApplication',
+  modifyApplication: '/orup/modifyApplication',
   delApplication: '/orup/delApplication',
   addApplicationManager: '/orup/addApplicationManager',
   getApplicationFunctionTree: '/orup/getApplicationFunctionTree',
@@ -21,6 +22,13 @@ export function getAllApplicationList() {
 export function addApplication(data) {
   return request({
     url: appApi.addApplication,
+    method: 'post',
+    data
+  })
+}
+export function modifyApplication(data) {
+  return request({
+    url: appApi.modifyApplication,
     method: 'post',
     data
   })
@@ -79,6 +87,7 @@ export function applicationAuthorization(params, data) {
 export default {
   getAllApplicationList,
   addApplication,
+  modifyApplication,
   delApplication,
   addApplicationManager,
   getApplicationFunctionTree,

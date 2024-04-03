@@ -17,7 +17,7 @@
       <a-list size="large" :pagination="{showSizeChanger: true, showQuickJumper: true, pageSize: 5, total: 50}">
         <a-list-item :key="index" v-for="(item, index) in listData">
           <a-list-item-meta :description="item.description">
-            <a-avatar slot="avatar" size="large" shape="square" :src="item.iconUrl"/>
+            <img slot="avatar" class="projectIconUrl" :src="item.iconUrl" alt="projectIcon" />
             <a slot="title">{{ item.name }}</a>
           </a-list-item-meta>
           <div slot="actions">
@@ -71,15 +71,9 @@
       @submit="onSubmit"
       @cancel="onCancel">
       <template #iconUrl>
-        <div class="ant-upload-preview" @click="$refs.modal.edit(1)">
-          <div class="mask">
-            <a-icon type="plus"/>
-          </div>
-          <img :src="modal?.model?.iconUrl" alt="头像"/>
-        </div>
+        <ImageUpload :defaultPreviewUrl="modal?.model?.iconUrl || require('@/assets/img/default-project.jpg')" :radius="5" :width="108" :height="54" @onCutOk="resp => setIconUrl(resp, modal)" />
       </template>
     </form-modal>
-    <avatar-modal ref="modal" @ok="resp => setIconUrl(resp, modal)"/>
   </div>
 </template>
 <script>
@@ -87,11 +81,12 @@ import applicationService from '@/api/application-service'
 import FormModal from '@/components/Modal/FormModal/Index'
 import form from '@/utils/form'
 import AddAbleTable from '@/views/application/ApplicationCenter/modal/AddAbleTable'
-import AvatarModal from '@/components/Modal/AvatarModal/Index'
+import ImageUpload from '@/components/Upload/ImageUpload/ImageUpload'
+
 
 export default {
   name: 'ApplicationCenter',
-  components: { AvatarModal, FormModal },
+  components: { ImageUpload, FormModal },
   data() {
     return {
       listData: [],
@@ -165,6 +160,7 @@ export default {
     },
     async onSubmit(formData) {
       if (formData.id) {
+        await applicationService.modifyApplication(formData)
         this.$message.success('应用修改成功')
         this.refresh()
       } else {
@@ -215,44 +211,5 @@ export default {
 .avatar-upload-wrapper {
   height: 200px;
   width: 100%;
-}
-
-.ant-upload-preview {
-  position: relative;
-  margin: 0 auto;
-  width: 100%;
-  max-width: 100px;
-  border-radius: 50%;
-  box-shadow: 0 0 4px #ccc;
-
-  .mask {
-    opacity: 0;
-    position: absolute;
-    background: rgba(0, 0, 0, 0.4);
-    cursor: pointer;
-    transition: opacity 0.4s;
-
-    &:hover {
-      opacity: 1;
-    }
-
-    i {
-      font-size: 2rem;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-left: -1rem;
-      margin-top: -1rem;
-      color: #d6d6d6;
-    }
-  }
-
-  img, .mask {
-    width: 100%;
-    max-width: 100px;
-    height: 100%;
-    border-radius: 50%;
-    overflow: hidden;
-  }
 }
 </style>

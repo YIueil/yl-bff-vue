@@ -1,14 +1,14 @@
 <template>
   <a-modal
-    title="修改头像"
+    title="裁剪图片"
     :visible="visible"
     :maskClosable="false"
     :confirmLoading="confirmLoading"
-    :width="800"
+    :width="width"
     :footer="null"
     @cancel="cancelHandel">
     <a-row>
-      <a-col :xs="24" :md="12" :style="{height: '350px'}">
+      <a-col :xs="24" :md="12" class="content-right" :style="{height: '350px'}">
         <vue-cropper
           ref="cropper"
           :img="options.img"
@@ -22,7 +22,7 @@
         </vue-cropper>
       </a-col>
       <a-col :xs="24" :md="12" :style="{height: '350px'}">
-        <div class="avatar-upload-preview">
+        <div class="avatar-upload-preview" :style="sizeStyle">
           <img :src="previews.url" :style="previews.img"/>
         </div>
       </a-col>
@@ -57,7 +57,25 @@
 import { imageUpload } from '@/api/resource-service'
 
 export default {
-  name: 'AvatarModal',
+  name: 'CropperModal',
+  props: {
+    width: {
+      type: Number,
+      default: () => 800
+    },
+    radius: {
+      type: Number,
+      default: () => 50
+    },
+    cropWidth: {
+      type: Number,
+      default: () => 200
+    },
+    cropHeight: {
+      type: Number,
+      default: () => 200
+    }
+  },
   data() {
     return {
       visible: false,
@@ -66,12 +84,16 @@ export default {
       fileList: [],
       uploading: false,
       options: {
-        // img: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
         img: '',
         autoCrop: true,
-        autoCropWidth: 200,
-        autoCropHeight: 200,
+        autoCropWidth: this.cropWidth,
+        autoCropHeight: this.cropHeight,
         fixedBox: true
+      },
+      sizeStyle: {
+        'width': `${this.cropWidth}px`,
+        'height': `${this.cropHeight}px`,
+        'border-radius': `${this.radius}%`
       },
       previews: {}
     }
@@ -159,9 +181,6 @@ export default {
   position: absolute;
   top: 50%;
   transform: translate(50%, -50%);
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
   box-shadow: 0 0 4px #ccc;
   overflow: hidden;
 

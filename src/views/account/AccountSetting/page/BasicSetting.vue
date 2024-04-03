@@ -28,14 +28,14 @@
       </a-col>
     </a-row>
 
-    <avatar-modal ref="modal" @ok="setAvatar"/>
+    <cropper-modal ref="modal" @ok="setAvatar"/>
   </div>
 </template>
 
 <script>
 import { appMixin } from '@/store/mixin/app-mixin'
 import { userMixin } from '@/store/mixin/user-mixin'
-import AvatarModal from '@/components/Modal/AvatarModal/Index'
+import CropperModal from '@/components/Modal/CropperModal/Index'
 import userService from '@/api/user-service'
 import { mapActions, mapMutations } from 'vuex'
 
@@ -43,7 +43,7 @@ export default {
   name: 'BasicSetting',
   mixins: [appMixin, userMixin],
   components: {
-    AvatarModal
+    CropperModal
   },
   props: {},
   data() {
