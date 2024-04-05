@@ -3,7 +3,7 @@
     class="message-list"
     :loading="loading"
     item-layout="horizontal"
-    :data-source="data"
+    :data-source="listData"
   >
     <div
       v-if="showLoadingMore"
@@ -33,57 +33,61 @@
 </template>
 
 <script>
+import { searchPage } from '@/api/commmon-service'
+import QueryParam from '@/models/QueryParam'
+import { userMixin } from '@/store/mixin/user-mixin'
+
 export default {
   name: 'AccountMessage',
   components: {},
+  mixins: [userMixin],
   props: {},
   data() {
     return {
       loading: true,
       loadingMore: false,
       showLoadingMore: true,
-      data: []
+      listData: [],
+      pagination: {
+        pageSize: 10,
+        pageIndex: 1
+      }
     }
   },
   computed: {},
   watch: {},
   methods: {
-    getData(callback) {
-      new Promise(resolve => {
-        setTimeout(() => {
-          resolve({
-            results: [{
-              'gender': 'female',
-              'name': {
-                'title': 'Mrs',
-                'first': 'li',
-                'last': 'si'
-              },
-              'email': 'dyn.zraay@example.com',
-              'nat': 'IR'
-            }]
-          })
-        }, 1000)
-      }).then(res => {
-        callback(res)
-      })
+    init() {
+      this.loading = true
+      this.getData()
+      this.loading = false
     },
-    onLoadMore() {
+    getParams() {
+      return {
+        userId: this.userInfo.id,
+        pageIndex: this.pagination.pageIndex,
+        pageSize: this.pagination.pageSize
+      }
+    },
+    async getData() {
+      const params = this.getParams()
+      const result = await searchPage(params, new QueryParam(null, 'message.xml', 'getMessageList', params, null))
+      if (result.list && result.list.length > 0) {
+        this.listData = this.listData.concat(result.list)
+        this.pagination.total = result.itemCounts
+      } else {
+        this.showLoadingMore = false
+      }
+    },
+    async onLoadMore() {
       this.loadingMore = true
-      this.getData(res => {
-        this.data = this.data.concat(res.results)
-        this.loadingMore = false
-        this.$nextTick(() => {
-          window.dispatchEvent(new Event('resize'))
-        })
-      })
+      this.pagination.pageIndex ++
+      await this.getData()
+      this.loadingMore = false
     }
   },
   mounted() {
-    this.getData(res => {
-      this.loading = false
-      this.data = res.results
-    })
+    this.init()
   }
 }
 </script>
