@@ -7,9 +7,9 @@
         <a-space>
           <a-button type="primary" icon="plus" @click="add" v-action:新增>新增</a-button>
           <a-radio-group v-model="status">
-            <a-radio-button value="all">全部</a-radio-button>
-            <a-radio-button value="running">在线</a-radio-button>
-            <a-radio-button value="waiting">离线</a-radio-button>
+            <a-radio-button :value="null">全部</a-radio-button>
+            <a-radio-button value="在线">在线</a-radio-button>
+            <a-radio-button value="离线">离线</a-radio-button>
           </a-radio-group>
           <a-input-search @search="getListData" enter-button style="width: 272px"/>
         </a-space>
@@ -109,7 +109,7 @@ export default {
           this.pagination.pageSize = size
         }
       },
-      status: 'all',
+      status: null,
       // 应用添加和编辑modal
       modal: {
         formId: 'applicationModal',
@@ -126,11 +126,22 @@ export default {
     refresh() {
       this.getListData()
     },
-    async getListData() {
-      const result = await searchPage({
+    getParams(filterString) {
+      const params = {
         pageSize: this.pagination.pageSize,
         pageIndex:  this.pagination.pageIndex
-      }, new QueryParam(null, 'application.xml', 'getApplicationList', null, null))
+      }
+      if (this.status) {
+        params.status = this.status
+      }
+      if (filterString) {
+        params.filterString = filterString
+      }
+      return params
+    },
+    async getListData(filterString) {
+      const params = this.getParams(filterString)
+      const result = await searchPage(params, new QueryParam(null, 'application.xml', 'getApplicationList', params, null))
       if (result.list) {
         this.listData = result.list
         this.pagination.total = result.itemCounts
