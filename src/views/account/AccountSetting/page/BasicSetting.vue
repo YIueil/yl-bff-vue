@@ -41,10 +41,10 @@ import { mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'BasicSetting',
-  mixins: [appMixin, userMixin],
   components: {
     CropperModal
   },
+  mixins: [appMixin, userMixin],
   props: {},
   data() {
     return {
@@ -53,6 +53,9 @@ export default {
   },
   computed: {},
   watch: {},
+  mounted() {
+    this.form = this.cloneDeep(this.userInfo)
+  },
   methods: {
     ...mapMutations(['SET_USER_INFO']),
     ...mapActions(['Refresh']),
@@ -67,9 +70,6 @@ export default {
       // 刷新token 不刷新将继续使用旧token请求后端, 导致拿到旧的token
       await this.Refresh()
     }
-  },
-  mounted() {
-    this.form = this.cloneDeep(this.userInfo)
   }
 }
 </script>

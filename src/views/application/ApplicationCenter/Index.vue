@@ -36,10 +36,10 @@
           </div>
           <div class="list-content">
             <div class="list-content-item">
-              <a-tag v-if="item.status === '在线'" color="#1DA57A">
+              <a-tag v-if="item.status === '在线'" @click="applicationStatusUpdate(item.id, '离线')" color="#1DA57A">
                 {{ item.status }}
               </a-tag>
-              <a-tag v-else color="#F50">
+              <a-tag v-else color="#F50" @click="applicationStatusUpdate(item.id, '在线')">
                 {{ item.status }}
               </a-tag>
             </div>
@@ -50,7 +50,7 @@
               >
                 {{ tag }}
               </a-tag>
-              <a-tag style="background: #fff; borderStyle: dashed;" @click="handleAddManager(item)">
+              <a-tag style="background: #fff; borderStyle: dashed;" @click="handleAddManager(item)" v-action:新增应用管理员>
                 <a-icon type="plus"/>
                 添加
               </a-tag>
@@ -119,12 +119,58 @@ export default {
       }
     }
   },
-  methods: {
-    init() {
+  watch: {
+    'pagination.pageIndex'() {
       this.getListData()
     },
-    refresh() {
+    'pagination.pageSize'() {
       this.getListData()
+    }
+  },
+  mounted() {
+    this.init()
+  },
+  methods: {
+    add() {
+      this.$set(this.modal, 'title', '添加应用')
+      this.$set(this.modal, 'formItems', form.appAddForm)
+      // 使得获取到默认图片
+      this.$set(this.modal, 'model', {})
+      this.$set(this.modal, 'visible', true)
+    },
+    async applicationStatusUpdate(applicationId, status) {
+      try {
+        await applicationService.updateApplicationStatus({
+          applicationId,
+          status
+        })
+        await this.getListData()
+      } catch (e) {
+        this.$message.error(e)
+      }
+    },
+    async del(record) {
+      console.log('删除', record)
+      await applicationService.delApplication({
+        applicationId: record.id
+      })
+      this.$message.success('删除成功')
+      this.refresh()
+    },
+    edit(record) {
+      this.$set(this.modal, 'title', '编辑应用')
+      // 更新model的使用使用克隆对象, 触发model更新的监听
+      this.$set(this.modal, 'model', this.cloneDeep(record))
+      this.$set(this.modal, 'formItems', form.appEditForm)
+      this.$set(this.modal, 'visible', true)
+    },
+    async getListData(filterString) {
+      const params = this.getParams(filterString)
+      const result = await searchPage(params, new QueryParam(null, 'application.xml', 'getApplicationList', params, null))
+      if (result.list) {
+        this.listData = result.list
+        this.pagination.total = result.itemCounts
+      }
     },
     getParams(filterString) {
       const params = {
@@ -138,14 +184,6 @@ export default {
         params.filterString = filterString
       }
       return params
-    },
-    async getListData(filterString) {
-      const params = this.getParams(filterString)
-      const result = await searchPage(params, new QueryParam(null, 'application.xml', 'getApplicationList', params, null))
-      if (result.list) {
-        this.listData = result.list
-        this.pagination.total = result.itemCounts
-      }
     },
     handleAddManager(item) {
       console.log('添加应用管理员', item)
@@ -174,27 +212,17 @@ export default {
         }
       )
     },
-    add() {
-      this.$set(this.modal, 'title', '添加应用')
-      this.$set(this.modal, 'formItems', form.appAddForm)
-      // 使得获取到默认图片
+    init() {
+      this.getListData()
+    },
+    initApplicationImage() {
+      const iconUrl = require('@/assets/img/default-project.jpg')
+      this.modal.model.iconUrl = iconUrl
+      return iconUrl
+    },
+    onCancel() {
+      this.$set(this.modal, 'visible', false)
       this.$set(this.modal, 'model', {})
-      this.$set(this.modal, 'visible', true)
-    },
-    edit(record) {
-      this.$set(this.modal, 'title', '编辑应用')
-      // 更新model的使用使用克隆对象, 触发model更新的监听
-      this.$set(this.modal, 'model', this.cloneDeep(record))
-      this.$set(this.modal, 'formItems', form.appEditForm)
-      this.$set(this.modal, 'visible', true)
-    },
-    async del(record) {
-      console.log('删除', record)
-      await applicationService.delApplication({
-        applicationId: record.id
-      })
-      this.$message.success('删除成功')
-      this.refresh()
     },
     async onSubmit(formData) {
       if (formData.id) {
@@ -209,29 +237,12 @@ export default {
       this.$set(this.modal, 'visible', false)
       this.$set(this.modal, 'model', {})
     },
-    onCancel() {
-      this.$set(this.modal, 'visible', false)
-      this.$set(this.modal, 'model', {})
+    refresh() {
+      this.getListData()
     },
     setIconUrl(response, modal) {
       console.log('图片上传结果', response)
       this.$set(modal.model, 'iconUrl', response.url)
-    },
-    initApplicationImage() {
-      const iconUrl = require('@/assets/img/default-project.jpg')
-      this.modal.model.iconUrl = iconUrl
-      return iconUrl
-    }
-  },
-  mounted() {
-    this.init()
-  },
-  watch: {
-    'pagination.pageIndex'() {
-      this.getListData()
-    },
-    'pagination.pageSize'() {
-      this.getListData()
     }
   }
 }

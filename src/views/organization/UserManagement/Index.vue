@@ -102,7 +102,7 @@
         <span slot="modifyTime" slot-scope="text">
           {{ text | moment }}
         </span>
-        <span slot="status" slot-scope="text">
+        <span slot="state" slot-scope="text">
           <a-badge :status="text | statusTypeFilter" :text="text | statusFilter"/>
         </span>
         <span slot="action" slot-scope="text, record">

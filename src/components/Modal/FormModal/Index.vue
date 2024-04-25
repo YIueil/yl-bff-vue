@@ -75,10 +75,10 @@ export default {
   name: 'FormModal',
   props: {
     formId: String,
-    visible: Boolean,
-    title: String,
     formItems: Array,
-    model: Object
+    model: Object,
+    title: String,
+    visible: Boolean
   },
   data() {
     return {
@@ -107,28 +107,6 @@ export default {
       }
     }
   },
-  methods: {
-    handleOk() {
-      this.form.validateFields(((errors, data) => {
-        if (!errors) {
-          console.log('data', data)
-          this.$emit('submit', data)
-        } else {
-          console.log(errors)
-        }
-      }))
-    },
-    handleCancel() {
-      this.$emit('cancel')
-    },
-    setData(data) {
-      console.log('设置表单值', data)
-      this.$nextTick(() => {
-        this.form.setFieldsValue(pick(data, this.formItems.map(item => item.name)))
-        this.$forceUpdate()
-      })
-    }
-  },
   created() {
     // 创建出form对象, 提供给内部ant-form使用
     this.form = this.$form.createForm(this, { name: this.formId })
@@ -141,6 +119,28 @@ export default {
         this.form.setFieldsValue(pick(newValue, this.formItems.map(item => item.name)))
       })
     }, { deep: true })
+  },
+  methods: {
+    handleCancel() {
+      this.$emit('cancel')
+    },
+    handleOk() {
+      this.form.validateFields(((errors, data) => {
+        if (!errors) {
+          console.log('data', data)
+          this.$emit('submit', data)
+        } else {
+          console.log(errors)
+        }
+      }))
+    },
+    setData(data) {
+      console.log('设置表单值', data)
+      this.$nextTick(() => {
+        this.form.setFieldsValue(pick(data, this.formItems.map(item => item.name)))
+        this.$forceUpdate()
+      })
+    }
   }
 }
 </script>

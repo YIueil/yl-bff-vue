@@ -24,8 +24,8 @@ export default {
     },
     {
       title: '状态',
-      dataIndex: 'status',
-      scopedSlots: { customRender: 'status' }
+      dataIndex: 'state',
+      scopedSlots: { customRender: 'state' }
     },
     {
       title: '创建时间',

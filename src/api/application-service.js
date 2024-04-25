@@ -10,7 +10,8 @@ const appApi = {
   addApplicationFunction: '/orup/addApplicationFunction',
   updateApplicationFunction: '/orup/modifyApplicationFunction',
   delApplicationFunction: '/orup/delApplicationFunction',
-  applicationAuthorization: '/orup/applicationAuthorization'
+  applicationAuthorization: '/orup/applicationAuthorization',
+  updateApplicationStatus: '/orup/updateApplicationStatus'
 }
 
 export function getAllApplicationList() {
@@ -84,6 +85,13 @@ export function applicationAuthorization(params, data) {
     data
   })
 }
+export function updateApplicationStatus(params) {
+  return request({
+    url: appApi.updateApplicationStatus,
+    method: 'post',
+    params
+  })
+}
 export default {
   getAllApplicationList,
   addApplication,
@@ -94,5 +102,6 @@ export default {
   addApplicationFunction,
   updateApplicationFunction,
   delApplicationFunction,
-  applicationAuthorization
+  applicationAuthorization,
+  updateApplicationStatus
 }
