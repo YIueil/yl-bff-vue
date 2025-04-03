@@ -81,7 +81,6 @@ export default {
   align-items: center;
   text-align: center;
   justify-content: center;
-  border-bottom: 1px solid #F0F2F5;
   padding: 5px;
 
   img {
