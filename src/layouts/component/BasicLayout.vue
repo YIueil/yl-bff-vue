@@ -180,6 +180,7 @@ export default {
   }
 
   .basic-content {
+    padding-top: 5px;
     overflow: hidden
   }
 
@@ -194,6 +195,10 @@ export default {
   padding: 0;
   line-height: 64px;
   display: flex;
+}
+
+/deep/ .ant-tabs-nav-scroll {
+  padding-left: 10px;
 }
 
 .globalSettingBtn {

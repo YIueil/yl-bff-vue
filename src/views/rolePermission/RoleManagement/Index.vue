@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="role-management">
     <a-row type="flex" justify="space-between">
       <a-col :xs="24" :lg="showUserTable ? 10 : 24">
         <role-tree ref="roleTree" @onSelect="loadUserTableData" />
@@ -42,3 +42,9 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+  .role-management {
+    padding: 10px;
+  }
+</style>
+

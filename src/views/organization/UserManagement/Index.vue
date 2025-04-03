@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-header-wrapper">
     <a-card :bordered="false">
       <!--  todo: 抽取search-wrapper组件  -->
       <div class="table-search-wrapper">
@@ -309,5 +309,7 @@ export default {
 </script>
 
 <style scoped>
-
+.page-header-wrapper {
+  padding: 10px;
+}
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-header-wrapper">
     <a-card
       :bordered="false"
       title="应用管理">
@@ -96,7 +96,7 @@ export default {
       pagination: {
         showSizeChanger: true,
         showQuickJumper: true,
-        pageSize: 5,
+        pageSize: 4,
         pageIndex: 1,
         total: 50,
         onChange: (page, pageSize) => {
@@ -249,6 +249,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.page-header-wrapper {
+  padding: 10px;
+}
+
 .ant-avatar-lg {
   width: 48px;
   height: 48px;
