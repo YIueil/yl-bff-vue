@@ -3,10 +3,8 @@
  * Date:2022/11  /15 23:16
  * Description: userStore 保存用户信息和用户角色权限信息
  */
-import { ACCESS_TOKEN } from '@/store/enums/mutation-types'
-import { login, logout, getUserInfo, getUserRoles, getUserPermissions } from '@/api/userService'
+import { getUserInfo, getUserPermissions, getUserRoles, login, logout } from '@/api/userService'
 import storage from 'store'
-import defaultSettings from '@/config/defaultSettings'
 import expirePlugin from 'store/plugins/expire'
 
 // 添加
@@ -50,12 +48,12 @@ const user = {
     // 登录
     async Login({ dispatch, commit }, userInfo) {
       try {
-        const token = await login({
+        const user = await login({
           loginName: userInfo.loginName,
           password: userInfo.password
         })
-        storage.set(ACCESS_TOKEN, token, new Date().getTime() + defaultSettings.tokenExpire)
-        commit('SET_TOKEN', token)
+        console.log(user, commit)
+        // commit('SET_TOKEN', token)
         // 登录成功后获取用户信息
         await dispatch('getUserInfo')
         await dispatch('GetRoles')

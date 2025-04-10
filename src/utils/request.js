@@ -1,6 +1,7 @@
 import axios from 'axios'
 import storage from 'store'
 import { ACCESS_TOKEN } from '@/store/enums/mutation-types'
+import defaultSettings from '@/config/defaultSettings'
 // 创建 axios 实例
 const request = axios.create({
   // API 请求的默认前缀
@@ -23,11 +24,14 @@ request.interceptors.request.use(config => {
 })
 // 添加响应拦截器
 request.interceptors.response.use(response => {
-  const { status, data: { body, statusMsg, statusCode, stackTrace, tips } } = response
+  const { status, data: { body, statusMsg, statusCode, stackTrace, tips, token } } = response
   // 2xx 范围内的状态码都会触发该函数。
   // 对响应数据做点什么
   if (status === 200) {
     if (statusMsg === 'success') {
+      if (token) {
+        storage.set(ACCESS_TOKEN, token, new Date().getTime() + defaultSettings.tokenExpire)
+      }
       return body
     } else {
       // 抛出错误, 外部进行捕获
