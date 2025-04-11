@@ -14,12 +14,27 @@
       </a-radio-group>
     </div>
     <div class="diff-content">
-      <a-textarea class="origin" placeholder="原文本内容" :rows="4" v-model="originText" @change="changed"/>
-      <a-textarea class="target" placeholder="目标文本内容" :rows="4" v-model="targetText" @change="changed"/>
+      <div class="origin">
+        <a-space style="width: 100%; height: 100%" direction="vertical">
+          <a-upload :before-upload="(file) => importText(file, 'origin')" :show-upload-list="false" accept=".txt,.text" style="margin-bottom: 10px">
+            <a-button size="small" type="primary">导入</a-button>
+          </a-upload>
+          <a-textarea placeholder="原文本内容" :rows="30" v-model="originText" @change="changed"/>
+        </a-space>
+      </div>
+
+      <div class="target">
+        <a-space style="width: 100%; height: 100%" direction="vertical">
+          <a-upload :before-upload="(file) => importText(file, 'target')" :show-upload-list="false" accept=".txt,.text" style="margin-bottom: 10px">
+            <a-button size="small" type="primary">导入</a-button>
+          </a-upload>
+          <a-textarea placeholder="目标文本内容" :rows="30" v-model="targetText" @change="changed"/>
+        </a-space>
+      </div>
       <div class="result">
         统计结果:
         {{ getDiffStats() }}
-        <pre id="result" class="result" ref="result"></pre>
+        <pre ref="result"></pre>
       </div>
 
     </div>
@@ -39,6 +54,35 @@ export default {
     }
   },
   methods: {
+    importText(file, type) {
+      return new Promise((resolve, reject) => {
+        const _this = this
+        const reader = new FileReader()
+
+        reader.onload = (event) => {
+          const content = event.target.result
+          if (type === 'origin') {
+            this.originText = content
+          } else {
+            this.targetText = content
+          }
+          this.$nextTick(() => {
+            _this.changed() // 自动触发对比
+          })
+          resolve(false) // 阻止默认上传行为
+        }
+
+        reader.onerror = (error) => {
+          this.$message.error('文件读取失败')
+          reject(error)
+        }
+
+        reader.readAsText(file)
+      }).catch(error => {
+        console.error('文件上传错误:', error)
+        return false
+      })
+    },
     getDiffStats() {
       const lineDiffs = Diff.diffLines(this.originText, this.targetText)
 
