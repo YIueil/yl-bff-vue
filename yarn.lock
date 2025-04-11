@@ -1898,11 +1898,11 @@ autoprefixer@^10.2.4:
     postcss-value-parser "^4.2.0"
 
 axios@^1.1.3:
-  version "1.1.3"
-  resolved "http://58.246.138.178:22282/repository/npm-public/axios/-/axios-1.1.3.tgz#8274250dada2edf53814ed7db644b9c2866c1e35"
-  integrity sha512-00tXVRwKx/FZr/IDVFt4C+f9FYairX517WoGCL6dpOntqLkZofjhu43F/Xl44UOpqa+9sLFDrG/XAnFsUYgkDA==
+  version "1.8.4"
+  resolved "https://registry.npmmirror.com/axios/-/axios-1.8.4.tgz#78990bb4bc63d2cae072952d374835950a82f447"
+  integrity sha512-eBSYY4Y68NNlHbHBMdeDmKNtDgXWhQsJcGqzO3iLUM0GraQFSS9cVgPX5I9b3lbdFKyYoAEGAZF1DwhTaljNAw==
   dependencies:
-    follow-redirects "^1.15.0"
+    follow-redirects "^1.15.6"
     form-data "^4.0.0"
     proxy-from-env "^1.1.0"
 
@@ -2278,6 +2278,13 @@ combined-stream@^1.0.8:
   integrity sha512-FQN4MRfuJeHf7cBbBMJFXhKSDq+2kAArBlmRBvcvFE5BB1HZKXtSFASDhdlz9zOYwxh8lDdnvmMOe/+5cdoEdg==
   dependencies:
     delayed-stream "~1.0.0"
+
+commander@1.3.x:
+  version "1.3.2"
+  resolved "https://registry.npmmirror.com/commander/-/commander-1.3.2.tgz#8a8f30ec670a6fdd64af52f1914b907d79ead5b5"
+  integrity sha512-uoVVA5dchmxZeTMv2Qsd0vhn/RebJYsWo4all1qtrUL3BBhQFn4AQDF4PL+ZvOeK7gczXKEZaSCyMDMwFBlpBg==
+  dependencies:
+    keypress "0.1.x"
 
 commander@^2.20.0:
   version "2.20.3"
@@ -3205,10 +3212,15 @@ flatted@^3.1.0:
   resolved "https://registry.npmmirror.com/flatted/-/flatted-3.2.7.tgz#609f39207cb614b89d0765b477cb2d437fbf9787"
   integrity sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==
 
-follow-redirects@^1.0.0, follow-redirects@^1.15.0:
+follow-redirects@^1.0.0:
   version "1.15.2"
   resolved "https://registry.npmmirror.com/follow-redirects/-/follow-redirects-1.15.2.tgz#b460864144ba63f2681096f274c4e57026da2c13"
   integrity sha512-VQLG33o04KaQ8uYi2tVNbdrWp1QWxNNea+nmIB4EVM28v0hmP17z7aG1+wAkNzVq4KeXTq3221ye5qTJP91JwA==
+
+follow-redirects@^1.15.6:
+  version "1.15.9"
+  resolved "https://registry.npmmirror.com/follow-redirects/-/follow-redirects-1.15.9.tgz#a604fa10e443bf98ca94228d9eebcc2e8a2c8ee1"
+  integrity sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==
 
 form-data@^4.0.0:
   version "4.0.0"
@@ -3858,6 +3870,11 @@ jsonfile@^6.0.1:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
+keypress@0.1.x:
+  version "0.1.0"
+  resolved "https://registry.npmmirror.com/keypress/-/keypress-0.1.0.tgz#4a3188d4291b66b4f65edb99f806aa9ae293592a"
+  integrity sha512-x0yf9PL/nx9Nw9oLL8ZVErFAk85/lslwEP7Vz7s5SI1ODXZIgit3C5qyWjw4DxOuO/3Hb4866SQh28a1V1d+WA==
+
 kind-of@^6.0.2:
   version "6.0.3"
   resolved "https://registry.npmmirror.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
@@ -4170,6 +4187,13 @@ mkdirp@^0.5.6:
   integrity sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==
   dependencies:
     minimist "^1.2.6"
+
+mockjs@0.1.10:
+  version "0.1.10"
+  resolved "https://registry.npmmirror.com/mockjs/-/mockjs-0.1.10.tgz#f4f8c23ae75a76fb1609e4a8ec40145efa7a5596"
+  integrity sha512-cJIPGMftT1NbpBgsv64bUidNJ1rG/io86iOvlxpi6qLEHXL2fWF/HcPdnthpqvP2Bb8he7WQgApv0dJs+k+0SQ==
+  dependencies:
+    commander "1.3.x"
 
 module-alias@^2.2.2:
   version "2.2.2"
