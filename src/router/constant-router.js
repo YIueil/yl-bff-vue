@@ -216,6 +216,28 @@ const constantRouter = [
         component: () => import('@/views/strategy/StrategyCenter')
       }
     ]
+  },
+  {
+    path: '/component',
+    name: 'Component',
+    redirect: '/component/center',
+    component: BasicLayout,
+    meta: {
+      icon: 'component',
+      title: '组件中心',
+      rightName: '组件中心'
+    },
+    children: [
+      {
+        path: '/component/center',
+        name: 'ComponentCenter',
+        meta: {
+          title: '组件打印',
+          rightName: '组件中心-组件打印'
+        },
+        component: () => import('@/views/common/components/PrintComponent')
+      }
+    ]
   }
 ]
 export default constantRouter
