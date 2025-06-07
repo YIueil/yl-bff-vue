@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-container">
     <a-row type="flex" justify="space-between">
       <a-col :xs="24" :lg="showUserTable ? 10 : 24">
         <org-tree ref="orgTree" @onSelect="loadUserTableData" />
@@ -42,3 +42,8 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.page-container {
+  padding: 10px;
+}
+</style>

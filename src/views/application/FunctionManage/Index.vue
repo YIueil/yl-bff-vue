@@ -1,12 +1,14 @@
 <template>
-  <a-row>
-    <a-col :xs="24" :lg="showRoleTree ? 10 : 24">
-      <function-tree @onSelect="onNodeSelect" />
-    </a-col>
-    <a-col :xs="24" :lg="14">
-      <role-tree ref="roleTree" v-if="showRoleTree" :selected-function="selectedFunction" />
-    </a-col>
-  </a-row>
+  <div class="function-manage">
+    <a-row>
+      <a-col :xs="24" :lg="showRoleTree ? 10 : 24">
+        <function-tree @onSelect="onNodeSelect" />
+      </a-col>
+      <a-col :xs="24" :lg="14">
+        <role-tree ref="roleTree" v-if="showRoleTree" :selected-function="selectedFunction" />
+      </a-col>
+    </a-row>
+  </div>
 </template>
 
 <script>
@@ -37,3 +39,8 @@ export default {
   }
 }
 </script>
+<style lang="less" scoped>
+.function-manage {
+  padding: 10px;
+}
+</style>
