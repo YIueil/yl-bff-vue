@@ -5,7 +5,7 @@ const userApi = {
   logout: '/orup/logout',
   register: '/orup/register',
   modifyUser: '/orup/modifyUser',
-  delUser: 'orup/delUser',
+  delUser: '/orup/delUser',
   suspendUser: '/orup/suspendUser',
   passwordChange: 'orup/passwordChange',
   getUserInfo: '/orup/currentUser',

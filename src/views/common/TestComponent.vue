@@ -1,25 +1,28 @@
 <template>
   <div>
-
+    {{ mockStr }}
   </div>
 </template>
 
 <script>
-import { getUserInfo } from '@/api/userService'
+import * as Mockjs from 'mockjs'
+
 
 export default {
   name: 'TestComponent',
   components: {},
   props: {},
   data() {
-    return {}
+    return {
+      mockStr: '这里会展示一些随机生成的数据'
+    }
   },
   computed: {},
   watch: {},
   methods: {},
   mounted() {
-    getUserInfo().then(resp => {
-      console.log(resp)
+    this.mockStr = Mockjs.mock({
+      'string|1-10': '★'
     })
   }
 }
