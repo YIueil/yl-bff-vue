@@ -1,7 +1,10 @@
 import request from '@/utils/request'
 
 const imageApi = {
-  upload: '/resource/image/upload'
+  upload: '/resource/image/upload',
+  fileUpload: '/resource/file/upload',
+  fileDelete: '/resource/file/download/{guid}',
+  filePreview: '/resource/file/preview/{guid}'
 }
 
 export function imageUpload(formData) {

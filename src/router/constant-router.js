@@ -223,7 +223,7 @@ const constantRouter = [
     redirect: '/component/center',
     component: BasicLayout,
     meta: {
-      icon: 'component',
+      icon: 'folder',
       title: '组件中心',
       rightName: '组件中心'
     },
@@ -236,6 +236,15 @@ const constantRouter = [
           rightName: '组件中心-组件打印'
         },
         component: () => import('@/views/common/components/PrintComponent')
+      },
+      {
+        path: '/component/fileUpload',
+        name: 'FileUpload',
+        meta: {
+          title: '文件上传',
+          rightName: '组件中心-文件上传'
+        },
+        component: () => import('@/views/common/components/FileUpload')
       }
     ]
   }

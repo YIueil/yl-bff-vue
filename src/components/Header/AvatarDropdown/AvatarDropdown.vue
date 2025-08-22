@@ -53,7 +53,7 @@ export default {
       this.$router.push({ path: '/account/center' })
     },
     handleToSettings() {
-      this.$router.push({ path: '/account/settings' })
+      this.$router.push({ path: '/account/setting' })
     },
     handleLogout(e) {
       console.log(e)
