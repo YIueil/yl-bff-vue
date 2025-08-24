@@ -5,6 +5,17 @@ const webpack = require('webpack')
 
 const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
+  devServer: {
+    port: 3000
+    // 为什么无效
+    // proxy: {
+    //   // 代理配置
+    //   '/resource/file/preview/a1ec71dcaf8941a180318d2e3506dd5b': {
+    //     target: 'http://localhost:20000',
+    //     changeOrigin: true
+    //   }
+    // }
+  },
   transpileDependencies: true,
   configureWebpack: {
     // webpack plugins

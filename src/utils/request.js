@@ -57,7 +57,7 @@ request.interceptors.response.use(response => {
           Initializer().then(resetRouter)
         })
       })
-    } else {
+    } else if (statusCode) {
       // 抛出错误, 外部进行捕获
       throw new Error(JSON.stringify({
         statusCode,
@@ -65,6 +65,8 @@ request.interceptors.response.use(response => {
         stackTrace,
         tips
       }))
+    } else {
+      return response
     }
   }
   return response
