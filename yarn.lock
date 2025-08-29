@@ -5666,6 +5666,11 @@ sockjs@^0.3.24:
     uuid "^8.3.2"
     websocket-driver "^0.7.4"
 
+sortablejs@^1.15.6:
+  version "1.15.6"
+  resolved "https://registry.npmmirror.com/sortablejs/-/sortablejs-1.15.6.tgz#ff93699493f5b8ab8d828f933227b4988df1d393"
+  integrity sha512-aNfiuwMEpfBM/CN6LY0ibyhxPfPbyFeBTYJKCvzkJ2GkUpazIt3H+QIPAMHwqQ7tMKaHz1Qj+rJJCqljnf4p3A==
+
 source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmmirror.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"

@@ -230,7 +230,16 @@ const constantRouter = [
     children: [
       {
         path: '/component/center',
-        name: 'ComponentCenter',
+        name: 'TestComponent',
+        meta: {
+          title: '测试组件',
+          rightName: '组件中心-测试组件'
+        },
+        component: () => import('@/views/common/test/TestComponent')
+      },
+      {
+        path: '/component/print',
+        name: 'PrintComponent',
         meta: {
           title: '组件打印',
           rightName: '组件中心-组件打印'

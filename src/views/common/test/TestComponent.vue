@@ -1,218 +1,53 @@
 <template>
   <div>
-    <a-space>
-      <i class="iconfont yl-icon-image"></i>
-      <svg class="icon" aria-hidden="true">
-        <use xlink:href="#yl-icon-image"></use>
-      </svg>
-      <div>
-        <a-button type="primary">按钮</a-button>
-      </div>
-      <div>
-        <a-affix :offset-top="top">
-          <a-button type="primary" @click="top += 10">
-            Affix top
-          </a-button>
-        </a-affix>
-        <br/>
-        <a-affix :offset-bottom="bottom">
-          <a-button type="primary" @click="bottom += 10">
-            Affix bottom
-          </a-button>
-        </a-affix>
-      </div>
-      <div>
-        <a-dropdown>
-          <a class="ant-dropdown-link" @click="e => e.preventDefault()">
-            Hover me <a-icon type="down" />
-          </a>
-          <a-menu slot="overlay">
-            <a-menu-item>
-              <a href="javascript:;">1st menu item</a>
-            </a-menu-item>
-            <a-menu-item>
-              <a href="javascript:;">2nd menu item</a>
-            </a-menu-item>
-            <a-menu-item>
-              <a href="javascript:;">3rd menu item</a>
-            </a-menu-item>
-          </a-menu>
-        </a-dropdown>
-        <a-dropdown-button @click="handleButtonClick">
-          Dropdown
-          <a-menu slot="overlay" @click="handleMenuClick">
-            <a-menu-item key="1">
-              <a-icon type="user"/>
-              1st menu item
-            </a-menu-item>
-            <a-menu-item key="2">
-              <a-icon type="user"/>
-              2nd menu item
-            </a-menu-item>
-            <a-menu-item key="3">
-              <a-icon type="user"/>
-              3rd item
-            </a-menu-item>
-          </a-menu>
-        </a-dropdown-button>
-        <a-dropdown-button>
-          Dropdown
-          <a-menu slot="overlay" @click="handleMenuClick">
-            <a-menu-item key="1">
-              <a-icon type="user"/>
-              1st menu item
-            </a-menu-item>
-            <a-menu-item key="2">
-              <a-icon type="user"/>
-              2nd menu item
-            </a-menu-item>
-            <a-menu-item key="3">
-              <a-icon type="user"/>
-              3rd item
-            </a-menu-item>
-          </a-menu>
-          <a-icon slot="icon" type="user"/>
-        </a-dropdown-button>
-        <a-dropdown-button disabled style="margin-left: 8px" @click="handleButtonClick">
-          Dropdown
-          <a-menu slot="overlay" @click="handleMenuClick">
-            <a-menu-item key="1">
-              <a-icon type="user"/>
-              1st menu item
-            </a-menu-item>
-            <a-menu-item key="2">
-              <a-icon type="user"/>
-              2nd menu item
-            </a-menu-item>
-            <a-menu-item key="3">
-              <a-icon type="user"/>
-              3rd item
-            </a-menu-item>
-          </a-menu>
-        </a-dropdown-button>
-        <a-dropdown>
-          <a-menu slot="overlay" @click="handleMenuClick">
-            <a-menu-item key="1">
-              <a-icon type="user"/>
-              1st menu item
-            </a-menu-item>
-            <a-menu-item key="2">
-              <a-icon type="user"/>
-              2nd menu item
-            </a-menu-item>
-            <a-menu-item key="3">
-              <a-icon type="user"/>
-              3rd item
-            </a-menu-item>
-          </a-menu>
-          <a-button style="margin-left: 8px"> Button
-            <a-icon type="down"/>
-          </a-button>
-        </a-dropdown>
-      </div>
-      <div style="width: 256px">
-        <a-button type="primary" style="margin-bottom: 16px" @click="toggleCollapsed">
-          <a-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" />
-        </a-button>
-        <a-menu
-          :default-selected-keys="['1']"
-          :default-open-keys="['sub1']"
-          mode="inline"
-          :inline-collapsed="collapsed"
-        >
-          <a-menu-item key="1">
-            <a-icon type="pie-chart" />
-            <span>Option 1</span>
-          </a-menu-item>
-          <a-menu-item key="2">
-            <a-icon type="desktop" />
-            <span>Option 2</span>
-          </a-menu-item>
-          <a-menu-item key="3">
-            <a-icon type="inbox" />
-            <span>Option 3</span>
-          </a-menu-item>
-          <a-sub-menu key="sub1">
-            <span slot="title"><a-icon type="mail" /><span>Navigation One</span></span>
-            <a-menu-item key="5">
-              Option 5
-            </a-menu-item>
-            <a-menu-item key="6">
-              Option 6
-            </a-menu-item>
-            <a-menu-item key="7">
-              Option 7
-            </a-menu-item>
-            <a-menu-item key="8">
-              Option 8
-            </a-menu-item>
-          </a-sub-menu>
-          <a-sub-menu key="sub2">
-            <span slot="title"><a-icon type="appstore" /><span>Navigation Two</span></span>
-            <a-menu-item key="9">
-              Option 9
-            </a-menu-item>
-            <a-menu-item key="10">
-              Option 10
-            </a-menu-item>
-            <a-sub-menu key="sub3" title="Submenu">
-              <a-menu-item key="11">
-                Option 11
-              </a-menu-item>
-              <a-menu-item key="12">
-                Option 12
-              </a-menu-item>
-            </a-sub-menu>
-          </a-sub-menu>
-        </a-menu>
-      </div>
-      <div>
-        <a-page-header
-          style="border: 1px solid rgb(235, 237, 240)"
-          title="Title"
-          sub-title="This is a subtitle"
-          @back="() => null"
-        />
-      </div>
-    </a-space>
+    <custom-header-table
+        :data-source="tableData"
+        :columns="tableColumns"
+        @columns-change="handleColumnsChange"
+    >
+      <span slot="operate" slot-scope="{ text, record }">
+        <a-button @click="editRecord(text, record)">编辑</a-button>
+      </span>
+    </custom-header-table>
   </div>
 </template>
 
 <script>
-import { getUserInfo } from '@/api/user-service'
+import CustomHeaderTable from '@/components/Table/DHTable/DynamicHeaderTable'
 
 export default {
   name: 'TestComponent',
-  components: {},
-  props: {},
+  components: {
+    CustomHeaderTable
+  },
   data() {
     return {
-      top: 10,
-      bottom: 10,
-      collapsed: false
+      tableData: [
+        { id: 1, name: '张三', age: 25, address: '北京市朝阳区', email: 'zhangsan@example.com' },
+        { id: 2, name: '李四', age: 30, address: '上海市浦东新区', email: 'lisi@example.com' },
+        { id: 3, name: '王五', age: 28, address: '广州市天河区', email: 'wangwu@example.com' }
+      ],
+      tableColumns: [
+        { title: '姓名', dataIndex: 'name', key: 'name', fieldGroup: '业务' },
+        { title: '年龄', dataIndex: 'age', key: 'age', fieldGroup: '业务' },
+        { title: '地址', dataIndex: 'address', key: 'address', fieldGroup: '隐私' },
+        { title: '邮箱', dataIndex: 'email', key: 'email', fieldGroup: '隐私' },
+        { title: '操作', dataIndex: 'operate', key: 'operate', fieldGroup: '其他', scopedSlots: { customRender: 'operate' }  }
+      ],
+      cols: [
+        { title: '姓名', dataIndex: 'name', key: 'name', fieldGroup: '业务' },
+        { title: '操作', dataIndex: 'operate', key: 'operate', fieldGroup: '其他', scopedSlots: { customRender: 'operate' }  }
+      ]
     }
   },
-  computed: {},
-  watch: {},
   methods: {
-    handleButtonClick(e) {
-      console.log('click left button', e)
+    handleColumnsChange(newColumns) {
+      console.log('列配置已更新:', newColumns)
+      // 可以在这里保存用户自定义的列配置
     },
-    handleMenuClick(e) {
-      console.log('click', e)
-    },
-    toggleCollapsed() {
-      this.collapsed = !this.collapsed
+    editRecord(text, record) {
+      console.log('编辑行', text, record)
     }
-  },
-  mounted() {
-    getUserInfo().then(resp => {
-      console.log(resp)
-    })
   }
 }
 </script>
-
-<style scoped>
-
-</style>
