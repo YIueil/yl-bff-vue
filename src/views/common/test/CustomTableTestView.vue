@@ -19,7 +19,7 @@
 import CustomHeaderTable from '@/components/Table/DHTable/DynamicHeaderTable'
 
 export default {
-  name: 'TestComponent',
+  name: 'CustomTableTestView',
   components: {
     CustomHeaderTable
   },

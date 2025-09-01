@@ -238,6 +238,15 @@ const constantRouter = [
         component: () => import('@/views/common/test/TestComponent')
       },
       {
+        path: '/component/table',
+        name: 'CustomTableTestView',
+        meta: {
+          title: '自定义头表格',
+          rightName: '组件中心-自定义头表格'
+        },
+        component: () => import('@/views/common/test/CustomTableTestView')
+      },
+      {
         path: '/component/print',
         name: 'PrintComponent',
         meta: {

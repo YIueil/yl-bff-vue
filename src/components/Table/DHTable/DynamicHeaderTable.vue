@@ -3,6 +3,8 @@
     <a-button type="primary" @click="showModal">编辑表头</a-button>
 
     <a-table
+        v-bind="$attrs"
+        v-on="$listeners"
         :columns="visibleColumns"
         :data-source="tableData"
         :row-key="record => record.id"
